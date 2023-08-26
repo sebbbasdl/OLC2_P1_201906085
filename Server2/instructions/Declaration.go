@@ -30,9 +30,9 @@ func (p Declaration) Ejecutar(ast *environment.AST, env interface{}) interface{}
 			ast.SetError("La estructura del array es incorrecta")
 		}
 	} else if result.Tipo == p.Tipo {
-		nodo1 := environment.NewNodo("Declaracion")
 
 		env.(environment.Environment).SaveVariable(p.Id, result)
+		nodo1 := environment.NewNodo("Declaracion")
 		ast.GetRaiz().Hijos = append(ast.GetRaiz().Hijos, nodo1)
 		labels := []string{"int", p.Id, "="}
 		nodo1.GenerateProduction(labels)

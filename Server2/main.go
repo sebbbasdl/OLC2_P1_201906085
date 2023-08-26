@@ -27,7 +27,7 @@ func handleInterpreter() interface{} {
 	/*if err := c.BodyParser(&message); err != nil {
 		return err
 	}*/
-	message.Content = "var prueba2 : Int = 0  \n if 0 > 1{ print(\"Entre al if\")}else if 0<0 {print(\"estoy en else if 1\")}else if 0<0 {print(\"estoy en else if 2\")}else if 0<0 {print(\"estoy en else if 3\")}else{print(\"Estoy en else jeje\")} "
+	message.Content = "for i in 1...5 { print(i)} "
 	//Entrada
 	code := message.Content
 	//Leyendo entrada
@@ -56,11 +56,11 @@ func handleInterpreter() interface{} {
 		inst.(interfaces.Instruction).Ejecutar(&Ast, globalEnv)
 	}
 
-	Ast.BuildTree(rootNode, Ast.GetRaiz())
+	//Ast.BuildTree(rootNode, Ast.GetRaiz())
 	// Generate DOT string from the AST
 
 	// Print or use the generated DOT string as needed
-	//println(Ast.GenerateDotString())
+	println(Ast.GenerateDot())
 
 	var ConsoleOut = ""
 	if Ast.GetErrors() == "" {

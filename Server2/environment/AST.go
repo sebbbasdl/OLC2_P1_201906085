@@ -1,8 +1,8 @@
 package environment
 
 import (
-	"strconv"
-	"unsafe"
+	"fmt"
+	"strings"
 )
 
 type Nodo struct {
@@ -88,6 +88,44 @@ func (a *AST) SetError(ToErr string) {
 	a.Errors = a.Errors + ToErr + "\n"
 }
 
+func (a *AST) GenerateDot() string {
+	dotBuilder := strings.Builder{}
+	dotBuilder.WriteString("digraph AST {\n")
+
+	nodeIDMap := make(map[*Nodo]int) // Para asignar IDs únicos a los nodos
+	nodeCount := 0
+
+	// Función auxiliar para asignar IDs a los nodos
+	var assignNodeID func(*Nodo) int
+	assignNodeID = func(node *Nodo) int {
+		if _, exists := nodeIDMap[node]; !exists {
+			nodeCount++
+			nodeIDMap[node] = nodeCount
+		}
+		return nodeIDMap[node]
+	}
+
+	// Recorrido en profundidad (DFS) para generar conexiones DOT
+	var buildDot func(*Nodo)
+	buildDot = func(node *Nodo) {
+		nodeID := assignNodeID(node)
+		escapedLabel := strings.ReplaceAll(node.Valor, "\"", "\\\"")
+		dotBuilder.WriteString(fmt.Sprintf("  %d [label=\"%s\"];\n", nodeID, escapedLabel))
+
+		for _, child := range node.Hijos {
+			childID := assignNodeID(child)
+			dotBuilder.WriteString(fmt.Sprintf("  %d -> %d;\n", nodeID, childID))
+			buildDot(child)
+		}
+	}
+
+	buildDot(a.Raiz)
+	dotBuilder.WriteString("}")
+
+	return dotBuilder.String()
+}
+
+/*
 func (a *AST) BuildTree(padre, nodoPadre *Nodo) {
 	nodos := padre.GetHijos()
 	for _, nodo := range nodos {
@@ -101,7 +139,7 @@ func (a *AST) BuildTree(padre, nodoPadre *Nodo) {
 
 func (a *AST) GenerateDotString() string {
 	dotString := "digraph G {\n"
-
+	contador := 0
 	nodos := []*Nodo{a.Raiz}
 	for len(nodos) > 0 {
 		nodoActual := nodos[len(nodos)-1]
@@ -110,6 +148,8 @@ func (a *AST) GenerateDotString() string {
 		dotString += "  " + strconv.FormatUint(uint64(uintptr(unsafe.Pointer(nodoActual))), 10) + " [label=\"" + nodoActual.GetValor() + "\"];\n"
 
 		hijos := nodoActual.GetHijos()
+		contador += 1
+		fmt.Println(nodoActual.Valor, contador)
 		for _, hijo := range hijos {
 			nodos = append(nodos, hijo)
 			dotString += "  " + strconv.FormatUint(uint64(uintptr(unsafe.Pointer(nodoActual))), 10) + " -> " + strconv.FormatUint(uint64(uintptr(unsafe.Pointer(hijo))), 10) + ";\n"
@@ -119,4 +159,4 @@ func (a *AST) GenerateDotString() string {
 	dotString += "}"
 
 	return dotString
-}
+}*/

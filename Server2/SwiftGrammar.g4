@@ -41,10 +41,15 @@ instruction returns [interfaces.Instruction inst]
 | declarationstmt { $inst = $declarationstmt.dec }
 | asignacion { $inst = $asignacion.asign}
 | whilestmt { $inst = $whilestmt.whiles }
+| forstmt { $inst = $forstmt.fors }
 ;
 
 printstmt returns [interfaces.Instruction prnt]
 : PRINT PARIZQ expr PARDER { $prnt = instructions.NewPrint($PRINT.line,$PRINT.pos,$expr.e)}
+;
+
+forstmt returns [interfaces.Instruction fors]
+: FOR ID IN e1 = expr PUNTO PUNTO PUNTO e2=expr LLAVEIZQ block LLAVEDER { $fors = instructions.NewFor($FOR.line, $FOR.pos, $ID.text, $e1.e,$e2.e, $block.blk) }
 ;
 
 ifstmt returns [interfaces.Instruction ifinst]
@@ -77,8 +82,12 @@ whilestmt returns [interfaces.Instruction whiles]
 ;
 
 declarationstmt returns [interfaces.Instruction dec]
-: VAR ID D_PTS types IG expr  { $dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, $types.ty, $expr.e) }
-;
+    : VAR ID D_PTS types IG expr
+        {
+            $dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, $types.ty, $expr.e);
+        }
+    ;
+
 
 asignacion returns [interfaces.Instruction asign]
 : ID IG expr { $asign = instructions.NewAsignacion($ID.line ,$ID.pos ,$ID.text, $expr.e) }

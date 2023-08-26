@@ -44,6 +44,12 @@ func (s *BaseSwiftGrammarListener) EnterPrintstmt(ctx *PrintstmtContext) {}
 // ExitPrintstmt is called when production printstmt is exited.
 func (s *BaseSwiftGrammarListener) ExitPrintstmt(ctx *PrintstmtContext) {}
 
+// EnterForstmt is called when production forstmt is entered.
+func (s *BaseSwiftGrammarListener) EnterForstmt(ctx *ForstmtContext) {}
+
+// ExitForstmt is called when production forstmt is exited.
+func (s *BaseSwiftGrammarListener) ExitForstmt(ctx *ForstmtContext) {}
+
 // EnterIfstmt is called when production ifstmt is entered.
 func (s *BaseSwiftGrammarListener) EnterIfstmt(ctx *IfstmtContext) {}
 

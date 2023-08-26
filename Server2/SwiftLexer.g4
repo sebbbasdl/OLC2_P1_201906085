@@ -14,6 +14,8 @@ PRINT:  'print';
 IF:     'if';
 ELSE:   'else';
 WHILE:  'while';
+FOR:    'for';
+IN:     'in';
 VAR:    'var';
 
 // primitives
@@ -45,6 +47,7 @@ D_PTS:          ':';
 CORIZQ:         '[';
 CORDER:         ']';
 COMA:           ',';
+PUNTO:          '.';
 
 // skip
 WHITESPACE: [ \\\r\n\t]+ -> skip;
