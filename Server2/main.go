@@ -27,7 +27,7 @@ func handleInterpreter() interface{} {
 	/*if err := c.BodyParser(&message); err != nil {
 		return err
 	}*/
-	message.Content = "for i in 1...5 { print(i)} "
+	message.Content = "var prueba : String =\"siu\" \nfor i in prueba { print(i)} "
 	//Entrada
 	code := message.Content
 	//Leyendo entrada
@@ -60,7 +60,7 @@ func handleInterpreter() interface{} {
 	// Generate DOT string from the AST
 
 	// Print or use the generated DOT string as needed
-	println(Ast.GenerateDot())
+	//println(Ast.GenerateDot())
 
 	var ConsoleOut = ""
 	if Ast.GetErrors() == "" {

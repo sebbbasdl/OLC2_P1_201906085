@@ -49,7 +49,8 @@ printstmt returns [interfaces.Instruction prnt]
 ;
 
 forstmt returns [interfaces.Instruction fors]
-: FOR ID IN e1 = expr PUNTO PUNTO PUNTO e2=expr LLAVEIZQ block LLAVEDER { $fors = instructions.NewFor($FOR.line, $FOR.pos, $ID.text, $e1.e,$e2.e, $block.blk) }
+: FOR ID IN e1 = expr PUNTO PUNTO PUNTO e2=expr LLAVEIZQ block LLAVEDER { $fors = instructions.NewFor($FOR.line, $FOR.pos, $ID.text, $e1.e,$e2.e,"nil", $block.blk) }
+| FOR ID IN ope = (STRING|ID) LLAVEIZQ block LLAVEDER { $fors = instructions.NewFor($FOR.line, $FOR.pos, $ID.text, nil,nil, $ope.text ,$block.blk ) }
 ;
 
 ifstmt returns [interfaces.Instruction ifinst]
