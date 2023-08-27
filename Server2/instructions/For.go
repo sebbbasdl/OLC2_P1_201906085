@@ -91,6 +91,23 @@ func (p Fors) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 					}
 				}
 
+			} else if id1.Tipo == environment.ARRAY {
+				var forEnv environment.Environment
+				forEnv = environment.NewEnvironment(env.(environment.Environment), "For")
+				iSymbol0 := environment.Symbol{Valor: 0, Tipo: environment.INTEGER}
+				env.(environment.Environment).SaveVariable(p.Id, iSymbol0)
+				aux := id1.Valor.([]interface{})
+				count := len(aux)
+
+				for i := 0; i < count; i++ {
+					iSymbol := environment.Symbol{Valor: i, Tipo: environment.INTEGER} // Crear un nuevo Symbol con el valor 'i'
+					env.(environment.Environment).SetVariable(p.Id, iSymbol)
+					for _, inst := range p.Bloque {
+						inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+					}
+
+				}
+
 			}
 		}
 

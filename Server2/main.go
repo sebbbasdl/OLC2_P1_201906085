@@ -27,7 +27,7 @@ func handleInterpreter() interface{} {
 	/*if err := c.BodyParser(&message); err != nil {
 		return err
 	}*/
-	message.Content = "var prueba : String =\"siu\" \nfor i in prueba { print(i)} "
+	message.Content = "var arr : []=[1+1,22]\n for i in arr {print(arr[i])} "
 	//Entrada
 	code := message.Content
 	//Leyendo entrada
