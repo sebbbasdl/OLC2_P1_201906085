@@ -42,15 +42,37 @@ instruction returns [interfaces.Instruction inst]
 | asignacion { $inst = $asignacion.asign}
 | whilestmt { $inst = $whilestmt.whiles }
 | forstmt { $inst = $forstmt.fors }
+| switchtmt { $inst = $switchtmt.swtch }
 ;
 
 printstmt returns [interfaces.Instruction prnt]
 : PRINT PARIZQ expr PARDER { $prnt = instructions.NewPrint($PRINT.line,$PRINT.pos,$expr.e)}
 ;
 
+
+
 forstmt returns [interfaces.Instruction fors]
 : FOR ID IN e1 = expr PUNTO PUNTO PUNTO e2=expr LLAVEIZQ block LLAVEDER { $fors = instructions.NewFor($FOR.line, $FOR.pos, $ID.text, $e1.e,$e2.e,"nil", $block.blk) }
 | FOR ID IN ope = (STRING|ID) LLAVEIZQ block LLAVEDER { $fors = instructions.NewFor($FOR.line, $FOR.pos, $ID.text, nil,nil, $ope.text ,$block.blk ) }
+;
+
+switchtmt returns [interfaces.Instruction swtch]
+: SWITCH expr LLAVEIZQ  caselist  DEFAULT D_PTS block LLAVEDER{ $swtch = instructions.NewSwitch( $SWITCH.line, $SWITCH.pos, $expr.e,$caselist.cases, $block.blk ) }
+;
+
+caselist returns [[]interface{} cases]
+: listcases= caselist case { var arr3 []interface{}
+                        arr3= append($listcases.cases, $case.swtch)
+                        $cases= arr3
+                        }
+| case                  {
+                            $cases= []interface{}{}
+                            $cases = append($cases, $case.swtch)
+                        }
+;
+
+case returns [interfaces.Instruction swtch]
+: CASE expr D_PTS block { $swtch = instructions.NewCase( $CASE.line, $CASE.pos,$expr.e, $block.blk ) }
 ;
 
 ifstmt returns [interfaces.Instruction ifinst]

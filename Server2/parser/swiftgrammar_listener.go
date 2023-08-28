@@ -22,6 +22,15 @@ type SwiftGrammarListener interface {
 	// EnterForstmt is called when entering the forstmt production.
 	EnterForstmt(c *ForstmtContext)
 
+	// EnterSwitchtmt is called when entering the switchtmt production.
+	EnterSwitchtmt(c *SwitchtmtContext)
+
+	// EnterCaselist is called when entering the caselist production.
+	EnterCaselist(c *CaselistContext)
+
+	// EnterCase is called when entering the case production.
+	EnterCase(c *CaseContext)
+
 	// EnterIfstmt is called when entering the ifstmt production.
 	EnterIfstmt(c *IfstmtContext)
 
@@ -66,6 +75,15 @@ type SwiftGrammarListener interface {
 
 	// ExitForstmt is called when exiting the forstmt production.
 	ExitForstmt(c *ForstmtContext)
+
+	// ExitSwitchtmt is called when exiting the switchtmt production.
+	ExitSwitchtmt(c *SwitchtmtContext)
+
+	// ExitCaselist is called when exiting the caselist production.
+	ExitCaselist(c *CaselistContext)
+
+	// ExitCase is called when exiting the case production.
+	ExitCase(c *CaseContext)
 
 	// ExitIfstmt is called when exiting the ifstmt production.
 	ExitIfstmt(c *IfstmtContext)

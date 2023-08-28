@@ -55,8 +55,8 @@ type AST struct {
 	Print        string
 	Errors       string
 	Raiz         *Nodo
-	IfReturn     bool
-	ElseReturn   bool
+	Switchexpr   string
+	SwitchBool   bool
 }
 
 func NewAST(inst []interface{}, print string, err string, valorRaiz string) AST {

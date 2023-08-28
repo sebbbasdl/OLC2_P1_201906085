@@ -15,8 +15,12 @@ IF:     'if';
 ELSE:   'else';
 WHILE:  'while';
 FOR:    'for';
+SWITCH:   'switch';
+CASE:      'case';
+DEFAULT:   'default';
 IN:     'in';
 VAR:    'var';
+
 
 // primitives
 NUMBER : [0-9]+ ('.'[0-9]+)?;

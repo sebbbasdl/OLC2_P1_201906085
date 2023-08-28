@@ -27,7 +27,7 @@ func handleInterpreter() interface{} {
 	/*if err := c.BodyParser(&message); err != nil {
 		return err
 	}*/
-	message.Content = "var arr : []=[1+1,22]\n for i in arr {print(arr[i])} "
+	message.Content = "var prueba : String = \"hola\" \n switch prueba { case 1 : print(\"Case 1 \") \n case \"hola\" : print(\"Case 2 \")\n default: print(\"no entre a cases\")} "
 	//Entrada
 	code := message.Content
 	//Leyendo entrada
