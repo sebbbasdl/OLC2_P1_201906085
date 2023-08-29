@@ -43,6 +43,16 @@ instruction returns [interfaces.Instruction inst]
 | whilestmt { $inst = $whilestmt.whiles }
 | forstmt { $inst = $forstmt.fors }
 | switchtmt { $inst = $switchtmt.swtch }
+| breaktmt { $inst = $breaktmt.break }
+| continuetmt{ $inst = $continuetmt.continue }
+;
+
+breaktmt returns [interfaces.Instruction break]
+: BREAK { $break = instructions.NewBreak($BREAK.line, $BREAK.pos)}
+;
+
+continuetmt returns [interfaces.Instruction continue]
+: CONTINUE { $continue = instructions.NewContinue($CONTINUE.line, $CONTINUE.pos)}
 ;
 
 printstmt returns [interfaces.Instruction prnt]

@@ -47,10 +47,21 @@ func (p Fors) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 			env.(environment.Environment).SetVariable(p.Id, iSymbol)
 			//ejecución
 			for _, inst := range p.Bloque {
-				inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+				if ast.Breakbool == true {
+					break
+				} else if ast.ContinueBool == true {
+					ast.ContinueBool = false
+					//inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+					continue
+				} else {
+					inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+				}
+
 			}
 
 		}
+		ast.Breakbool = false
+		ast.ContinueBool = false
 
 	} else {
 

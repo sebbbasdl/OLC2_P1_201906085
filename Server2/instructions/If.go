@@ -29,7 +29,6 @@ func (p If) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 	}
 	//Ejecutando if
 	if condicion.Valor == true {
-		print("entre")
 		var ifEnv environment.Environment
 		ifEnv = environment.NewEnvironment(env.(environment.Environment), "IF")
 		//ejecución

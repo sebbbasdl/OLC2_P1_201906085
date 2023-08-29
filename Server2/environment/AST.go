@@ -57,6 +57,8 @@ type AST struct {
 	Raiz         *Nodo
 	Switchexpr   string
 	SwitchBool   bool
+	Breakbool    bool
+	ContinueBool bool
 }
 
 func NewAST(inst []interface{}, print string, err string, valorRaiz string) AST {

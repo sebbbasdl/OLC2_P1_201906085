@@ -20,6 +20,9 @@ CASE:      'case';
 DEFAULT:   'default';
 IN:     'in';
 VAR:    'var';
+BREAK: 'break';
+CONTINUE: 'continue';
+RETURN :  'return';
 
 
 // primitives

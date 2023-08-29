@@ -4,6 +4,7 @@ import (
 	"Server2/environment"
 	"Server2/interfaces"
 	"Server2/parser"
+
 	"github.com/antlr4-go/antlr/v4"
 )
 
@@ -27,7 +28,7 @@ func handleInterpreter() interface{} {
 	/*if err := c.BodyParser(&message); err != nil {
 		return err
 	}*/
-	message.Content = "var prueba : String = \"hola\" \n switch prueba { case 1 : print(\"Case 1 \") \n case \"hola\" : print(\"Case 2 \")\n default: print(\"no entre a cases\")} "
+	message.Content = "for i in 1...4{ if i == 3 { print(\"siu\")\n continue}  print(i)} "
 	//Entrada
 	code := message.Content
 	//Leyendo entrada
@@ -74,7 +75,9 @@ func handleInterpreter() interface{} {
 		Flag:    true,
 		Message: "<3 Ejecución realizada con éxito <3",
 	}*/
+	println("--------------------CONSOLA---------------------")
 	println(ConsoleOut)
+	println("------------------------------------------------")
 	return ConsoleOut
 }
 
