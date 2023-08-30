@@ -35,6 +35,7 @@ func (p If) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 		for _, inst := range p.Bloque {
 			inst.(interfaces.Instruction).Ejecutar(ast, ifEnv)
 		}
+		ifEnv.PrintChain()
 		return nil
 	} else {
 		//agregar condiciones para else

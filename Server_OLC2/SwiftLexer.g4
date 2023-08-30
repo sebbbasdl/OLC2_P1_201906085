@@ -1,5 +1,7 @@
 lexer grammar SwiftLexer;
 
+
+
 // --------------- Tokens
 // types
 INT:    'Int';
@@ -57,6 +59,7 @@ CORDER:         ']';
 COMA:           ',';
 PUNTO:          '.';
 
+
 // skip
 WHITESPACE: [ \\\r\n\t]+ -> skip;
 COMMENT : '/*' .*? '*/' -> skip;
@@ -66,4 +69,6 @@ fragment
 ESC_SEQ
     :   '\\' ('\\'|'@'|'['|']'|'.'|'#'|'+'|'-'|'!'|':'|' ')
     ;
+
+
 

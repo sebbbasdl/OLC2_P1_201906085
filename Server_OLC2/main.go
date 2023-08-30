@@ -4,9 +4,49 @@ import (
 	"Server2/environment"
 	"Server2/interfaces"
 	"Server2/parser"
+	"fmt"
 
 	"github.com/antlr4-go/antlr/v4"
 )
+
+type ErrorType int
+
+const (
+	LexicalError ErrorType = iota
+	SyntaxTypeError
+)
+
+type ErrorInfo struct {
+	Type    ErrorType
+	Line    int
+	Column  int
+	Message string
+}
+
+type ErrorListener struct {
+	*antlr.DefaultErrorListener
+	Errors []ErrorInfo
+}
+
+func NewErrorListener() *ErrorListener {
+	return &ErrorListener{}
+}
+
+func (e *ErrorListener) SyntaxError(recognizer antlr.Recognizer, offendingSymbol interface{}, line, column int, msg string, ex antlr.RecognitionException) {
+	errorType := LexicalError
+
+	if _, ok := offendingSymbol.(antlr.Token); ok {
+		errorType = SyntaxTypeError
+	}
+
+	errorInfo := ErrorInfo{
+		Type:    errorType,
+		Line:    line,
+		Column:  column,
+		Message: msg,
+	}
+	e.Errors = append(e.Errors, errorInfo)
+}
 
 type TreeShapeListener struct {
 	*parser.BaseSwiftGrammarListener
@@ -28,15 +68,23 @@ func handleInterpreter() interface{} {
 	/*if err := c.BodyParser(&message); err != nil {
 		return err
 	}*/
-	message.Content = "var i : Int = 2 \n while (i <= 10) {guard i == 10 else { print(\"e\"+i) \n i = i + 1 continue}print(i)i = i + 1}"
+	message.Content = " var i : Int  = 2 \n while (i <= 5) {if i == 3  { print(\"e\") \n i = i + 1 \n var prueba : Int  = 10\n continue}print(i)i = i + 1}"
+
 	//Entrada
 	code := message.Content
 	//Leyendo entrada
 	input := antlr.NewInputStream(code)
 	lexer := parser.NewSwiftLexer(input)
 	tokens := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
+
+	errorListener := NewErrorListener()
+	lexer.RemoveErrorListeners()
+	lexer.AddErrorListener(errorListener)
+
 	//creacion de parser
 	p := parser.NewSwiftGrammarParser(tokens)
+	p.RemoveErrorListeners() // Remove the default error listener
+	p.AddErrorListener(errorListener)
 	p.BuildParseTrees = true
 	tree := p.S()
 
@@ -57,6 +105,19 @@ func handleInterpreter() interface{} {
 		inst.(interfaces.Instruction).Ejecutar(&Ast, globalEnv)
 	}
 
+	for _, errorInfo := range errorListener.Errors {
+		errorType := ""
+		switch errorInfo.Type {
+		case LexicalError:
+			errorType = "Lexical"
+		case SyntaxTypeError:
+			errorType = "Syntax Error"
+		default:
+			errorType = "Unknown"
+		}
+
+		fmt.Printf("%s error at line %d, column %d: %s\n", errorType, errorInfo.Line, errorInfo.Column, errorInfo.Message)
+	}
 	//Ast.BuildTree(rootNode, Ast.GetRaiz())
 	// Generate DOT string from the AST
 
@@ -77,8 +138,9 @@ func handleInterpreter() interface{} {
 	}*/
 	println("--------------------CONSOLA---------------------")
 	println(ConsoleOut)
-	println("-------------Tabla de Simbolos------------------")
-	globalEnv.PrintSymbolTable()
+	//println("-------------Tabla de Simbolos------------------")
+	//globalEnv.PrintChain()
+
 	return ConsoleOut
 }
 

@@ -47,11 +47,11 @@ func (p Whiles) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 		condicion = p.Expresion.Ejecutar(ast, env)
 		if ast.Breakbool == true {
 			break
-		}else if ast.ContinueBool == true {
+		} else if ast.ContinueBool == true {
 			ast.ContinueBool = false
 			//inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
 			continue
-		} 
+		}
 
 	}
 	ast.Breakbool = false

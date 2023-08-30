@@ -6,6 +6,7 @@ import (
 )
 
 type Environment struct {
+	Ultimo   interface{}
 	Anterior interface{}
 	Tabla    map[string]Symbol
 	Id       string
@@ -13,6 +14,7 @@ type Environment struct {
 
 func NewEnvironment(ant interface{}, id string) Environment {
 	return Environment{
+		Ultimo:   nil,
 		Anterior: ant,
 		Tabla:    make(map[string]Symbol),
 		Id:       id,
@@ -85,4 +87,28 @@ func (env Environment) PrintSymbolTable() {
 		fmt.Printf("%-15s%-10s%-15v%-10s\n", id, symbol.Tipo, symbol.Valor, tmpEnv.Id)
 	}
 	fmt.Println(strings.Repeat("-", 50))
+}
+
+func (env Environment) PrintChain() {
+	currentEnv := env
+
+	for {
+		fmt.Println("Tabla de Símbolos en el Ambiente:", currentEnv.Id)
+		fmt.Printf("%-15s%-10s%-15s%-10s\n", "ID", "Tipo", "Valor", "Anterior")
+		fmt.Println(strings.Repeat("-", 50))
+
+		for id, symbol := range currentEnv.Tabla {
+			fmt.Printf("%-15s%-10s%-15v%-10s\n", id, symbol.Tipo, symbol.Valor, currentEnv.Id)
+		}
+
+		fmt.Println(strings.Repeat("-", 50))
+
+		// Break the loop if we've reached the root environment
+		if currentEnv.Anterior == nil {
+			break
+		}
+
+		// Update currentEnv to the previous environment
+		currentEnv = currentEnv.Anterior.(Environment)
+	}
 }

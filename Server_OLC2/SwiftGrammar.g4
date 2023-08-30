@@ -26,6 +26,7 @@ block returns [[]interface{} blk]
     $blk = []interface{}{}
     var listInt []IInstructionContext
   }
+
 : ins+=instruction+
     {
         listInt = localctx.(*BlockContext).GetIns()
