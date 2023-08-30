@@ -115,11 +115,12 @@ whilestmt returns [interfaces.Instruction whiles]
 ;
 
 declarationstmt returns [interfaces.Instruction dec]
-    : VAR ID D_PTS types IG expr
-        {
-            $dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, $types.ty, $expr.e);
-        }
-    ;
+: VAR ID D_PTS types IG expr
+    {
+        $dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, $types.ty, $expr.e);
+    }
+;
+
 
 
 asignacion returns [interfaces.Instruction asign]
@@ -146,6 +147,9 @@ expr returns [interfaces.Expression e]
 | left=expr op=OR right=expr { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
 | PARIZQ expr PARDER { $e = $expr.e }
 | list=listArray { $e = $list.p}
+| INT PARIZQ expr PARDER { $e = expressions.NewConversion($expr.e, environment.INTEGER) }
+| STR PARIZQ expr PARDER { $e = expressions.NewConversion($expr.e, environment.STRING) }
+| FLOAT PARIZQ expr PARDER { $e = expressions.NewConversion($expr.e, environment.FLOAT) }
 | CORIZQ listParams CORDER { $e = expressions.NewArray($CORIZQ.line, $CORIZQ.pos, $listParams.l) }
 | NUMBER                             
     {

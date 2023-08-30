@@ -32,14 +32,25 @@ func (p Whiles) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 		whileEnv = environment.NewEnvironment(env.(environment.Environment), "While")
 		//ejecución
 		for _, inst := range p.Bloque {
-			if inst.(interfaces.Instruction).Ejecutar(ast, whileEnv) == "break" {
-				return nil
+			if ast.Breakbool == true {
+
+				break
+			} else if ast.ContinueBool == true {
+				ast.ContinueBool = false
+				//inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+				continue
+			} else {
+				inst.(interfaces.Instruction).Ejecutar(ast, whileEnv)
 			}
 
 		}
 		condicion = p.Expresion.Ejecutar(ast, env)
+		if ast.Breakbool == true {
+			break
+		}
 
 	}
-
+	ast.Breakbool = false
+	ast.ContinueBool = false
 	return nil
 }

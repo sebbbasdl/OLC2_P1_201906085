@@ -79,7 +79,15 @@ func (p Fors) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 					iSymbol := environment.Symbol{Valor: string(c), Tipo: environment.STRING} // Crear un nuevo Symbol con el valor 'i'
 					env.(environment.Environment).SetVariable(p.Id, iSymbol)
 					for _, inst := range p.Bloque {
-						inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+						if ast.Breakbool == true {
+							break
+						} else if ast.ContinueBool == true {
+							ast.ContinueBool = false
+							//inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+							continue
+						} else {
+							inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+						}
 					}
 				}
 
@@ -98,7 +106,15 @@ func (p Fors) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 					iSymbol := environment.Symbol{Valor: string(c), Tipo: environment.STRING} // Crear un nuevo Symbol con el valor 'i'
 					env.(environment.Environment).SetVariable(p.Id, iSymbol)
 					for _, inst := range p.Bloque {
-						inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+						if ast.Breakbool == true {
+							break
+						} else if ast.ContinueBool == true {
+							ast.ContinueBool = false
+							//inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+							continue
+						} else {
+							inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+						}
 					}
 				}
 
@@ -114,7 +130,15 @@ func (p Fors) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 					iSymbol := environment.Symbol{Valor: i, Tipo: environment.INTEGER} // Crear un nuevo Symbol con el valor 'i'
 					env.(environment.Environment).SetVariable(p.Id, iSymbol)
 					for _, inst := range p.Bloque {
-						inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+						if ast.Breakbool == true {
+							break
+						} else if ast.ContinueBool == true {
+							ast.ContinueBool = false
+							//inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+							continue
+						} else {
+							inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+						}
 					}
 
 				}
@@ -124,6 +148,8 @@ func (p Fors) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 
 	}
 
+	ast.Breakbool = false
+	ast.ContinueBool = false
 	return nil
 
 }

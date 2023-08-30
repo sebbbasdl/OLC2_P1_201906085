@@ -28,7 +28,7 @@ func handleInterpreter() interface{} {
 	/*if err := c.BodyParser(&message); err != nil {
 		return err
 	}*/
-	message.Content = "for i in 1...4{ if i == 3 { print(\"siu\")\n continue}  print(i)} "
+	message.Content = "var primer : Int = 1 \n var segundo : Float = Float(primer) \n print(segundo)"
 	//Entrada
 	code := message.Content
 	//Leyendo entrada
@@ -77,7 +77,8 @@ func handleInterpreter() interface{} {
 	}*/
 	println("--------------------CONSOLA---------------------")
 	println(ConsoleOut)
-	println("------------------------------------------------")
+	println("-------------Tabla de Simbolos------------------")
+	globalEnv.PrintSymbolTable()
 	return ConsoleOut
 }
 
