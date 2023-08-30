@@ -45,8 +45,13 @@ instruction returns [interfaces.Instruction inst]
 | switchtmt { $inst = $switchtmt.swtch }
 | breaktmt { $inst = $breaktmt.break }
 | continuetmt{ $inst = $continuetmt.continue }
+| guardtmt { $inst = $guardtmt.guard }
 ;
 
+guardtmt returns [interfaces.Instruction guard]
+: GUARD expr ELSE LLAVEIZQ block LLAVEDER {$guard = instructions.NewGuard( $GUARD.line, $GUARD.pos, $expr.e, $block.blk )}
+
+;
 breaktmt returns [interfaces.Instruction break]
 : BREAK { $break = instructions.NewBreak($BREAK.line, $BREAK.pos)}
 ;

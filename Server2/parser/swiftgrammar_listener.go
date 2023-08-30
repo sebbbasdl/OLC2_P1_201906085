@@ -16,6 +16,9 @@ type SwiftGrammarListener interface {
 	// EnterInstruction is called when entering the instruction production.
 	EnterInstruction(c *InstructionContext)
 
+	// EnterGuardtmt is called when entering the guardtmt production.
+	EnterGuardtmt(c *GuardtmtContext)
+
 	// EnterBreaktmt is called when entering the breaktmt production.
 	EnterBreaktmt(c *BreaktmtContext)
 
@@ -75,6 +78,9 @@ type SwiftGrammarListener interface {
 
 	// ExitInstruction is called when exiting the instruction production.
 	ExitInstruction(c *InstructionContext)
+
+	// ExitGuardtmt is called when exiting the guardtmt production.
+	ExitGuardtmt(c *GuardtmtContext)
 
 	// ExitBreaktmt is called when exiting the breaktmt production.
 	ExitBreaktmt(c *BreaktmtContext)

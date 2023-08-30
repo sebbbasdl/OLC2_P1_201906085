@@ -23,6 +23,7 @@ VAR:    'var';
 BREAK: 'break';
 CONTINUE: 'continue';
 RETURN :  'return';
+GUARD : 'guard';
 
 
 // primitives

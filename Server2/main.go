@@ -28,7 +28,7 @@ func handleInterpreter() interface{} {
 	/*if err := c.BodyParser(&message); err != nil {
 		return err
 	}*/
-	message.Content = "var primer : Int = 1 \n var segundo : Float = Float(primer) \n print(segundo)"
+	message.Content = "var i : Int = 2 \n while (i <= 10) {guard i == 10 else { print(\"e\"+i) \n i = i + 1 continue}print(i)i = i + 1}"
 	//Entrada
 	code := message.Content
 	//Leyendo entrada
