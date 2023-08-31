@@ -58,6 +58,13 @@ func (p Fors) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 				}
 
 			}
+			if ast.Breakbool == true {
+				break
+			} else if ast.ContinueBool == true {
+				ast.ContinueBool = false
+				//inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+				continue
+			}
 
 		}
 		ast.Breakbool = false
@@ -89,6 +96,15 @@ func (p Fors) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 							inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
 						}
 					}
+
+					if ast.Breakbool == true {
+						break
+					} else if ast.ContinueBool == true {
+						ast.ContinueBool = false
+						//inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+						continue
+					}
+
 				}
 
 			}
@@ -116,6 +132,14 @@ func (p Fors) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 							inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
 						}
 					}
+					if ast.Breakbool == true {
+						break
+					} else if ast.ContinueBool == true {
+						ast.ContinueBool = false
+						//inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+						continue
+					}
+
 				}
 
 			} else if id1.Tipo == environment.ARRAY {
@@ -139,6 +163,13 @@ func (p Fors) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 						} else {
 							inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
 						}
+					}
+					if ast.Breakbool == true {
+						break
+					} else if ast.ContinueBool == true {
+						ast.ContinueBool = false
+						//inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+						continue
 					}
 
 				}

@@ -140,7 +140,8 @@ types returns[environment.TipoExpresion ty]
 | FLOAT { $ty = environment.FLOAT }
 | STR { $ty = environment.STRING }
 | BOOL { $ty = environment.BOOLEAN }
-| CORIZQ CORDER { $ty = environment.ARRAY }
+| CORIZQ types CORDER { $ty = environment.ARRAY }
+| CORIZQ  CORDER { $ty = environment.ARRAY }
 ;
 
 expr returns [interfaces.Expression e]

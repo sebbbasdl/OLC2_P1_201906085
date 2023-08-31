@@ -18,10 +18,49 @@ func NewArray(lin int, col int, list []interface{}) Array {
 
 func (p Array) Ejecutar(ast *environment.AST, env interface{}) environment.Symbol {
 
+	int_flag := false
+	str_flag := false
+	float_flag := false
+	arr_flag := false
 	var tempExp []interface{}
-
 	for _, s := range p.ListExp {
-		tempExp = append(tempExp, s.(interfaces.Expression).Ejecutar(ast, env))
+		if s.(interfaces.Expression).Ejecutar(ast, env).Tipo == environment.INTEGER {
+			int_flag = true
+
+			//tempExp = append(tempExp, s.(interfaces.Expression).Ejecutar(ast, env))
+		}
+
+		if s.(interfaces.Expression).Ejecutar(ast, env).Tipo == environment.STRING {
+
+			str_flag = true
+
+			//tempExp = append(tempExp, s.(interfaces.Expression).Ejecutar(ast, env))
+		}
+		if s.(interfaces.Expression).Ejecutar(ast, env).Tipo == environment.FLOAT {
+
+			float_flag = true
+
+			//tempExp = append(tempExp, s.(interfaces.Expression).Ejecutar(ast, env))
+		}
+
+		if s.(interfaces.Expression).Ejecutar(ast, env).Tipo == environment.ARRAY {
+			arr_flag = true
+			//tempExp = append(tempExp, s.(interfaces.Expression).Ejecutar(ast, env))
+		}
+
+		if int_flag == true && str_flag == false && float_flag == false && arr_flag == false {
+			tempExp = append(tempExp, s.(interfaces.Expression).Ejecutar(ast, env))
+		} else if int_flag == false && str_flag == true && float_flag == false && arr_flag == false {
+			tempExp = append(tempExp, s.(interfaces.Expression).Ejecutar(ast, env))
+		} else if int_flag == false && str_flag == false && float_flag == true && arr_flag == false {
+			tempExp = append(tempExp, s.(interfaces.Expression).Ejecutar(ast, env))
+		} else if int_flag == false && str_flag == false && float_flag == false && arr_flag == true {
+			tempExp = append(tempExp, s.(interfaces.Expression).Ejecutar(ast, env))
+		} else {
+			ast.SetError("Error, los tipos de datos son incorrectos")
+			break
+		}
+
 	}
 
 	return environment.Symbol{

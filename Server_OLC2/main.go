@@ -68,7 +68,7 @@ func handleInterpreter() interface{} {
 	/*if err := c.BodyParser(&message); err != nil {
 		return err
 	}*/
-	message.Content = " var i : Int  = 2 \n while (i <= 5) {if i == 3  { print(\"e\") \n i = i + 1 \n var prueba : Int  = 10\n continue}print(i)i = i + 1}"
+	message.Content = " var arr : [[Int]]=[[1,2],[3,\"4\"],[1,2],[3,4]]\n  print(arr[0][1])"
 
 	//Entrada
 	code := message.Content

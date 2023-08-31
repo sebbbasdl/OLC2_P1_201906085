@@ -6,7 +6,6 @@ import (
 )
 
 type Environment struct {
-	Ultimo   interface{}
 	Anterior interface{}
 	Tabla    map[string]Symbol
 	Id       string
@@ -14,7 +13,7 @@ type Environment struct {
 
 func NewEnvironment(ant interface{}, id string) Environment {
 	return Environment{
-		Ultimo:   nil,
+
 		Anterior: ant,
 		Tabla:    make(map[string]Symbol),
 		Id:       id,
