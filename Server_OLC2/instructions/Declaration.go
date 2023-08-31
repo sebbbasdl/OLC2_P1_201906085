@@ -35,6 +35,7 @@ func (p Declaration) Ejecutar(ast *environment.AST, env interface{}) interface{}
 		nodo1 := environment.NewNodo("Declaracion")
 		ast.GetRaiz().Hijos = append(ast.GetRaiz().Hijos, nodo1)
 		labels := []string{"int", p.Id, "="}
+		ast.Tabla_str += p.Id + "---------" + env.(environment.Environment).Id+"\n"
 		nodo1.GenerateProduction(labels)
 	} else {
 		ast.SetError("Los tipos de datos son incorrectos")

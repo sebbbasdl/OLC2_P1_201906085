@@ -27,15 +27,18 @@ func (p If) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 		ast.SetError("El tipo de variable es incorrecto para un If")
 		return nil
 	}
+	var ifEnv environment.Environment
+	ifEnv = environment.NewEnvironment(env.(environment.Environment), "IF")
 	//Ejecutando if
 	if condicion.Valor == true {
-		var ifEnv environment.Environment
-		ifEnv = environment.NewEnvironment(env.(environment.Environment), "IF")
+
 		//ejecución
 		for _, inst := range p.Bloque {
 			inst.(interfaces.Instruction).Ejecutar(ast, ifEnv)
 		}
-		//ifEnv.PrintChain()
+		print("if")
+		//ast.Tabla_str += ifEnv.FormatSymbolTable()
+
 		return nil
 	} else {
 		//agregar condiciones para else

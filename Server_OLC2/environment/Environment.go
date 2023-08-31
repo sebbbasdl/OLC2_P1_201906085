@@ -9,17 +9,16 @@ type Environment struct {
 	Anterior interface{}
 	Tabla    map[string]Symbol
 	Id       string
+	Ultimo   *Environment
 }
 
 func NewEnvironment(ant interface{}, id string) Environment {
 	return Environment{
-
 		Anterior: ant,
 		Tabla:    make(map[string]Symbol),
 		Id:       id,
 	}
 }
-
 func (env Environment) SaveVariable(id string, value Symbol) {
 	if variable, ok := env.Tabla[id]; ok {
 		fmt.Println("La variable "+id+" ya existe", variable)
@@ -68,24 +67,24 @@ func (env Environment) SetVariable(id string, value Symbol) Symbol {
 	return Symbol{Lin: 0, Col: 0, Tipo: NULL, Valor: 0}
 }
 
-func (env Environment) PrintSymbolTable() {
-	fmt.Println("Tabla de Símbolos en el Ambiente:", env.Id)
-	fmt.Printf("%-15s%-10s%-15s%-10s\n", "ID", "Tipo", "Valor", "Anterior")
-	fmt.Println(strings.Repeat("-", 50))
+func (env Environment) FormatSymbolTable() string {
+	output := fmt.Sprintf("Tabla de Símbolos en el Ambiente: %s\n", env.Id)
+	output += fmt.Sprintf("%-15s%-10s%-15s%-10s\n", "ID", "Tipo", "Valor", "Anterior")
 
 	var tmpEnv Environment
 	tmpEnv = env
 	for tmpEnv.Anterior != nil {
 		for id, symbol := range tmpEnv.Tabla {
-			fmt.Printf("%-15s%-10s%-15v%-10s\n", id, symbol.Tipo, symbol.Valor, tmpEnv.Id)
+			output += fmt.Sprintf("%-15s%-10d%-15v%-10s\n", id, symbol.Tipo, symbol.Valor, tmpEnv.Id)
 		}
 		tmpEnv = tmpEnv.Anterior.(Environment)
 	}
 
 	for id, symbol := range tmpEnv.Tabla {
-		fmt.Printf("%-15s%-10s%-15v%-10s\n", id, symbol.Tipo, symbol.Valor, tmpEnv.Id)
+		output += fmt.Sprintf("%-15s%-10d%-15v%-10s\n", id, symbol.Tipo, symbol.Valor, tmpEnv.Id)
 	}
-	fmt.Println(strings.Repeat("-", 50))
+
+	return output
 }
 
 func (env Environment) PrintChain() {

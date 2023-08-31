@@ -68,7 +68,7 @@ func handleInterpreter() interface{} {
 	/*if err := c.BodyParser(&message); err != nil {
 		return err
 	}*/
-	message.Content = " var arr : [[Int]]=[[1,2],[3,\"4\"],[1,2],[3,4]]\n  print(arr[0][1])"
+	message.Content = " var x1 : Int = 9 \n if x1 <= 10 {   var x2 : Int = 9 if x2 == 9 {var x3 : Int = 9 print(x3+\"e\") if x3 == 9 {var x3 : Int = 9 print(x3+\"ee\")}}  print(x1) x1=x1+1 }"
 
 	//Entrada
 	code := message.Content
@@ -136,11 +136,12 @@ func handleInterpreter() interface{} {
 		Flag:    true,
 		Message: "<3 Ejecución realizada con éxito <3",
 	}*/
+
 	println("--------------------CONSOLA---------------------")
 	println(ConsoleOut)
-	//println("-------------Tabla de Simbolos------------------")
-	//globalEnv.PrintChain()
-
+	println("-------------Tabla de Simbolos------------------")
+	//Ast.Tabla_str += globalEnv.FormatSymbolTable()
+	println(Ast.Tabla_str)
 	return ConsoleOut
 }
 

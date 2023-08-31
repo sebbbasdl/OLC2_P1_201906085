@@ -25,10 +25,10 @@ func (p Whiles) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 		ast.SetError("El tipo de variable es incorrecto para un If")
 		return nil
 	}
-
+	var whileEnv environment.Environment
 	for condicion.Valor == true {
 		//fmt.Println(condicion.Valor)
-		var whileEnv environment.Environment
+
 		whileEnv = environment.NewEnvironment(env.(environment.Environment), "While")
 		//ejecución
 		for _, inst := range p.Bloque {
@@ -41,6 +41,7 @@ func (p Whiles) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 				continue
 			} else {
 				inst.(interfaces.Instruction).Ejecutar(ast, whileEnv)
+
 			}
 
 		}
@@ -54,7 +55,10 @@ func (p Whiles) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 		}
 
 	}
+	print("while")
+	ast.Tabla_str = whileEnv.FormatSymbolTable()
 	ast.Breakbool = false
 	ast.ContinueBool = false
+
 	return nil
 }

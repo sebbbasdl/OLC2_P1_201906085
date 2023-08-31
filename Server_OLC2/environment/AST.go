@@ -59,6 +59,8 @@ type AST struct {
 	SwitchBool   bool
 	Breakbool    bool
 	ContinueBool bool
+	Ant_str      string
+	Tabla_str    string
 }
 
 func NewAST(inst []interface{}, print string, err string, valorRaiz string) AST {
