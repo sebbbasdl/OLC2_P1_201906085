@@ -55,8 +55,6 @@ func (p Whiles) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 		}
 
 	}
-	print("while")
-	ast.Tabla_str = whileEnv.FormatSymbolTable()
 	ast.Breakbool = false
 	ast.ContinueBool = false
 

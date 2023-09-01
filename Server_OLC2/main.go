@@ -5,9 +5,80 @@ import (
 	"Server2/interfaces"
 	"Server2/parser"
 	"fmt"
+	"strings"
 
 	"github.com/antlr4-go/antlr/v4"
 )
+
+// Tabla de simbolos DOT
+func GenerateTableDOT(data [][]string) string {
+	contador := 0
+	dotTable := "digraph Table {\n"
+	dotTable += "  node [shape=none fontname=Helvetica]\n"
+
+	// Encabezado de la tabla
+	dotTable += "  n1 [label = <<table>\n"
+	dotTable += "    <tr><td colspan=\"9\" bgcolor=\"Peru\">Tabla</td></tr>\n"
+	dotTable += "    <tr><td bgcolor=\"orange\">ID</td><td bgcolor=\"orange\">Tipo Símbolo</td><td bgcolor=\"orange\">Tipo Dato</td><td bgcolor=\"orange\">Ámbito</td><td bgcolor=\"orange\">Línea</td><td bgcolor=\"orange\">Columna</td><td bgcolor=\"orange\">Valor</td><td bgcolor=\"orange\">Id</td></tr>"
+
+	// Filas de datos
+	for _, row := range data {
+		if len(row) >= 7 {
+			contador++
+			contadorStr := fmt.Sprintf("%d", contador) // Convertir contador a cadena
+			dotTable += fmt.Sprintf("    <tr><td bgcolor=\"#00bfff\">%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>\n", contadorStr, row[1], row[2], row[3], row[4], row[5], row[6], row[7])
+		}
+	}
+
+	// Cierre de la tabla
+	dotTable += "  </table>> ]\n"
+
+	dotTable += "}\n"
+
+	return dotTable
+}
+
+// Para generar Dot usando funciones de antlr
+func TreesStringTreeToDOT(tree antlr.Tree, ruleNames []string, recog antlr.Recognizer) string {
+	if recog != nil {
+		ruleNames = recog.GetRuleNames()
+	}
+
+	nodeCounter := 0                    // Para asignar nombres únicos a los nodos
+	nodeIDs := make(map[antlr.Tree]int) // Mapa para almacenar IDs de nodos
+
+	var generateDOT func(antlr.Tree) (int, string)
+	generateDOT = func(node antlr.Tree) (int, string) {
+		nodeID, exists := nodeIDs[node]
+		if !exists {
+			nodeCounter++
+			nodeID = nodeCounter
+			nodeIDs[node] = nodeID
+		}
+
+		nodeText := antlr.TreesGetNodeText(node, ruleNames, nil)
+		nodeText = strings.ReplaceAll(nodeText, "\"", "\\\"") // Escapar comillas
+
+		dot := fmt.Sprintf("  %d [label=\"%s\"];\n", nodeID, nodeText)
+
+		childCount := node.GetChildCount()
+		childDot := ""
+		for i := 0; i < childCount; i++ {
+			child := node.GetChild(i)
+			childID, childDotPart := generateDOT(child)
+			childDot += fmt.Sprintf("  %d -> %d;\n", nodeID, childID) + childDotPart
+		}
+
+		return nodeID, dot + childDot
+	}
+
+	dotTree := "digraph AST {\n"
+	_, dotTreePart := generateDOT(tree)
+	dotTree += dotTreePart
+	dotTree += "}\n"
+
+	return dotTree
+}
 
 type ErrorType int
 
@@ -68,7 +139,7 @@ func handleInterpreter() interface{} {
 	/*if err := c.BodyParser(&message); err != nil {
 		return err
 	}*/
-	message.Content = " var x1 : Int = 9 \n if x1 <= 10 {   var x2 : Int = 9 if x2 == 9 {var x3 : Int = 9 print(x3+\"e\") if x3 == 9 {var x3 : Int = 9 print(x3+\"ee\")}}  print(x1) x1=x1+1 }"
+	message.Content = " var x1 : Int = 9 \n while x1 <= 10 {   var x2 : Int = 9 if x2 == 9 {var x3 : Int = 9 \n x3 =999 print(x3+\"e\") }  print(x1) x1=x1+1 }"
 
 	//Entrada
 	code := message.Content
@@ -88,6 +159,8 @@ func handleInterpreter() interface{} {
 	p.BuildParseTrees = true
 	tree := p.S()
 
+	//dotRepresentation := TreesStringTreeToDOT(tree, p.GetRuleNames(), nil)
+	//fmt.Println(dotRepresentation)
 	//listener
 	var listener *TreeShapeListener = NewTreeShapeListener()
 	antlr.ParseTreeWalkerDefault.Walk(listener, tree)
@@ -95,8 +168,6 @@ func handleInterpreter() interface{} {
 	//create ast
 	var Ast environment.AST
 
-	rootNode := environment.NewNodo("Root")
-	Ast.SetRaiz(rootNode)
 	//create env
 	var globalEnv environment.Environment = environment.NewEnvironment(nil, "GLOBAL")
 
@@ -141,7 +212,16 @@ func handleInterpreter() interface{} {
 	println(ConsoleOut)
 	println("-------------Tabla de Simbolos------------------")
 	//Ast.Tabla_str += globalEnv.FormatSymbolTable()
-	println(Ast.Tabla_str)
+	//println(Ast.Tabla_str)
+	/*data := [][]string{
+		{"1", "Variable", "Int", "Global", "10", "5"},
+		{"2", "Función", "Void", "Local", "15", "3"},
+		// ... más filas de datos
+	}*/
+
+	dotTable := GenerateTableDOT(Ast.Tabla)
+	fmt.Println(dotTable)
+
 	return ConsoleOut
 }
 

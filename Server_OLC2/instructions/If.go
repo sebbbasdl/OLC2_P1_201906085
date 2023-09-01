@@ -36,7 +36,7 @@ func (p If) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 		for _, inst := range p.Bloque {
 			inst.(interfaces.Instruction).Ejecutar(ast, ifEnv)
 		}
-		print("if")
+		//print("if")
 		//ast.Tabla_str += ifEnv.FormatSymbolTable()
 
 		return nil

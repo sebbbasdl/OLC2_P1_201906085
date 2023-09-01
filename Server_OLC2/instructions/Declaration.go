@@ -3,6 +3,8 @@ package instructions
 import (
 	"Server2/environment"
 	"Server2/interfaces"
+	"fmt"
+	"strconv"
 )
 
 type Declaration struct {
@@ -32,11 +34,9 @@ func (p Declaration) Ejecutar(ast *environment.AST, env interface{}) interface{}
 	} else if result.Tipo == p.Tipo {
 
 		env.(environment.Environment).SaveVariable(p.Id, result)
-		nodo1 := environment.NewNodo("Declaracion")
-		ast.GetRaiz().Hijos = append(ast.GetRaiz().Hijos, nodo1)
-		labels := []string{"int", p.Id, "="}
-		ast.Tabla_str += p.Id + "---------" + env.(environment.Environment).Id+"\n"
-		nodo1.GenerateProduction(labels)
+		datos := []string{"1", "Variable", "Int", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), fmt.Sprint(result.Valor.(int)), p.Id}
+		ast.Tabla = append(ast.Tabla, datos)
+
 	} else {
 		ast.SetError("Los tipos de datos son incorrectos")
 	}

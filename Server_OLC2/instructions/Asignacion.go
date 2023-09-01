@@ -3,6 +3,7 @@ package instructions
 import (
 	"Server2/environment"
 	"Server2/interfaces"
+	"fmt"
 	"strconv"
 )
 
@@ -38,8 +39,21 @@ func (p Asignacion) Ejecutar(ast *environment.AST, env interface{}) interface{} 
 	if p.Expresion.Ejecutar(ast, env).Tipo == result.Tipo {
 		//cambio de valor en la tabla de simbolos
 		env.(environment.Environment).SetVariable(p.Id, result)
+		datos := []string{"1", "Variable", "Int", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), fmt.Sprint(result.Valor.(int)), p.Id}
+		modificarValorEnTabla(ast.Tabla, datos)
 
 	}
 
 	return nil
+}
+
+func modificarValorEnTabla(tabla [][]string, dato []string) {
+
+	for i := 0; i < len(tabla); i++ {
+		if tabla[i][7] == dato[7] {
+			dato[3] = tabla[i][3]
+			tabla[i] = dato
+		}
+	}
+
 }
