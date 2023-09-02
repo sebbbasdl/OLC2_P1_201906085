@@ -1,0 +1,39 @@
+/* reports.css */
+
+/* Estilo para la barra de navegación de pestañas */
+.nav-tabs {
+    border-bottom: 1px solid #ccc;
+  }
+  
+  /* Estilo para los enlaces de las pestañas */
+  .nav-link {
+    cursor: pointer;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px 4px 0 0;
+    margin-right: 5px;
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Estilo para la pestaña activa */
+  .nav-link.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+  }
+  
+  /* Estilo para el contenedor de las imágenes */
+  .tab-content {
+    margin-top: 10px;
+  }
+  
+  /* Estilo para las imágenes */
+  .tab-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  

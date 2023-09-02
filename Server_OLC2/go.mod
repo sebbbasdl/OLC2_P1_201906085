@@ -4,12 +4,28 @@ go 1.21
 
 toolchain go1.21.0
 
+require github.com/gofiber/fiber v1.14.6
+
+require (
+	github.com/fogleman/gg v1.3.0 // indirect
+	github.com/goccy/go-graphviz v0.1.1 // indirect
+	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
+	github.com/pkg/errors v0.9.1 // indirect
+	golang.org/x/image v0.11.0 // indirect
+	golang.org/x/tools v0.7.0 // indirect
+	gonum.org/v1/gonum v0.14.0 // indirect
+)
+
 require (
 	github.com/andybalholm/brotli v1.0.5 // indirect
 	github.com/antlr4-go/antlr/v4 v4.13.0 // indirect
+	github.com/awalterschulze/gographviz v2.0.3+incompatible
 	github.com/emicklei/dot v1.6.0 // indirect
 	github.com/gofiber/fiber/v2 v2.49.0 // indirect
+	github.com/gofiber/utils v0.0.10 // indirect
+	github.com/gonum/graph v0.0.0-20190426092945-678096d81a4b
 	github.com/google/uuid v1.3.1 // indirect
+	github.com/gorilla/schema v1.1.0 // indirect
 	github.com/klauspost/compress v1.16.7 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect

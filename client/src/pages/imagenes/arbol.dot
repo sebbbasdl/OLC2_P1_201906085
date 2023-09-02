@@ -1,0 +1,21 @@
+digraph AST {
+  1 [label="s"];
+  1 -> 2;
+  2 [label="block"];
+  2 -> 3;
+  3 [label="instruction"];
+  3 -> 4;
+  4 [label="printstmt"];
+  4 -> 5;
+  5 [label="print"];
+  4 -> 6;
+  6 [label="("];
+  4 -> 7;
+  7 [label="expr"];
+  7 -> 8;
+  8 [label="\"ssiiiiuuuuuuuuuux222222\""];
+  4 -> 9;
+  9 [label=")"];
+  1 -> 10;
+  10 [label="<EOF>"];
+}

@@ -5,9 +5,14 @@ import (
 	"Server2/interfaces"
 	"Server2/parser"
 	"fmt"
+	"os/exec"
 	"strings"
 
 	"github.com/antlr4-go/antlr/v4"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
+
+	"os"
 )
 
 // Tabla de simbolos DOT
@@ -80,6 +85,36 @@ func TreesStringTreeToDOT(tree antlr.Tree, ruleNames []string, recog antlr.Recog
 	return dotTree
 }
 
+func generarDot(dotData string, rutaArchivo string, nombreArchivo string) error {
+	// Crear el archivo DOT en la ubicación especificada
+	archivo, err := os.Create(rutaArchivo + "/" + nombreArchivo + ".dot")
+	if err != nil {
+		return err
+	}
+	defer archivo.Close()
+
+	// Escribir los datos DOT en el archivo
+	_, err = archivo.WriteString(dotData)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func generarImagen(rutaDot string, rutaImagen string, nombreArchivo string) error {
+	// Comando para generar la imagen SVG desde el archivo DOT
+	cmd := exec.Command("dot", "-Tsvg", rutaDot, "-o", rutaImagen+"/"+nombreArchivo+".svg")
+
+	// Ejecutar el comando
+	err := cmd.Run()
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 type ErrorType int
 
 const (
@@ -134,12 +169,13 @@ type Message struct {
 	Content string `json:"content"`
 }
 
-func handleInterpreter() interface{} {
+func handleInterpreter(c *fiber.Ctx) error {
 	var message Message
-	/*if err := c.BodyParser(&message); err != nil {
+
+	if err := c.BodyParser(&message); err != nil {
 		return err
-	}*/
-	message.Content = " var x1 : Int = 9 \n while x1 <= 10 {   var x2 : Int = 9 if x2 == 9 {var x3 : Int = 9 \n x3 =999 print(x3+\"e\") }  print(x1) x1=x1+1 }"
+	}
+	//message.Content = " var x1 : Int = 9 \n while x1 <= 10 {   var x2 : Int = 9 if x2 == 9 {var x3 : Int = 9 \n x3 =999 print(x3+\"e\") }  print(x1) x1=x1+1 }"
 
 	//Entrada
 	code := message.Content
@@ -159,7 +195,7 @@ func handleInterpreter() interface{} {
 	p.BuildParseTrees = true
 	tree := p.S()
 
-	//dotRepresentation := TreesStringTreeToDOT(tree, p.GetRuleNames(), nil)
+	dotCST := TreesStringTreeToDOT(tree, p.GetRuleNames(), nil)
 	//fmt.Println(dotRepresentation)
 	//listener
 	var listener *TreeShapeListener = NewTreeShapeListener()
@@ -202,11 +238,11 @@ func handleInterpreter() interface{} {
 		ConsoleOut = Ast.GetErrors()
 	}
 
-	/*response := Resp{
+	response := Resp{
 		Output:  ConsoleOut,
 		Flag:    true,
 		Message: "<3 Ejecución realizada con éxito <3",
-	}*/
+	}
 
 	println("--------------------CONSOLA---------------------")
 	println(ConsoleOut)
@@ -218,20 +254,29 @@ func handleInterpreter() interface{} {
 		{"2", "Función", "Void", "Local", "15", "3"},
 		// ... más filas de datos
 	}*/
+	rutaImagen := "C:\\Users\\sebas\\go\\bin\\client\\src\\pages\\imagenes"
+	nombreArchivo := "arbol"
+	//dotTable := GenerateTableDOT(Ast.Tabla)
+	if err := generarDot(dotCST, rutaImagen, nombreArchivo); err != nil {
+		fmt.Println("Error al generar el archivo DOT:", err)
+		return nil
+	}
 
-	dotTable := GenerateTableDOT(Ast.Tabla)
-	fmt.Println(dotTable)
+	// Llama a la función generarImagen para crear la imagen PNG a partir del archivo DOT
+	if err := generarImagen(rutaImagen+"/"+nombreArchivo+".dot", rutaImagen, nombreArchivo); err != nil {
+		fmt.Println("Error al generar la imagen:", err)
+		return nil
+	}
 
-	return ConsoleOut
+	return c.Status(fiber.StatusOK).JSON(response)
+
 }
 
 func main() {
-	/*app := fiber.New()
+	app := fiber.New()
 	app.Use(cors.New())
 	app.Post("/Interpreter", handleInterpreter)
-	app.Listen(":3002")*/
-	handleInterpreter()
-
+	app.Listen(":3002")
 }
 
 func NewTreeShapeListener() *TreeShapeListener {
