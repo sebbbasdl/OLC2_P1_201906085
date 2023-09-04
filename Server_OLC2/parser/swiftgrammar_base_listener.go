@@ -38,6 +38,24 @@ func (s *BaseSwiftGrammarListener) EnterInstruction(ctx *InstructionContext) {}
 // ExitInstruction is called when production instruction is exited.
 func (s *BaseSwiftGrammarListener) ExitInstruction(ctx *InstructionContext) {}
 
+// EnterRemovetmt is called when production removetmt is entered.
+func (s *BaseSwiftGrammarListener) EnterRemovetmt(ctx *RemovetmtContext) {}
+
+// ExitRemovetmt is called when production removetmt is exited.
+func (s *BaseSwiftGrammarListener) ExitRemovetmt(ctx *RemovetmtContext) {}
+
+// EnterRemovelastmt is called when production removelastmt is entered.
+func (s *BaseSwiftGrammarListener) EnterRemovelastmt(ctx *RemovelastmtContext) {}
+
+// ExitRemovelastmt is called when production removelastmt is exited.
+func (s *BaseSwiftGrammarListener) ExitRemovelastmt(ctx *RemovelastmtContext) {}
+
+// EnterAppendtmt is called when production appendtmt is entered.
+func (s *BaseSwiftGrammarListener) EnterAppendtmt(ctx *AppendtmtContext) {}
+
+// ExitAppendtmt is called when production appendtmt is exited.
+func (s *BaseSwiftGrammarListener) ExitAppendtmt(ctx *AppendtmtContext) {}
+
 // EnterGuardtmt is called when production guardtmt is entered.
 func (s *BaseSwiftGrammarListener) EnterGuardtmt(ctx *GuardtmtContext) {}
 

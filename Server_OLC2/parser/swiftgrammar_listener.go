@@ -16,6 +16,15 @@ type SwiftGrammarListener interface {
 	// EnterInstruction is called when entering the instruction production.
 	EnterInstruction(c *InstructionContext)
 
+	// EnterRemovetmt is called when entering the removetmt production.
+	EnterRemovetmt(c *RemovetmtContext)
+
+	// EnterRemovelastmt is called when entering the removelastmt production.
+	EnterRemovelastmt(c *RemovelastmtContext)
+
+	// EnterAppendtmt is called when entering the appendtmt production.
+	EnterAppendtmt(c *AppendtmtContext)
+
 	// EnterGuardtmt is called when entering the guardtmt production.
 	EnterGuardtmt(c *GuardtmtContext)
 
@@ -78,6 +87,15 @@ type SwiftGrammarListener interface {
 
 	// ExitInstruction is called when exiting the instruction production.
 	ExitInstruction(c *InstructionContext)
+
+	// ExitRemovetmt is called when exiting the removetmt production.
+	ExitRemovetmt(c *RemovetmtContext)
+
+	// ExitRemovelastmt is called when exiting the removelastmt production.
+	ExitRemovelastmt(c *RemovelastmtContext)
+
+	// ExitAppendtmt is called when exiting the appendtmt production.
+	ExitAppendtmt(c *AppendtmtContext)
 
 	// ExitGuardtmt is called when exiting the guardtmt production.
 	ExitGuardtmt(c *GuardtmtContext)

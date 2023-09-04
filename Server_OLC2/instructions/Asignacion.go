@@ -37,10 +37,16 @@ func (p Asignacion) Ejecutar(ast *environment.AST, env interface{}) interface{} 
 	//verificacion de tipo
 
 	if p.Expresion.Ejecutar(ast, env).Tipo == result.Tipo {
-		//cambio de valor en la tabla de simbolos
-		env.(environment.Environment).SetVariable(p.Id, result)
-		datos := []string{"1", "Variable", "Int", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), fmt.Sprint(result.Valor.(int)), p.Id}
-		modificarValorEnTabla(ast.Tabla, datos)
+
+		if contieneString(ast.Constantes, p.Id) == false {
+			//cambio de valor en la tabla de simbolos
+			env.(environment.Environment).SetVariable(p.Id, result)
+			datos := []string{"1", "Variable", "Int", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), fmt.Sprint(result.Valor.(int)), p.Id}
+			modificarValorEnTabla(ast.Tabla, datos)
+
+		} else {
+			println("Es una variable constante, no se puede modificar")
+		}
 
 	}
 
@@ -56,4 +62,13 @@ func modificarValorEnTabla(tabla [][]string, dato []string) {
 		}
 	}
 
+}
+
+func contieneString(arr []string, elemento string) bool {
+	for _, valor := range arr {
+		if valor == elemento {
+			return true
+		}
+	}
+	return false
 }

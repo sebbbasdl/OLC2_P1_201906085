@@ -22,10 +22,16 @@ CASE:      'case';
 DEFAULT:   'default';
 IN:     'in';
 VAR:    'var';
+LET: 'let';
 BREAK: 'break';
 CONTINUE: 'continue';
 RETURN :  'return';
 GUARD : 'guard';
+APPEND: 'append';
+REMOVELAST: 'removeLast';
+REMOVE: 'remove';
+COUNT: 'count';
+ISEMPTY: 'IsEmpty';
 
 
 // primitives

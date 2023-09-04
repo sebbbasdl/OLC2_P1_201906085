@@ -47,6 +47,22 @@ instruction returns [interfaces.Instruction inst]
 | breaktmt { $inst = $breaktmt.break }
 | continuetmt{ $inst = $continuetmt.continue }
 | guardtmt { $inst = $guardtmt.guard }
+| appendtmt { $inst = $appendtmt.append}
+| removelastmt { $inst = $removelastmt.removelast }
+| removetmt { $inst = $removetmt.remove }
+;
+
+
+removetmt returns [interfaces.Instruction remove]
+: ID PUNTO REMOVE PARIZQ expr  PARDER { $remove = instructions.NewRemove($ID.line, $ID.pos, $ID.text, $expr.e) }
+;
+
+removelastmt returns [interfaces.Instruction removelast]
+: ID PUNTO REMOVELAST PARIZQ  PARDER { $removelast = instructions.NewRemoveLast($ID.line, $ID.pos, $ID.text) }
+;
+
+appendtmt returns [interfaces.Instruction append]
+:ID PUNTO APPEND PARIZQ expr PARDER { $append = instructions.NewAppend($ID.line, $ID.pos, $ID.text, $expr.e) }
 ;
 
 guardtmt returns [interfaces.Instruction guard]
@@ -121,10 +137,8 @@ whilestmt returns [interfaces.Instruction whiles]
 ;
 
 declarationstmt returns [interfaces.Instruction dec]
-: VAR ID D_PTS types IG expr
-    {
-        $dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, $types.ty, $expr.e);
-    }
+: VAR ID D_PTS types IG expr {$dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, $types.ty, $expr.e, false);}
+| LET ID D_PTS types IG expr {$dec = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, $types.ty, $expr.e, true);}
 ;
 
 
@@ -157,6 +171,8 @@ expr returns [interfaces.Expression e]
 | INT PARIZQ expr PARDER { $e = expressions.NewConversion($expr.e, environment.INTEGER) }
 | STR PARIZQ expr PARDER { $e = expressions.NewConversion($expr.e, environment.STRING) }
 | FLOAT PARIZQ expr PARDER { $e = expressions.NewConversion($expr.e, environment.FLOAT) }
+| ID PUNTO COUNT PARIZQ  PARDER { $e = expressions.NewCount($ID.line, $ID.pos, $ID.text) }
+| ID PUNTO ISEMPTY PARIZQ  PARDER { $e = expressions.NewIsEmpty($ID.line, $ID.pos, $ID.text) }
 | CORIZQ listParams CORDER { $e = expressions.NewArray($CORIZQ.line, $CORIZQ.pos, $listParams.l) }
 | NUMBER                             
     {

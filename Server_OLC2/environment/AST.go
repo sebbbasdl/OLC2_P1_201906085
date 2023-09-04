@@ -10,6 +10,7 @@ type AST struct {
 	ContinueBool bool
 	Ant_str      string
 	Tabla        [][]string
+	Constantes   []string
 }
 
 func NewAST(inst []interface{}, print string, err string, valorRaiz string) AST {
