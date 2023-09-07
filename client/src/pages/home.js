@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Button } from 'primereact/button';
 import { PostMethod } from '../api/http';
@@ -11,8 +10,13 @@ const Home = () => {
     const [consoleText, setConsoleText] = useState('');
 
     const CompileInterpreter = async () => {
+        // Limpia la consola antes de hacer la solicitud al backend
+        setConsoleText('');
+
         const resp = await PostMethod(interpreterAPI + 'Interpreter', { Content: codeText });
-        await setConsoleText(resp?.Output);
+        
+        // Actualiza la consola con la respuesta del backend
+        setConsoleText(resp?.Output);
     };
 
     return (
@@ -25,7 +29,7 @@ const Home = () => {
                             background: '#7464ff',
                             padding: '10px',
                             borderRadius: '15px',
-                            marginBottom: '10px', // Agregado para crear espacio entre la etiqueta y el InputTextarea
+                            marginBottom: '10px',
                         }}
                     >
                         CODIGO:
@@ -35,7 +39,7 @@ const Home = () => {
                         value={codeText}
                         rows={30}
                         cols={70}
-                        style={{ marginBottom: '5%', marginRight: '2%',backgroundColor: '#f6dfff' }}
+                        style={{ marginBottom: '5%', marginRight: '2%', backgroundColor: '#f6dfff' }}
                         onChange={(e) => {
                             setCodeText(e.target.value);
                         }}
@@ -44,22 +48,22 @@ const Home = () => {
 
                 <div>
                     <label
-                        htmlFor="codeTextarea"
+                        htmlFor="consoleTextarea"
                         style={{
                             background: 'green',
                             padding: '10px',
                             borderRadius: '15px',
-                            marginBottom: '10px', // Agregado para crear espacio entre la etiqueta y el InputTextarea
+                            marginBottom: '10px',
                         }}
                     >
                         CONSOLA:
                     </label>
                     <InputTextarea
-                        id="codeTextarea"
+                        id="consoleTextarea"
                         value={consoleText}
                         rows={30}
                         cols={70}
-                        style={{ marginBottom: '5%', marginRight: '2%' , backgroundColor: '#e2f1db'}}
+                        style={{ marginBottom: '5%', marginRight: '2%', backgroundColor: '#e2f1db' }}
                         onChange={(e) => {
                             setConsoleText(e.target.value);
                         }}
@@ -69,7 +73,6 @@ const Home = () => {
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <Button label="EJECUTAR" onClick={CompileInterpreter} style={{ width: '600px', height: '50px' }} />
             </div>
-
         </div>
     );
 };

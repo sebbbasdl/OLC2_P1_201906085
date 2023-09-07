@@ -32,6 +32,9 @@ REMOVELAST: 'removeLast';
 REMOVE: 'remove';
 COUNT: 'count';
 ISEMPTY: 'IsEmpty';
+FUNC: 'func';
+STRUCT: 'struct';
+
 
 
 // primitives
@@ -63,7 +66,9 @@ D_PTS:          ':';
 CORIZQ:         '[';
 CORDER:         ']';
 COMA:           ',';
+ARROW1:         '->';
 PUNTO:          '.';
+MODULO:         '%';
 
 
 // skip

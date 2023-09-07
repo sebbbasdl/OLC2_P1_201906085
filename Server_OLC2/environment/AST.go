@@ -11,6 +11,8 @@ type AST struct {
 	Ant_str      string
 	Tabla        [][]string
 	Constantes   []string
+	ElseIfFlag   bool
+	IfReturn     bool
 }
 
 func NewAST(inst []interface{}, print string, err string, valorRaiz string) AST {

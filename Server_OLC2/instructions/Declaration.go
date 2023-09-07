@@ -36,9 +36,28 @@ func (p Declaration) Ejecutar(ast *environment.AST, env interface{}) interface{}
 			} else {
 				valorString = fmt.Sprint(result.Valor)
 			}
-			valorString = arrayToString(result.Valor.([]interface{}))
-			datos := []string{"1", "Variable", "Int", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), valorString, p.Id}
-			ast.Tabla = append(ast.Tabla, datos)
+
+			//Integer
+			if retornaTipo(result.Valor.([]interface{})) == 0 {
+				valorString = arrayToString(result.Valor.([]interface{}))
+				datos := []string{"1", "Variable", "Int", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), valorString, p.Id}
+				ast.Tabla = append(ast.Tabla, datos)
+			} else if retornaTipo(result.Valor.([]interface{})) == 1 {
+				valorString = arrayToString(result.Valor.([]interface{}))
+				datos := []string{"1", "Variable", "Float", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), valorString, p.Id}
+				ast.Tabla = append(ast.Tabla, datos)
+			} else if retornaTipo(result.Valor.([]interface{})) == 2 {
+				valorString = arrayToString(result.Valor.([]interface{}))
+				datos := []string{"1", "Variable", "String", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), valorString, p.Id}
+				ast.Tabla = append(ast.Tabla, datos)
+			} else if retornaTipo(result.Valor.([]interface{})) == 3 {
+				valorString = arrayToString(result.Valor.([]interface{}))
+				datos := []string{"1", "Variable", "Bool", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), valorString, p.Id}
+				ast.Tabla = append(ast.Tabla, datos)
+			} else if result.Tipo == p.Tipo {
+				env.(environment.Environment).SaveVariable(p.Id, result)
+			}
+
 		} else {
 			ast.SetError("La estructura del array es incorrecta")
 		}
@@ -56,16 +75,69 @@ func (p Declaration) Ejecutar(ast *environment.AST, env interface{}) interface{}
 
 		} else if p.Tipo == environment.FLOAT {
 			env.(environment.Environment).SaveVariable(p.Id, result)
+			if p.Global == true {
+				ast.Constantes = append(ast.Constantes, p.Id)
+			}
 			datos := []string{"1", "Variable", "Float", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), fmt.Sprint(result.Valor.(float64)), p.Id}
 			ast.Tabla = append(ast.Tabla, datos)
 		} else if p.Tipo == environment.STRING {
 			env.(environment.Environment).SaveVariable(p.Id, result)
+			if p.Global == true {
+				ast.Constantes = append(ast.Constantes, p.Id)
+			}
 			datos := []string{"1", "Variable", "String", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), fmt.Sprint(result.Valor.(string)), p.Id}
 			ast.Tabla = append(ast.Tabla, datos)
 		} else if p.Tipo == environment.BOOLEAN {
 			env.(environment.Environment).SaveVariable(p.Id, result)
+			if p.Global == true {
+				ast.Constantes = append(ast.Constantes, p.Id)
+			}
 			datos := []string{"1", "Variable", "Bool", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), fmt.Sprint(result.Valor.(bool)), p.Id}
 			ast.Tabla = append(ast.Tabla, datos)
+		} else if p.Tipo == environment.STRUCT {
+
+			env.(environment.Environment).SaveVariable(p.Id, result)
+			/*datos := []string{"1", "Variable", "STRUCT", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), "", p.Id}
+			ast.Tabla = append(ast.Tabla, datos)*/
+		}
+
+	} else if p.Tipo == environment.NULL {
+		if result.Tipo == environment.INTEGER {
+
+			env.(environment.Environment).SaveVariable(p.Id, result)
+			if p.Global == true {
+				ast.Constantes = append(ast.Constantes, p.Id)
+			}
+
+			datos := []string{"1", "Variable", "Int", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), fmt.Sprint(result.Valor.(int)), p.Id}
+			ast.Tabla = append(ast.Tabla, datos)
+
+		} else if result.Tipo == environment.FLOAT {
+			env.(environment.Environment).SaveVariable(p.Id, result)
+			if p.Global == true {
+				ast.Constantes = append(ast.Constantes, p.Id)
+			}
+			datos := []string{"1", "Variable", "Float", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), fmt.Sprint(result.Valor.(float64)), p.Id}
+			ast.Tabla = append(ast.Tabla, datos)
+		} else if result.Tipo == environment.STRING {
+			env.(environment.Environment).SaveVariable(p.Id, result)
+			if p.Global == true {
+				ast.Constantes = append(ast.Constantes, p.Id)
+			}
+			datos := []string{"1", "Variable", "String", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), fmt.Sprint(result.Valor.(string)), p.Id}
+			ast.Tabla = append(ast.Tabla, datos)
+		} else if result.Tipo == environment.BOOLEAN {
+			env.(environment.Environment).SaveVariable(p.Id, result)
+			if p.Global == true {
+				ast.Constantes = append(ast.Constantes, p.Id)
+			}
+			datos := []string{"1", "Variable", "Bool", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), fmt.Sprint(result.Valor.(bool)), p.Id}
+			ast.Tabla = append(ast.Tabla, datos)
+		} else if result.Tipo == environment.STRUCT {
+
+			env.(environment.Environment).SaveVariable(p.Id, result)
+			/*datos := []string{"1", "Variable", "STRUCT", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), "", p.Id}
+			ast.Tabla = append(ast.Tabla, datos)*/
 		}
 
 	} else {

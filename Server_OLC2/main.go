@@ -9,6 +9,8 @@ import (
 	"strings"
 
 	"github.com/antlr4-go/antlr/v4"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 
 	"os"
 )
@@ -167,13 +169,13 @@ type Message struct {
 	Content string `json:"content"`
 }
 
-func handleInterpreter() error {
+func handleInterpreter(c *fiber.Ctx) error {
 	var message Message
 
-	/*if err := c.BodyParser(&message); err != nil {
+	if err := c.BodyParser(&message); err != nil {
 		return err
-	}*/
-	message.Content = " let vec1: Int = 1 \n vec1=5 \n  var vec2: Int = 5 \n vec2=100 print(vec2)  "
+	}
+	//message.Content = "var aux = 10if aux > 0 {print(\"PRIMER IF CORRECTO\")if true && (aux == 1) {print(\"SEGUNDO IF INCORRECTO\")} else if aux > 10 {print(\"SEGUNDO IF INCORRECTO\")} else {print(\"SEGUNDO IF CORRECTO\")}} else if aux <= 3 {print(\"PRIMER IF INCORRECTO\")if true && (aux == 1) {print(\"SEGUNDO IF INCORRECTO\")} else if aux > 10 {print(\"SEGUNDO IF INCORRECTO\")		} else {print(\"SEGUNDO IF CORRECTO\")}} else if aux == a {print(\"PRIMER IF INCORRECTO\")if true && (aux == 1) {print(\"SEGUNDO IF INCORRECTO\")} else if aux > 10 {print(\"SEGUNDO IF INCORRECTO\")} else {print(\"SEGUNDO IF CORRECTO\")}}"
 
 	//Entrada
 	code := message.Content
@@ -235,11 +237,11 @@ func handleInterpreter() error {
 		ConsoleOut = Ast.GetErrors()
 	}
 
-	/*response := Resp{
+	response := Resp{
 		Output:  ConsoleOut,
 		Flag:    true,
 		Message: "<3 Ejecución realizada con éxito <3",
-	}*/
+	}
 
 	println("--------------------CONSOLA---------------------")
 	println(ConsoleOut)
@@ -275,17 +277,19 @@ func handleInterpreter() error {
 		fmt.Println("Error al generar la imagen:", err)
 		return nil
 	}
-	//return c.Status(fiber.StatusOK).JSON(response)
+	
+	
+	return c.Status(fiber.StatusOK).JSON(response)
 	//return ConsoleOut
 	return nil
 }
 
 func main() {
-	/*	app := fiber.New()
-		app.Use(cors.New())
-		app.Post("/Interpreter", handleInterpreter)
-		app.Listen(":3002")*/
-	handleInterpreter()
+	app := fiber.New()
+	app.Use(cors.New())
+	app.Post("/Interpreter", handleInterpreter)
+	app.Listen(":3002")
+	//handleInterpreter()
 }
 
 func NewTreeShapeListener() *TreeShapeListener {

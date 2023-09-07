@@ -50,8 +50,56 @@ instruction returns [interfaces.Instruction inst]
 | appendtmt { $inst = $appendtmt.append}
 | removelastmt { $inst = $removelastmt.removelast }
 | removetmt { $inst = $removetmt.remove }
+| function { $inst = $function.fun }
+| structCreation { $inst = $structCreation.dec }
 ;
 
+
+function returns [ interfaces.Instruction fun ]
+: FUNC ID PARIZQ listParamsFunc PARDER LLAVEIZQ block LLAVEDER
+{
+    $fun = instructions.NewFunction($FUNC.line, $FUNC.pos, $ID.text, $listParamsFunc.lpf, environment.NULL, $block.blk)
+}
+| FUNC ID PARIZQ listParamsFunc PARDER ARROW1 types LLAVEIZQ block LLAVEDER
+{
+    $fun = instructions.NewFunction($FUNC.line, $FUNC.pos, $ID.text, $listParamsFunc.lpf, $types.ty, $block.blk)
+}
+;
+
+listParamsFunc returns[[]interface{} lpf]
+: list=listParamsFunc COMA ID D_PTS types {
+    var arr []interface{}
+    newParam := instructions.NewParamsDeclaration($ID.line, $ID.pos, $ID.text, $types.ty)
+    arr = append($list.lpf, newParam)
+    $lpf = arr
+    }
+| ID D_PTS types {
+    $lpf = []interface{}{}
+    newParam := instructions.NewParamsDeclaration($ID.line, $ID.pos, $ID.text, $types.ty)
+    $lpf = append($lpf, newParam)
+    }
+|  { $lpf = []interface{}{} }
+;
+
+structCreation returns[interfaces.Instruction dec]
+: STRUCT ID LLAVEIZQ listStructDec LLAVEDER { $dec = instructions.NewStruct($STRUCT.line, $STRUCT.pos, $ID.text, $listStructDec.l) }
+;
+
+listStructDec returns[[]interface{} l]
+: list=listStructDec COMA VAR ID D_PTS types {
+                                                var arr []interface{}
+                                                newParams := environment.NewStructType($ID.text, $types.ty)
+                                                arr = append($list.l, newParams)
+                                                $l = arr
+                                            }
+| VAR ID D_PTS types {
+                        var arr []interface{}
+                        newParams := environment.NewStructType($ID.text, $types.ty)
+                        arr = append(arr, newParams)
+                        $l = arr
+                    }
+|  { $l = []interface{}{} }
+;
 
 removetmt returns [interfaces.Instruction remove]
 : ID PUNTO REMOVE PARIZQ expr  PARDER { $remove = instructions.NewRemove($ID.line, $ID.pos, $ID.text, $expr.e) }
@@ -138,7 +186,9 @@ whilestmt returns [interfaces.Instruction whiles]
 
 declarationstmt returns [interfaces.Instruction dec]
 : VAR ID D_PTS types IG expr {$dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, $types.ty, $expr.e, false);}
+| VAR ID  IG expr {$dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, environment.NULL, $expr.e, false);}
 | LET ID D_PTS types IG expr {$dec = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, $types.ty, $expr.e, true);}
+| VAR ID IG expr  { $dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, environment.STRUCT , $expr.e, false) }
 ;
 
 
@@ -159,21 +209,25 @@ types returns[environment.TipoExpresion ty]
 ;
 
 expr returns [interfaces.Expression e]
-: left=expr op=(MUL|DIV) right=expr { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
-| left=expr op=(ADD|SUB) right=expr { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
+: op=SUB right=expr { $e = expressions.NewOperation($op.GetLine(), $op.GetColumn(), $right.e, "neg", $right.e) }
+| left=expr op=(MUL|DIV|MODULO) right=expr { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
+| left=expr op=(ADD|SUB|COMA) right=expr { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
 | left=expr op=(MAY_IG|MAYOR) right=expr { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
 | left=expr op=(MEN_IG|MENOR) right=expr { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
 | left=expr op=(IG_IG|DIF) right=expr { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
 | left=expr op=AND right=expr { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
 | left=expr op=OR right=expr { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
+| op=NOT right=expr { $e = expressions.NewOperation($op.GetLine(), $op.GetColumn(),$right.e , $op.text, $right.e) }
+| callFunction { $e = $callFunction.cf }
+| ID PARIZQ listStructExp PARDER { $e = expressions.NewStructExp($ID.line, $ID.pos, $ID.text, $listStructExp.l ) }
 | PARIZQ expr PARDER { $e = $expr.e }
 | list=listArray { $e = $list.p}
-| INT PARIZQ expr PARDER { $e = expressions.NewConversion($expr.e, environment.INTEGER) }
-| STR PARIZQ expr PARDER { $e = expressions.NewConversion($expr.e, environment.STRING) }
-| FLOAT PARIZQ expr PARDER { $e = expressions.NewConversion($expr.e, environment.FLOAT) }
+| CORIZQ listParams CORDER { $e = expressions.NewArray($CORIZQ.line, $CORIZQ.pos, $listParams.l) }
+| INT PARIZQ expr PARDER { $e = expressions.NewConversion($INT.GetLine(),$INT.GetColumn(),$expr.e, environment.INTEGER) }
+| STR PARIZQ expr PARDER { $e = expressions.NewConversion($STR.GetLine(),$STR.GetColumn(),$expr.e, environment.STRING) }
+| FLOAT PARIZQ expr PARDER { $e = expressions.NewConversion($FLOAT.GetLine(),$FLOAT.GetColumn(),$expr.e, environment.FLOAT) }
 | ID PUNTO COUNT PARIZQ  PARDER { $e = expressions.NewCount($ID.line, $ID.pos, $ID.text) }
 | ID PUNTO ISEMPTY PARIZQ  PARDER { $e = expressions.NewIsEmpty($ID.line, $ID.pos, $ID.text) }
-| CORIZQ listParams CORDER { $e = expressions.NewArray($CORIZQ.line, $CORIZQ.pos, $listParams.l) }
 | NUMBER                             
     {
         if (strings.Contains($NUMBER.text,".")){
@@ -211,9 +265,45 @@ listParams returns[[]interface{} l]
         }
 ;
 
-
-
 listArray returns[interfaces.Expression p]
 : list = listArray CORIZQ expr CORDER { $p = expressions.NewArrayAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $expr.e) }
+| list = listArray PUNTO ID { $p = expressions.NewStructAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $ID.text)  }
 | ID { $p = expressions.NewCallVar($ID.line, $ID.pos, $ID.text)}
+;
+
+callFunction returns[interfaces.Expression cf]
+: ID PARIZQ listParamsCall PARDER { $cf = expressions.NewCallExp($ID.line, $ID.pos, $ID.text, $listParamsCall.l) }
+;
+
+listParamsCall returns[[]interface{} l]
+: list=listParamsCall COMA expr {
+                                    var arr []interface{}
+                                    arr = append($list.l, $expr.e)
+                                    $l = arr
+                                }
+| expr  {
+            $l = []interface{}{}
+            $l = append($l, $expr.e)
+        }
+|   {
+        $l = []interface{}{}
+    }
+;
+
+listStructExp returns[[]interface{} l]
+: list=listStructExp COMA ID D_PTS expr {
+                                            var arr []interface{}
+                                            StrExp := environment.NewStructContent($ID.text, $expr.e)
+                                            arr = append($list.l, StrExp)
+                                            $l = arr
+                                        }
+| ID D_PTS expr{
+                    var arr []interface{}
+                    StrExp := environment.NewStructContent($ID.text, $expr.e)
+                    arr = append(arr, StrExp)
+                    $l = arr
+                }
+|   {
+        $l = []interface{}{}
+    }
 ;

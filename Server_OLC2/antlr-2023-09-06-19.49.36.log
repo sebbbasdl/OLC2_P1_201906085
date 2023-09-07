@@ -1,0 +1,669 @@
+2023-09-06 19:49:35:069 grammar LogManager.java:25 before: (LEXER_GRAMMAR SwiftLexer (RULES (RULE INT (BLOCK (ALT 'Int'))) (RULE FLOAT (BLOCK (ALT 'Float'))) (RULE BOOL (BLOCK (ALT 'Bool'))) (RULE STR (BLOCK (ALT 'String'))) (RULE TRU (BLOCK (ALT 'true'))) (RULE FAL (BLOCK (ALT 'false'))) (RULE PRINT (BLOCK (ALT 'print'))) (RULE IF (BLOCK (ALT 'if'))) (RULE ELSE (BLOCK (ALT 'else'))) (RULE WHILE (BLOCK (ALT 'while'))) (RULE FOR (BLOCK (ALT 'for'))) (RULE SWITCH (BLOCK (ALT 'switch'))) (RULE CASE (BLOCK (ALT 'case'))) (RULE DEFAULT (BLOCK (ALT 'default'))) (RULE IN (BLOCK (ALT 'in'))) (RULE VAR (BLOCK (ALT 'var'))) (RULE LET (BLOCK (ALT 'let'))) (RULE BREAK (BLOCK (ALT 'break'))) (RULE CONTINUE (BLOCK (ALT 'continue'))) (RULE RETURN (BLOCK (ALT 'return'))) (RULE GUARD (BLOCK (ALT 'guard'))) (RULE APPEND (BLOCK (ALT 'append'))) (RULE REMOVELAST (BLOCK (ALT 'removeLast'))) (RULE REMOVE (BLOCK (ALT 'remove'))) (RULE COUNT (BLOCK (ALT 'count'))) (RULE ISEMPTY (BLOCK (ALT 'IsEmpty'))) (RULE FUNC (BLOCK (ALT 'func'))) (RULE STRUCT (BLOCK (ALT 'struct'))) (RULE NUMBER (BLOCK (ALT (+ (BLOCK (ALT [0-9]))) (? (BLOCK (ALT '.' (+ (BLOCK (ALT [0-9]))))))))) (RULE STRING (BLOCK (ALT '"' (* (BLOCK (ALT (~ (SET ["]))))) '"'))) (RULE ID (BLOCK (ALT (BLOCK (ALT [a-zA-Z])) (* (BLOCK (ALT [a-zA-Z0-9_])))))) (RULE DIF (BLOCK (ALT '!='))) (RULE IG_IG (BLOCK (ALT '=='))) (RULE NOT (BLOCK (ALT '!'))) (RULE OR (BLOCK (ALT '||'))) (RULE AND (BLOCK (ALT '&&'))) (RULE IG (BLOCK (ALT '='))) (RULE MAY_IG (BLOCK (ALT '>='))) (RULE MEN_IG (BLOCK (ALT '<='))) (RULE MAYOR (BLOCK (ALT '>'))) (RULE MENOR (BLOCK (ALT '<'))) (RULE MUL (BLOCK (ALT '*'))) (RULE DIV (BLOCK (ALT '/'))) (RULE ADD (BLOCK (ALT '+'))) (RULE SUB (BLOCK (ALT '-'))) (RULE PARIZQ (BLOCK (ALT '('))) (RULE PARDER (BLOCK (ALT ')'))) (RULE LLAVEIZQ (BLOCK (ALT '{'))) (RULE LLAVEDER (BLOCK (ALT '}'))) (RULE D_PTS (BLOCK (ALT ':'))) (RULE CORIZQ (BLOCK (ALT '['))) (RULE CORDER (BLOCK (ALT ']'))) (RULE COMA (BLOCK (ALT ','))) (RULE ARROW1 (BLOCK (ALT '->'))) (RULE PUNTO (BLOCK (ALT '.'))) (RULE WHITESPACE (BLOCK (LEXER_ALT_ACTION (ALT (+ (BLOCK (ALT [ \\\r\n\t])))) skip))) (RULE COMMENT (BLOCK (LEXER_ALT_ACTION (ALT '/*' (* (BLOCK (ALT .))) '*/') skip))) (RULE LINE_COMMENT (BLOCK (LEXER_ALT_ACTION (ALT '//' (* (BLOCK (ALT (~ (SET [\r\n])))))) skip))) (RULE ESC_SEQ (RULEMODIFIERS fragment) (BLOCK (ALT '\\' (BLOCK (ALT '\\') (ALT '@') (ALT '[') (ALT ']') (ALT '.') (ALT '#') (ALT '+') (ALT '-') (ALT '!') (ALT ':') (ALT ' ')))))))
+2023-09-06 19:49:35:119 grammar LogManager.java:25 after: (LEXER_GRAMMAR SwiftLexer (RULES (RULE INT (BLOCK (ALT 'Int'))) (RULE FLOAT (BLOCK (ALT 'Float'))) (RULE BOOL (BLOCK (ALT 'Bool'))) (RULE STR (BLOCK (ALT 'String'))) (RULE TRU (BLOCK (ALT 'true'))) (RULE FAL (BLOCK (ALT 'false'))) (RULE PRINT (BLOCK (ALT 'print'))) (RULE IF (BLOCK (ALT 'if'))) (RULE ELSE (BLOCK (ALT 'else'))) (RULE WHILE (BLOCK (ALT 'while'))) (RULE FOR (BLOCK (ALT 'for'))) (RULE SWITCH (BLOCK (ALT 'switch'))) (RULE CASE (BLOCK (ALT 'case'))) (RULE DEFAULT (BLOCK (ALT 'default'))) (RULE IN (BLOCK (ALT 'in'))) (RULE VAR (BLOCK (ALT 'var'))) (RULE LET (BLOCK (ALT 'let'))) (RULE BREAK (BLOCK (ALT 'break'))) (RULE CONTINUE (BLOCK (ALT 'continue'))) (RULE RETURN (BLOCK (ALT 'return'))) (RULE GUARD (BLOCK (ALT 'guard'))) (RULE APPEND (BLOCK (ALT 'append'))) (RULE REMOVELAST (BLOCK (ALT 'removeLast'))) (RULE REMOVE (BLOCK (ALT 'remove'))) (RULE COUNT (BLOCK (ALT 'count'))) (RULE ISEMPTY (BLOCK (ALT 'IsEmpty'))) (RULE FUNC (BLOCK (ALT 'func'))) (RULE STRUCT (BLOCK (ALT 'struct'))) (RULE NUMBER (BLOCK (ALT (+ (BLOCK (ALT [0-9]))) (? (BLOCK (ALT '.' (+ (BLOCK (ALT [0-9]))))))))) (RULE STRING (BLOCK (ALT '"' (* (BLOCK (ALT (~ (SET ["]))))) '"'))) (RULE ID (BLOCK (ALT (BLOCK (ALT [a-zA-Z])) (* (BLOCK (ALT [a-zA-Z0-9_])))))) (RULE DIF (BLOCK (ALT '!='))) (RULE IG_IG (BLOCK (ALT '=='))) (RULE NOT (BLOCK (ALT '!'))) (RULE OR (BLOCK (ALT '||'))) (RULE AND (BLOCK (ALT '&&'))) (RULE IG (BLOCK (ALT '='))) (RULE MAY_IG (BLOCK (ALT '>='))) (RULE MEN_IG (BLOCK (ALT '<='))) (RULE MAYOR (BLOCK (ALT '>'))) (RULE MENOR (BLOCK (ALT '<'))) (RULE MUL (BLOCK (ALT '*'))) (RULE DIV (BLOCK (ALT '/'))) (RULE ADD (BLOCK (ALT '+'))) (RULE SUB (BLOCK (ALT '-'))) (RULE PARIZQ (BLOCK (ALT '('))) (RULE PARDER (BLOCK (ALT ')'))) (RULE LLAVEIZQ (BLOCK (ALT '{'))) (RULE LLAVEDER (BLOCK (ALT '}'))) (RULE D_PTS (BLOCK (ALT ':'))) (RULE CORIZQ (BLOCK (ALT '['))) (RULE CORDER (BLOCK (ALT ']'))) (RULE COMA (BLOCK (ALT ','))) (RULE ARROW1 (BLOCK (ALT '->'))) (RULE PUNTO (BLOCK (ALT '.'))) (RULE WHITESPACE (BLOCK (LEXER_ALT_ACTION (ALT (+ (BLOCK (ALT [ \\\r\n\t])))) skip))) (RULE COMMENT (BLOCK (LEXER_ALT_ACTION (ALT '/*' (* (BLOCK (ALT .))) '*/') skip))) (RULE LINE_COMMENT (BLOCK (LEXER_ALT_ACTION (ALT '//' (* (BLOCK (ALT (~ (SET [\r\n])))))) skip))) (RULE ESC_SEQ (RULEMODIFIERS fragment) (BLOCK (ALT '\\' (SET '\\' '@' '[' ']' '.' '#' '+' '-' '!' ':' ' '))))))
+2023-09-06 19:49:35:981 grammar LogManager.java:25 before: (COMBINED_GRAMMAR SwiftGrammar (OPTIONS (= tokenVocab SwiftLexer)) (@ header {
+    import "Server2/interfaces"
+    import "Server2/environment"
+    import "Server2/expressions"
+    import "Server2/instructions"
+    import "strings"
+}) (RULES (RULE s (returns []interface{} code) (BLOCK (ALT block EOF {   
+        $code = $block.blk
+    }))) (RULE block (returns []interface{} blk) (@ init {
+    $blk = []interface{}{}
+    var listInt []IInstructionContext
+  }) (BLOCK (ALT (+ (BLOCK (ALT (+= ins instruction)))) {
+        listInt = localctx.(*BlockContext).GetIns()
+        for _, e := range listInt {
+            $blk = append($blk, e.GetInst())
+        }
+    }))) (RULE instruction (returns interfaces.Instruction inst) (BLOCK (ALT printstmt { $inst = $printstmt.prnt}) (ALT ifstmt { $inst = $ifstmt.ifinst }) (ALT declarationstmt { $inst = $declarationstmt.dec }) (ALT asignacion { $inst = $asignacion.asign}) (ALT whilestmt { $inst = $whilestmt.whiles }) (ALT forstmt { $inst = $forstmt.fors }) (ALT switchtmt { $inst = $switchtmt.swtch }) (ALT breaktmt { $inst = $breaktmt.break }) (ALT continuetmt { $inst = $continuetmt.continue }) (ALT guardtmt { $inst = $guardtmt.guard }) (ALT appendtmt { $inst = $appendtmt.append}) (ALT removelastmt { $inst = $removelastmt.removelast }) (ALT removetmt { $inst = $removetmt.remove }) (ALT function { $inst = $function.fun }) (ALT structCreation { $inst = $structCreation.dec }))) (RULE function (returns  interfaces.Instruction fun ) (BLOCK (ALT FUNC ID PARIZQ listParamsFunc PARDER LLAVEIZQ block LLAVEDER {
+    $fun = instructions.NewFunction($FUNC.line, $FUNC.pos, $ID.text, $listParamsFunc.lpf, environment.NULL, $block.blk)
+}) (ALT FUNC ID PARIZQ listParamsFunc PARDER ARROW1 types LLAVEIZQ block LLAVEDER {
+    $fun = instructions.NewFunction($FUNC.line, $FUNC.pos, $ID.text, $listParamsFunc.lpf, $types.ty, $block.blk)
+}))) (RULE listParamsFunc (returns []interface{} lpf) (BLOCK (ALT (= list listParamsFunc) COMA ID D_PTS types {
+    var arr []interface{}
+    newParam := instructions.NewParamsDeclaration($ID.line, $ID.pos, $ID.text, $types.ty)
+    arr = append($list.lpf, newParam)
+    $lpf = arr
+    }) (ALT ID D_PTS types {
+    $lpf = []interface{}{}
+    newParam := instructions.NewParamsDeclaration($ID.line, $ID.pos, $ID.text, $types.ty)
+    $lpf = append($lpf, newParam)
+    }) (ALT { $lpf = []interface{}{} }))) (RULE structCreation (returns interfaces.Instruction dec) (BLOCK (ALT STRUCT ID LLAVEIZQ listStructDec LLAVEDER { $dec = instructions.NewStruct($STRUCT.line, $STRUCT.pos, $ID.text, $listStructDec.l) }))) (RULE listStructDec (returns []interface{} l) (BLOCK (ALT (= list listStructDec) COMA VAR ID D_PTS types {
+                                                var arr []interface{}
+                                                newParams := environment.NewStructType($ID.text, $types.ty)
+                                                arr = append($list.l, newParams)
+                                                $l = arr
+                                            }) (ALT VAR ID D_PTS types {
+                        var arr []interface{}
+                        newParams := environment.NewStructType($ID.text, $types.ty)
+                        arr = append(arr, newParams)
+                        $l = arr
+                    }) (ALT { $l = []interface{}{} }))) (RULE removetmt (returns interfaces.Instruction remove) (BLOCK (ALT ID PUNTO REMOVE PARIZQ expr PARDER { $remove = instructions.NewRemove($ID.line, $ID.pos, $ID.text, $expr.e) }))) (RULE removelastmt (returns interfaces.Instruction removelast) (BLOCK (ALT ID PUNTO REMOVELAST PARIZQ PARDER { $removelast = instructions.NewRemoveLast($ID.line, $ID.pos, $ID.text) }))) (RULE appendtmt (returns interfaces.Instruction append) (BLOCK (ALT ID PUNTO APPEND PARIZQ expr PARDER { $append = instructions.NewAppend($ID.line, $ID.pos, $ID.text, $expr.e) }))) (RULE guardtmt (returns interfaces.Instruction guard) (BLOCK (ALT GUARD expr ELSE LLAVEIZQ block LLAVEDER {$guard = instructions.NewGuard( $GUARD.line, $GUARD.pos, $expr.e, $block.blk )}))) (RULE breaktmt (returns interfaces.Instruction break) (BLOCK (ALT BREAK { $break = instructions.NewBreak($BREAK.line, $BREAK.pos)}))) (RULE continuetmt (returns interfaces.Instruction continue) (BLOCK (ALT CONTINUE { $continue = instructions.NewContinue($CONTINUE.line, $CONTINUE.pos)}))) (RULE printstmt (returns interfaces.Instruction prnt) (BLOCK (ALT PRINT PARIZQ expr PARDER { $prnt = instructions.NewPrint($PRINT.line,$PRINT.pos,$expr.e)}))) (RULE forstmt (returns interfaces.Instruction fors) (BLOCK (ALT FOR ID IN (= e1 expr) PUNTO PUNTO PUNTO (= e2 expr) LLAVEIZQ block LLAVEDER { $fors = instructions.NewFor($FOR.line, $FOR.pos, $ID.text, $e1.e,$e2.e,"nil", $block.blk) }) (ALT FOR ID IN (= ope (BLOCK (ALT STRING) (ALT ID))) LLAVEIZQ block LLAVEDER { $fors = instructions.NewFor($FOR.line, $FOR.pos, $ID.text, nil,nil, $ope.text ,$block.blk ) }))) (RULE switchtmt (returns interfaces.Instruction swtch) (BLOCK (ALT SWITCH expr LLAVEIZQ caselist DEFAULT D_PTS block LLAVEDER { $swtch = instructions.NewSwitch( $SWITCH.line, $SWITCH.pos, $expr.e,$caselist.cases, $block.blk ) }))) (RULE caselist (returns []interface{} cases) (BLOCK (ALT (= listcases caselist) case { var arr3 []interface{}
+                        arr3= append($listcases.cases, $case.swtch)
+                        $cases= arr3
+                        }) (ALT case {
+                            $cases= []interface{}{}
+                            $cases = append($cases, $case.swtch)
+                        }))) (RULE case (returns interfaces.Instruction swtch) (BLOCK (ALT CASE expr D_PTS block { $swtch = instructions.NewCase( $CASE.line, $CASE.pos,$expr.e, $block.blk ) }))) (RULE ifstmt (returns interfaces.Instruction ifinst) (BLOCK (ALT IF expr LLAVEIZQ block LLAVEDER { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $block.blk, nil, nil) }) (ALT IF expr LLAVEIZQ (= b1 block) LLAVEDER ELSE LLAVEIZQ (= b2 block) LLAVEDER {$ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $b1.blk, nil, $b2.blk) }) (ALT IF expr LLAVEIZQ block LLAVEDER elseiflist { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $block.blk, $elseiflist.else_if_list, nil) }) (ALT IF expr LLAVEIZQ (= b1 block) LLAVEDER elseiflist ELSE LLAVEIZQ (= b2 block) LLAVEDER { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $b1.blk, $elseiflist.else_if_list, $b2.blk) }))) (RULE elseiflist (returns []interface{} else_if_list) (BLOCK (ALT (= listif elseiflist) elseif {   var arr2 []interface{}
+                        arr2 = append($listif.else_if_list, $elseif.ifinst)
+                        $else_if_list = arr2
+                    }) (ALT elseif {
+                $else_if_list = []interface{}{}
+                $else_if_list = append($else_if_list, $elseif.ifinst)
+
+            }))) (RULE elseif (returns interfaces.Instruction ifinst) (BLOCK (ALT ELSE IF expr LLAVEIZQ block LLAVEDER { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $block.blk, nil, nil) }))) (RULE whilestmt (returns interfaces.Instruction whiles) (BLOCK (ALT WHILE expr LLAVEIZQ block LLAVEDER { $whiles =instructions.NewWhiles($WHILE.line, $WHILE.pos, $expr.e, $block.blk) }))) (RULE declarationstmt (returns interfaces.Instruction dec) (BLOCK (ALT VAR ID D_PTS types IG expr {$dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, $types.ty, $expr.e, false);}) (ALT VAR ID IG expr {$dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, environment.NULL, $expr.e, false);}) (ALT LET ID D_PTS types IG expr {$dec = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, $types.ty, $expr.e, true);}) (ALT VAR ID IG expr { $dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, environment.STRUCT , $expr.e, false) }))) (RULE asignacion (returns interfaces.Instruction asign) (BLOCK (ALT ID IG expr { $asign = instructions.NewAsignacion($ID.line ,$ID.pos ,$ID.text, $expr.e) }))) (RULE types (returns environment.TipoExpresion ty) (BLOCK (ALT INT { $ty = environment.INTEGER }) (ALT FLOAT { $ty = environment.FLOAT }) (ALT STR { $ty = environment.STRING }) (ALT BOOL { $ty = environment.BOOLEAN }) (ALT CORIZQ types CORDER { $ty = environment.ARRAY }) (ALT CORIZQ CORDER { $ty = environment.ARRAY }))) (RULE expr (returns interfaces.Expression e) (BLOCK (ALT (= left expr) (= op (BLOCK (ALT MUL) (ALT DIV))) (= right expr) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (BLOCK (ALT ADD) (ALT SUB))) (= right expr) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (BLOCK (ALT MAY_IG) (ALT MAYOR))) (= right expr) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (BLOCK (ALT MEN_IG) (ALT MENOR))) (= right expr) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (BLOCK (ALT IG_IG) (ALT DIF))) (= right expr) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op AND) (= right expr) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op OR) (= right expr) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= op NOT) (= right expr) { $e = expressions.NewOperation($op.start.GetLine(), $op.start.GetColumn(), nil, $op.text, $right.e) }) (ALT callFunction { $e = $callFunction.cf }) (ALT ID PARIZQ listStructExp PARDER { $e = expressions.NewStructExp($ID.line, $ID.pos, $ID.text, $listStructExp.l ) }) (ALT PARIZQ expr PARDER { $e = $expr.e }) (ALT (= list listArray) { $e = $list.p}) (ALT CORIZQ listParams CORDER { $e = expressions.NewArray($CORIZQ.line, $CORIZQ.pos, $listParams.l) }) (ALT INT PARIZQ expr PARDER { $e = expressions.NewConversion($INT.GetLine(),$INT.GetColumn(),$expr.e, environment.INTEGER) }) (ALT STR PARIZQ expr PARDER { $e = expressions.NewConversion($STR.GetLine(),$STR.GetColumn(),$expr.e, environment.STRING) }) (ALT FLOAT PARIZQ expr PARDER { $e = expressions.NewConversion($FLOAT.GetLine(),$FLOAT.GetColumn(),$expr.e, environment.FLOAT) }) (ALT ID PUNTO COUNT PARIZQ PARDER { $e = expressions.NewCount($ID.line, $ID.pos, $ID.text) }) (ALT ID PUNTO ISEMPTY PARIZQ PARDER { $e = expressions.NewIsEmpty($ID.line, $ID.pos, $ID.text) }) (ALT NUMBER {
+        if (strings.Contains($NUMBER.text,".")){
+            num,err := strconv.ParseFloat($NUMBER.text, 64);
+            if err!= nil{
+                fmt.Println(err)
+            }
+            $e = expressions.NewPrimitive($NUMBER.line,$NUMBER.pos,num,environment.FLOAT)
+        }else{
+            num,err := strconv.Atoi($NUMBER.text)
+            if err!= nil{
+                fmt.Println(err)
+            }
+            $e = expressions.NewPrimitive($NUMBER.line,$NUMBER.pos,num,environment.INTEGER)
+        }
+    }) (ALT STRING {
+        str := $STRING.text
+        $e = expressions.NewPrimitive($STRING.line, $STRING.pos, str[1:len(str)-1],environment.STRING)
+    }) (ALT TRU { $e = expressions.NewPrimitive($TRU.line, $TRU.pos, true, environment.BOOLEAN) }) (ALT FAL { $e = expressions.NewPrimitive($FAL.line, $FAL.pos, false, environment.BOOLEAN) }))) (RULE listParams (returns []interface{} l) (BLOCK (ALT (= list listParams) COMA expr {
+                                var arr []interface{}
+                                arr = append($list.l, $expr.e)
+                                $l = arr
+                            }) (ALT expr {
+            $l = []interface{}{}
+            $l = append($l, $expr.e)
+        }))) (RULE listArray (returns interfaces.Expression p) (BLOCK (ALT (= list listArray) CORIZQ expr CORDER { $p = expressions.NewArrayAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $expr.e) }) (ALT (= list listArray) PUNTO ID { $p = expressions.NewStructAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $ID.text)  }) (ALT ID { $p = expressions.NewCallVar($ID.line, $ID.pos, $ID.text)}))) (RULE callFunction (returns interfaces.Expression cf) (BLOCK (ALT ID PARIZQ listParamsCall PARDER { $cf = expressions.NewCallExp($ID.line, $ID.pos, $ID.text, $listParamsCall.l) }))) (RULE listParamsCall (returns []interface{} l) (BLOCK (ALT (= list listParamsCall) COMA expr {
+                                    var arr []interface{}
+                                    arr = append($list.l, $expr.e)
+                                    $l = arr
+                                }) (ALT expr {
+            $l = []interface{}{}
+            $l = append($l, $expr.e)
+        }) (ALT {
+        $l = []interface{}{}
+    }))) (RULE listStructExp (returns []interface{} l) (BLOCK (ALT (= list listStructExp) COMA ID D_PTS expr {
+                                            var arr []interface{}
+                                            StrExp := environment.NewStructContent($ID.text, $expr.e)
+                                            arr = append($list.l, StrExp)
+                                            $l = arr
+                                        }) (ALT ID D_PTS expr {
+                    var arr []interface{}
+                    StrExp := environment.NewStructContent($ID.text, $expr.e)
+                    arr = append(arr, StrExp)
+                    $l = arr
+                }) (ALT {
+        $l = []interface{}{}
+    })))))
+2023-09-06 19:49:36:009 grammar LogManager.java:25 after: (COMBINED_GRAMMAR SwiftGrammar (OPTIONS (= tokenVocab SwiftLexer)) (@ header {
+    import "Server2/interfaces"
+    import "Server2/environment"
+    import "Server2/expressions"
+    import "Server2/instructions"
+    import "strings"
+}) (RULES (RULE s (returns []interface{} code) (BLOCK (ALT block EOF {   
+        $code = $block.blk
+    }))) (RULE block (returns []interface{} blk) (@ init {
+    $blk = []interface{}{}
+    var listInt []IInstructionContext
+  }) (BLOCK (ALT (+ (BLOCK (ALT (+= ins instruction)))) {
+        listInt = localctx.(*BlockContext).GetIns()
+        for _, e := range listInt {
+            $blk = append($blk, e.GetInst())
+        }
+    }))) (RULE instruction (returns interfaces.Instruction inst) (BLOCK (ALT printstmt { $inst = $printstmt.prnt}) (ALT ifstmt { $inst = $ifstmt.ifinst }) (ALT declarationstmt { $inst = $declarationstmt.dec }) (ALT asignacion { $inst = $asignacion.asign}) (ALT whilestmt { $inst = $whilestmt.whiles }) (ALT forstmt { $inst = $forstmt.fors }) (ALT switchtmt { $inst = $switchtmt.swtch }) (ALT breaktmt { $inst = $breaktmt.break }) (ALT continuetmt { $inst = $continuetmt.continue }) (ALT guardtmt { $inst = $guardtmt.guard }) (ALT appendtmt { $inst = $appendtmt.append}) (ALT removelastmt { $inst = $removelastmt.removelast }) (ALT removetmt { $inst = $removetmt.remove }) (ALT function { $inst = $function.fun }) (ALT structCreation { $inst = $structCreation.dec }))) (RULE function (returns  interfaces.Instruction fun ) (BLOCK (ALT FUNC ID PARIZQ listParamsFunc PARDER LLAVEIZQ block LLAVEDER {
+    $fun = instructions.NewFunction($FUNC.line, $FUNC.pos, $ID.text, $listParamsFunc.lpf, environment.NULL, $block.blk)
+}) (ALT FUNC ID PARIZQ listParamsFunc PARDER ARROW1 types LLAVEIZQ block LLAVEDER {
+    $fun = instructions.NewFunction($FUNC.line, $FUNC.pos, $ID.text, $listParamsFunc.lpf, $types.ty, $block.blk)
+}))) (RULE listParamsFunc (returns []interface{} lpf) (BLOCK (ALT (= list listParamsFunc) COMA ID D_PTS types {
+    var arr []interface{}
+    newParam := instructions.NewParamsDeclaration($ID.line, $ID.pos, $ID.text, $types.ty)
+    arr = append($list.lpf, newParam)
+    $lpf = arr
+    }) (ALT ID D_PTS types {
+    $lpf = []interface{}{}
+    newParam := instructions.NewParamsDeclaration($ID.line, $ID.pos, $ID.text, $types.ty)
+    $lpf = append($lpf, newParam)
+    }) (ALT { $lpf = []interface{}{} }))) (RULE structCreation (returns interfaces.Instruction dec) (BLOCK (ALT STRUCT ID LLAVEIZQ listStructDec LLAVEDER { $dec = instructions.NewStruct($STRUCT.line, $STRUCT.pos, $ID.text, $listStructDec.l) }))) (RULE listStructDec (returns []interface{} l) (BLOCK (ALT (= list listStructDec) COMA VAR ID D_PTS types {
+                                                var arr []interface{}
+                                                newParams := environment.NewStructType($ID.text, $types.ty)
+                                                arr = append($list.l, newParams)
+                                                $l = arr
+                                            }) (ALT VAR ID D_PTS types {
+                        var arr []interface{}
+                        newParams := environment.NewStructType($ID.text, $types.ty)
+                        arr = append(arr, newParams)
+                        $l = arr
+                    }) (ALT { $l = []interface{}{} }))) (RULE removetmt (returns interfaces.Instruction remove) (BLOCK (ALT ID PUNTO REMOVE PARIZQ expr PARDER { $remove = instructions.NewRemove($ID.line, $ID.pos, $ID.text, $expr.e) }))) (RULE removelastmt (returns interfaces.Instruction removelast) (BLOCK (ALT ID PUNTO REMOVELAST PARIZQ PARDER { $removelast = instructions.NewRemoveLast($ID.line, $ID.pos, $ID.text) }))) (RULE appendtmt (returns interfaces.Instruction append) (BLOCK (ALT ID PUNTO APPEND PARIZQ expr PARDER { $append = instructions.NewAppend($ID.line, $ID.pos, $ID.text, $expr.e) }))) (RULE guardtmt (returns interfaces.Instruction guard) (BLOCK (ALT GUARD expr ELSE LLAVEIZQ block LLAVEDER {$guard = instructions.NewGuard( $GUARD.line, $GUARD.pos, $expr.e, $block.blk )}))) (RULE breaktmt (returns interfaces.Instruction break) (BLOCK (ALT BREAK { $break = instructions.NewBreak($BREAK.line, $BREAK.pos)}))) (RULE continuetmt (returns interfaces.Instruction continue) (BLOCK (ALT CONTINUE { $continue = instructions.NewContinue($CONTINUE.line, $CONTINUE.pos)}))) (RULE printstmt (returns interfaces.Instruction prnt) (BLOCK (ALT PRINT PARIZQ expr PARDER { $prnt = instructions.NewPrint($PRINT.line,$PRINT.pos,$expr.e)}))) (RULE forstmt (returns interfaces.Instruction fors) (BLOCK (ALT FOR ID IN (= e1 expr) PUNTO PUNTO PUNTO (= e2 expr) LLAVEIZQ block LLAVEDER { $fors = instructions.NewFor($FOR.line, $FOR.pos, $ID.text, $e1.e,$e2.e,"nil", $block.blk) }) (ALT FOR ID IN (= ope (SET STRING ID)) LLAVEIZQ block LLAVEDER { $fors = instructions.NewFor($FOR.line, $FOR.pos, $ID.text, nil,nil, $ope.text ,$block.blk ) }))) (RULE switchtmt (returns interfaces.Instruction swtch) (BLOCK (ALT SWITCH expr LLAVEIZQ caselist DEFAULT D_PTS block LLAVEDER { $swtch = instructions.NewSwitch( $SWITCH.line, $SWITCH.pos, $expr.e,$caselist.cases, $block.blk ) }))) (RULE caselist (returns []interface{} cases) (BLOCK (ALT (= listcases caselist) case { var arr3 []interface{}
+                        arr3= append($listcases.cases, $case.swtch)
+                        $cases= arr3
+                        }) (ALT case {
+                            $cases= []interface{}{}
+                            $cases = append($cases, $case.swtch)
+                        }))) (RULE case (returns interfaces.Instruction swtch) (BLOCK (ALT CASE expr D_PTS block { $swtch = instructions.NewCase( $CASE.line, $CASE.pos,$expr.e, $block.blk ) }))) (RULE ifstmt (returns interfaces.Instruction ifinst) (BLOCK (ALT IF expr LLAVEIZQ block LLAVEDER { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $block.blk, nil, nil) }) (ALT IF expr LLAVEIZQ (= b1 block) LLAVEDER ELSE LLAVEIZQ (= b2 block) LLAVEDER {$ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $b1.blk, nil, $b2.blk) }) (ALT IF expr LLAVEIZQ block LLAVEDER elseiflist { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $block.blk, $elseiflist.else_if_list, nil) }) (ALT IF expr LLAVEIZQ (= b1 block) LLAVEDER elseiflist ELSE LLAVEIZQ (= b2 block) LLAVEDER { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $b1.blk, $elseiflist.else_if_list, $b2.blk) }))) (RULE elseiflist (returns []interface{} else_if_list) (BLOCK (ALT (= listif elseiflist) elseif {   var arr2 []interface{}
+                        arr2 = append($listif.else_if_list, $elseif.ifinst)
+                        $else_if_list = arr2
+                    }) (ALT elseif {
+                $else_if_list = []interface{}{}
+                $else_if_list = append($else_if_list, $elseif.ifinst)
+
+            }))) (RULE elseif (returns interfaces.Instruction ifinst) (BLOCK (ALT ELSE IF expr LLAVEIZQ block LLAVEDER { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $block.blk, nil, nil) }))) (RULE whilestmt (returns interfaces.Instruction whiles) (BLOCK (ALT WHILE expr LLAVEIZQ block LLAVEDER { $whiles =instructions.NewWhiles($WHILE.line, $WHILE.pos, $expr.e, $block.blk) }))) (RULE declarationstmt (returns interfaces.Instruction dec) (BLOCK (ALT VAR ID D_PTS types IG expr {$dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, $types.ty, $expr.e, false);}) (ALT VAR ID IG expr {$dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, environment.NULL, $expr.e, false);}) (ALT LET ID D_PTS types IG expr {$dec = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, $types.ty, $expr.e, true);}) (ALT VAR ID IG expr { $dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, environment.STRUCT , $expr.e, false) }))) (RULE asignacion (returns interfaces.Instruction asign) (BLOCK (ALT ID IG expr { $asign = instructions.NewAsignacion($ID.line ,$ID.pos ,$ID.text, $expr.e) }))) (RULE types (returns environment.TipoExpresion ty) (BLOCK (ALT INT { $ty = environment.INTEGER }) (ALT FLOAT { $ty = environment.FLOAT }) (ALT STR { $ty = environment.STRING }) (ALT BOOL { $ty = environment.BOOLEAN }) (ALT CORIZQ types CORDER { $ty = environment.ARRAY }) (ALT CORIZQ CORDER { $ty = environment.ARRAY }))) (RULE expr (returns interfaces.Expression e) (BLOCK (ALT (= left expr) (= op (SET MUL DIV)) (= right expr) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (SET ADD SUB)) (= right expr) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (SET MAY_IG MAYOR)) (= right expr) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (SET MEN_IG MENOR)) (= right expr) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (SET IG_IG DIF)) (= right expr) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op AND) (= right expr) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op OR) (= right expr) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= op NOT) (= right expr) { $e = expressions.NewOperation($op.start.GetLine(), $op.start.GetColumn(), nil, $op.text, $right.e) }) (ALT callFunction { $e = $callFunction.cf }) (ALT ID PARIZQ listStructExp PARDER { $e = expressions.NewStructExp($ID.line, $ID.pos, $ID.text, $listStructExp.l ) }) (ALT PARIZQ expr PARDER { $e = $expr.e }) (ALT (= list listArray) { $e = $list.p}) (ALT CORIZQ listParams CORDER { $e = expressions.NewArray($CORIZQ.line, $CORIZQ.pos, $listParams.l) }) (ALT INT PARIZQ expr PARDER { $e = expressions.NewConversion($INT.GetLine(),$INT.GetColumn(),$expr.e, environment.INTEGER) }) (ALT STR PARIZQ expr PARDER { $e = expressions.NewConversion($STR.GetLine(),$STR.GetColumn(),$expr.e, environment.STRING) }) (ALT FLOAT PARIZQ expr PARDER { $e = expressions.NewConversion($FLOAT.GetLine(),$FLOAT.GetColumn(),$expr.e, environment.FLOAT) }) (ALT ID PUNTO COUNT PARIZQ PARDER { $e = expressions.NewCount($ID.line, $ID.pos, $ID.text) }) (ALT ID PUNTO ISEMPTY PARIZQ PARDER { $e = expressions.NewIsEmpty($ID.line, $ID.pos, $ID.text) }) (ALT NUMBER {
+        if (strings.Contains($NUMBER.text,".")){
+            num,err := strconv.ParseFloat($NUMBER.text, 64);
+            if err!= nil{
+                fmt.Println(err)
+            }
+            $e = expressions.NewPrimitive($NUMBER.line,$NUMBER.pos,num,environment.FLOAT)
+        }else{
+            num,err := strconv.Atoi($NUMBER.text)
+            if err!= nil{
+                fmt.Println(err)
+            }
+            $e = expressions.NewPrimitive($NUMBER.line,$NUMBER.pos,num,environment.INTEGER)
+        }
+    }) (ALT STRING {
+        str := $STRING.text
+        $e = expressions.NewPrimitive($STRING.line, $STRING.pos, str[1:len(str)-1],environment.STRING)
+    }) (ALT TRU { $e = expressions.NewPrimitive($TRU.line, $TRU.pos, true, environment.BOOLEAN) }) (ALT FAL { $e = expressions.NewPrimitive($FAL.line, $FAL.pos, false, environment.BOOLEAN) }))) (RULE listParams (returns []interface{} l) (BLOCK (ALT (= list listParams) COMA expr {
+                                var arr []interface{}
+                                arr = append($list.l, $expr.e)
+                                $l = arr
+                            }) (ALT expr {
+            $l = []interface{}{}
+            $l = append($l, $expr.e)
+        }))) (RULE listArray (returns interfaces.Expression p) (BLOCK (ALT (= list listArray) CORIZQ expr CORDER { $p = expressions.NewArrayAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $expr.e) }) (ALT (= list listArray) PUNTO ID { $p = expressions.NewStructAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $ID.text)  }) (ALT ID { $p = expressions.NewCallVar($ID.line, $ID.pos, $ID.text)}))) (RULE callFunction (returns interfaces.Expression cf) (BLOCK (ALT ID PARIZQ listParamsCall PARDER { $cf = expressions.NewCallExp($ID.line, $ID.pos, $ID.text, $listParamsCall.l) }))) (RULE listParamsCall (returns []interface{} l) (BLOCK (ALT (= list listParamsCall) COMA expr {
+                                    var arr []interface{}
+                                    arr = append($list.l, $expr.e)
+                                    $l = arr
+                                }) (ALT expr {
+            $l = []interface{}{}
+            $l = append($l, $expr.e)
+        }) (ALT {
+        $l = []interface{}{}
+    }))) (RULE listStructExp (returns []interface{} l) (BLOCK (ALT (= list listStructExp) COMA ID D_PTS expr {
+                                            var arr []interface{}
+                                            StrExp := environment.NewStructContent($ID.text, $expr.e)
+                                            arr = append($list.l, StrExp)
+                                            $l = arr
+                                        }) (ALT ID D_PTS expr {
+                    var arr []interface{}
+                    StrExp := environment.NewStructContent($ID.text, $expr.e)
+                    arr = append(arr, StrExp)
+                    $l = arr
+                }) (ALT {
+        $l = []interface{}{}
+    })))))
+2023-09-06 19:49:36:016 grammar LogManager.java:25 after extract implicit lexer =(COMBINED_GRAMMAR SwiftGrammar (OPTIONS (= tokenVocab SwiftLexer)) (@ header {
+    import "Server2/interfaces"
+    import "Server2/environment"
+    import "Server2/expressions"
+    import "Server2/instructions"
+    import "strings"
+}) (RULES (RULE s (returns []interface{} code) (BLOCK (ALT block EOF {   
+        $code = $block.blk
+    }))) (RULE block (returns []interface{} blk) (@ init {
+    $blk = []interface{}{}
+    var listInt []IInstructionContext
+  }) (BLOCK (ALT (+ (BLOCK (ALT (+= ins instruction)))) {
+        listInt = localctx.(*BlockContext).GetIns()
+        for _, e := range listInt {
+            $blk = append($blk, e.GetInst())
+        }
+    }))) (RULE instruction (returns interfaces.Instruction inst) (BLOCK (ALT printstmt { $inst = $printstmt.prnt}) (ALT ifstmt { $inst = $ifstmt.ifinst }) (ALT declarationstmt { $inst = $declarationstmt.dec }) (ALT asignacion { $inst = $asignacion.asign}) (ALT whilestmt { $inst = $whilestmt.whiles }) (ALT forstmt { $inst = $forstmt.fors }) (ALT switchtmt { $inst = $switchtmt.swtch }) (ALT breaktmt { $inst = $breaktmt.break }) (ALT continuetmt { $inst = $continuetmt.continue }) (ALT guardtmt { $inst = $guardtmt.guard }) (ALT appendtmt { $inst = $appendtmt.append}) (ALT removelastmt { $inst = $removelastmt.removelast }) (ALT removetmt { $inst = $removetmt.remove }) (ALT function { $inst = $function.fun }) (ALT structCreation { $inst = $structCreation.dec }))) (RULE function (returns  interfaces.Instruction fun ) (BLOCK (ALT FUNC ID PARIZQ listParamsFunc PARDER LLAVEIZQ block LLAVEDER {
+    $fun = instructions.NewFunction($FUNC.line, $FUNC.pos, $ID.text, $listParamsFunc.lpf, environment.NULL, $block.blk)
+}) (ALT FUNC ID PARIZQ listParamsFunc PARDER ARROW1 types LLAVEIZQ block LLAVEDER {
+    $fun = instructions.NewFunction($FUNC.line, $FUNC.pos, $ID.text, $listParamsFunc.lpf, $types.ty, $block.blk)
+}))) (RULE listParamsFunc (returns []interface{} lpf) (BLOCK (ALT (= list listParamsFunc) COMA ID D_PTS types {
+    var arr []interface{}
+    newParam := instructions.NewParamsDeclaration($ID.line, $ID.pos, $ID.text, $types.ty)
+    arr = append($list.lpf, newParam)
+    $lpf = arr
+    }) (ALT ID D_PTS types {
+    $lpf = []interface{}{}
+    newParam := instructions.NewParamsDeclaration($ID.line, $ID.pos, $ID.text, $types.ty)
+    $lpf = append($lpf, newParam)
+    }) (ALT { $lpf = []interface{}{} }))) (RULE structCreation (returns interfaces.Instruction dec) (BLOCK (ALT STRUCT ID LLAVEIZQ listStructDec LLAVEDER { $dec = instructions.NewStruct($STRUCT.line, $STRUCT.pos, $ID.text, $listStructDec.l) }))) (RULE listStructDec (returns []interface{} l) (BLOCK (ALT (= list listStructDec) COMA VAR ID D_PTS types {
+                                                var arr []interface{}
+                                                newParams := environment.NewStructType($ID.text, $types.ty)
+                                                arr = append($list.l, newParams)
+                                                $l = arr
+                                            }) (ALT VAR ID D_PTS types {
+                        var arr []interface{}
+                        newParams := environment.NewStructType($ID.text, $types.ty)
+                        arr = append(arr, newParams)
+                        $l = arr
+                    }) (ALT { $l = []interface{}{} }))) (RULE removetmt (returns interfaces.Instruction remove) (BLOCK (ALT ID PUNTO REMOVE PARIZQ expr PARDER { $remove = instructions.NewRemove($ID.line, $ID.pos, $ID.text, $expr.e) }))) (RULE removelastmt (returns interfaces.Instruction removelast) (BLOCK (ALT ID PUNTO REMOVELAST PARIZQ PARDER { $removelast = instructions.NewRemoveLast($ID.line, $ID.pos, $ID.text) }))) (RULE appendtmt (returns interfaces.Instruction append) (BLOCK (ALT ID PUNTO APPEND PARIZQ expr PARDER { $append = instructions.NewAppend($ID.line, $ID.pos, $ID.text, $expr.e) }))) (RULE guardtmt (returns interfaces.Instruction guard) (BLOCK (ALT GUARD expr ELSE LLAVEIZQ block LLAVEDER {$guard = instructions.NewGuard( $GUARD.line, $GUARD.pos, $expr.e, $block.blk )}))) (RULE breaktmt (returns interfaces.Instruction break) (BLOCK (ALT BREAK { $break = instructions.NewBreak($BREAK.line, $BREAK.pos)}))) (RULE continuetmt (returns interfaces.Instruction continue) (BLOCK (ALT CONTINUE { $continue = instructions.NewContinue($CONTINUE.line, $CONTINUE.pos)}))) (RULE printstmt (returns interfaces.Instruction prnt) (BLOCK (ALT PRINT PARIZQ expr PARDER { $prnt = instructions.NewPrint($PRINT.line,$PRINT.pos,$expr.e)}))) (RULE forstmt (returns interfaces.Instruction fors) (BLOCK (ALT FOR ID IN (= e1 expr) PUNTO PUNTO PUNTO (= e2 expr) LLAVEIZQ block LLAVEDER { $fors = instructions.NewFor($FOR.line, $FOR.pos, $ID.text, $e1.e,$e2.e,"nil", $block.blk) }) (ALT FOR ID IN (= ope (SET STRING ID)) LLAVEIZQ block LLAVEDER { $fors = instructions.NewFor($FOR.line, $FOR.pos, $ID.text, nil,nil, $ope.text ,$block.blk ) }))) (RULE switchtmt (returns interfaces.Instruction swtch) (BLOCK (ALT SWITCH expr LLAVEIZQ caselist DEFAULT D_PTS block LLAVEDER { $swtch = instructions.NewSwitch( $SWITCH.line, $SWITCH.pos, $expr.e,$caselist.cases, $block.blk ) }))) (RULE caselist (returns []interface{} cases) (BLOCK (ALT (= listcases caselist) case { var arr3 []interface{}
+                        arr3= append($listcases.cases, $case.swtch)
+                        $cases= arr3
+                        }) (ALT case {
+                            $cases= []interface{}{}
+                            $cases = append($cases, $case.swtch)
+                        }))) (RULE case (returns interfaces.Instruction swtch) (BLOCK (ALT CASE expr D_PTS block { $swtch = instructions.NewCase( $CASE.line, $CASE.pos,$expr.e, $block.blk ) }))) (RULE ifstmt (returns interfaces.Instruction ifinst) (BLOCK (ALT IF expr LLAVEIZQ block LLAVEDER { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $block.blk, nil, nil) }) (ALT IF expr LLAVEIZQ (= b1 block) LLAVEDER ELSE LLAVEIZQ (= b2 block) LLAVEDER {$ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $b1.blk, nil, $b2.blk) }) (ALT IF expr LLAVEIZQ block LLAVEDER elseiflist { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $block.blk, $elseiflist.else_if_list, nil) }) (ALT IF expr LLAVEIZQ (= b1 block) LLAVEDER elseiflist ELSE LLAVEIZQ (= b2 block) LLAVEDER { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $b1.blk, $elseiflist.else_if_list, $b2.blk) }))) (RULE elseiflist (returns []interface{} else_if_list) (BLOCK (ALT (= listif elseiflist) elseif {   var arr2 []interface{}
+                        arr2 = append($listif.else_if_list, $elseif.ifinst)
+                        $else_if_list = arr2
+                    }) (ALT elseif {
+                $else_if_list = []interface{}{}
+                $else_if_list = append($else_if_list, $elseif.ifinst)
+
+            }))) (RULE elseif (returns interfaces.Instruction ifinst) (BLOCK (ALT ELSE IF expr LLAVEIZQ block LLAVEDER { $ifinst = instructions.NewIf($IF.line, $IF.pos, $expr.e, $block.blk, nil, nil) }))) (RULE whilestmt (returns interfaces.Instruction whiles) (BLOCK (ALT WHILE expr LLAVEIZQ block LLAVEDER { $whiles =instructions.NewWhiles($WHILE.line, $WHILE.pos, $expr.e, $block.blk) }))) (RULE declarationstmt (returns interfaces.Instruction dec) (BLOCK (ALT VAR ID D_PTS types IG expr {$dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, $types.ty, $expr.e, false);}) (ALT VAR ID IG expr {$dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, environment.NULL, $expr.e, false);}) (ALT LET ID D_PTS types IG expr {$dec = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, $types.ty, $expr.e, true);}) (ALT VAR ID IG expr { $dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, environment.STRUCT , $expr.e, false) }))) (RULE asignacion (returns interfaces.Instruction asign) (BLOCK (ALT ID IG expr { $asign = instructions.NewAsignacion($ID.line ,$ID.pos ,$ID.text, $expr.e) }))) (RULE types (returns environment.TipoExpresion ty) (BLOCK (ALT INT { $ty = environment.INTEGER }) (ALT FLOAT { $ty = environment.FLOAT }) (ALT STR { $ty = environment.STRING }) (ALT BOOL { $ty = environment.BOOLEAN }) (ALT CORIZQ types CORDER { $ty = environment.ARRAY }) (ALT CORIZQ CORDER { $ty = environment.ARRAY }))) (RULE expr (returns interfaces.Expression e) (BLOCK (ALT (= left expr) (= op (SET MUL DIV)) (= right expr) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (SET ADD SUB)) (= right expr) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (SET MAY_IG MAYOR)) (= right expr) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (SET MEN_IG MENOR)) (= right expr) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op (SET IG_IG DIF)) (= right expr) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op AND) (= right expr) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= left expr) (= op OR) (= right expr) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT (= op NOT) (= right expr) { $e = expressions.NewOperation($op.start.GetLine(), $op.start.GetColumn(), nil, $op.text, $right.e) }) (ALT callFunction { $e = $callFunction.cf }) (ALT ID PARIZQ listStructExp PARDER { $e = expressions.NewStructExp($ID.line, $ID.pos, $ID.text, $listStructExp.l ) }) (ALT PARIZQ expr PARDER { $e = $expr.e }) (ALT (= list listArray) { $e = $list.p}) (ALT CORIZQ listParams CORDER { $e = expressions.NewArray($CORIZQ.line, $CORIZQ.pos, $listParams.l) }) (ALT INT PARIZQ expr PARDER { $e = expressions.NewConversion($INT.GetLine(),$INT.GetColumn(),$expr.e, environment.INTEGER) }) (ALT STR PARIZQ expr PARDER { $e = expressions.NewConversion($STR.GetLine(),$STR.GetColumn(),$expr.e, environment.STRING) }) (ALT FLOAT PARIZQ expr PARDER { $e = expressions.NewConversion($FLOAT.GetLine(),$FLOAT.GetColumn(),$expr.e, environment.FLOAT) }) (ALT ID PUNTO COUNT PARIZQ PARDER { $e = expressions.NewCount($ID.line, $ID.pos, $ID.text) }) (ALT ID PUNTO ISEMPTY PARIZQ PARDER { $e = expressions.NewIsEmpty($ID.line, $ID.pos, $ID.text) }) (ALT NUMBER {
+        if (strings.Contains($NUMBER.text,".")){
+            num,err := strconv.ParseFloat($NUMBER.text, 64);
+            if err!= nil{
+                fmt.Println(err)
+            }
+            $e = expressions.NewPrimitive($NUMBER.line,$NUMBER.pos,num,environment.FLOAT)
+        }else{
+            num,err := strconv.Atoi($NUMBER.text)
+            if err!= nil{
+                fmt.Println(err)
+            }
+            $e = expressions.NewPrimitive($NUMBER.line,$NUMBER.pos,num,environment.INTEGER)
+        }
+    }) (ALT STRING {
+        str := $STRING.text
+        $e = expressions.NewPrimitive($STRING.line, $STRING.pos, str[1:len(str)-1],environment.STRING)
+    }) (ALT TRU { $e = expressions.NewPrimitive($TRU.line, $TRU.pos, true, environment.BOOLEAN) }) (ALT FAL { $e = expressions.NewPrimitive($FAL.line, $FAL.pos, false, environment.BOOLEAN) }))) (RULE listParams (returns []interface{} l) (BLOCK (ALT (= list listParams) COMA expr {
+                                var arr []interface{}
+                                arr = append($list.l, $expr.e)
+                                $l = arr
+                            }) (ALT expr {
+            $l = []interface{}{}
+            $l = append($l, $expr.e)
+        }))) (RULE listArray (returns interfaces.Expression p) (BLOCK (ALT (= list listArray) CORIZQ expr CORDER { $p = expressions.NewArrayAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $expr.e) }) (ALT (= list listArray) PUNTO ID { $p = expressions.NewStructAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $ID.text)  }) (ALT ID { $p = expressions.NewCallVar($ID.line, $ID.pos, $ID.text)}))) (RULE callFunction (returns interfaces.Expression cf) (BLOCK (ALT ID PARIZQ listParamsCall PARDER { $cf = expressions.NewCallExp($ID.line, $ID.pos, $ID.text, $listParamsCall.l) }))) (RULE listParamsCall (returns []interface{} l) (BLOCK (ALT (= list listParamsCall) COMA expr {
+                                    var arr []interface{}
+                                    arr = append($list.l, $expr.e)
+                                    $l = arr
+                                }) (ALT expr {
+            $l = []interface{}{}
+            $l = append($l, $expr.e)
+        }) (ALT {
+        $l = []interface{}{}
+    }))) (RULE listStructExp (returns []interface{} l) (BLOCK (ALT (= list listStructExp) COMA ID D_PTS expr {
+                                            var arr []interface{}
+                                            StrExp := environment.NewStructContent($ID.text, $expr.e)
+                                            arr = append($list.l, StrExp)
+                                            $l = arr
+                                        }) (ALT ID D_PTS expr {
+                    var arr []interface{}
+                    StrExp := environment.NewStructContent($ID.text, $expr.e)
+                    arr = append(arr, StrExp)
+                    $l = arr
+                }) (ALT {
+        $l = []interface{}{}
+    })))))
+2023-09-06 19:49:36:016 grammar LogManager.java:25 lexer =(LEXER_GRAMMAR SwiftGrammarLexer OPTIONS (@ header {
+    import "Server2/interfaces"
+    import "Server2/environment"
+    import "Server2/expressions"
+    import "Server2/instructions"
+    import "strings"
+}) RULES)
+2023-09-06 19:49:36:069 left-recursion LogManager.java:25 listParamsFunc returns [[]interface{} lpf]
+    :   ( {} ID<tokenIndex=232> D_PTS<tokenIndex=234> types<tokenIndex=236> {
+    $lpf = []interface{}{}
+    newParam := instructions.NewParamsDeclaration($ID.line, $ID.pos, $ID.text, $types.ty)
+    $lpf = append($lpf, newParam)
+    } 
+        | { $lpf = []interface{}{} } 
+        )
+        (
+          {p.Precpred(p.GetParserRuleContext(), 3)}?<p=3> COMA<tokenIndex=220> ID<tokenIndex=222> D_PTS<tokenIndex=224> types<tokenIndex=226> {
+              var arr []interface{}
+              newParam := instructions.NewParamsDeclaration($ID.line, $ID.pos, $ID.text, $types.ty)
+              arr = append($list.lpf, newParam)
+              $lpf = arr
+              }
+        )*
+    ;
+2023-09-06 19:49:36:082 grammar LogManager.java:25 added: (RULE listParamsFunc (returns []interface{} lpf) (BLOCK (ALT (BLOCK (ALT {} (ID (ELEMENT_OPTIONS (= tokenIndex 232))) (D_PTS (ELEMENT_OPTIONS (= tokenIndex 234))) (types (ELEMENT_OPTIONS (= tokenIndex 236))) {
+    $lpf = []interface{}{}
+    newParam := instructions.NewParamsDeclaration($ID.line, $ID.pos, $ID.text, $types.ty)
+    $lpf = append($lpf, newParam)
+    }) (ALT { $lpf = []interface{}{} })) (* (BLOCK (ALT ({p.Precpred(p.GetParserRuleContext(), 3)}? (ELEMENT_OPTIONS (= p 3))) (COMA (ELEMENT_OPTIONS (= tokenIndex 220))) (ID (ELEMENT_OPTIONS (= tokenIndex 222))) (D_PTS (ELEMENT_OPTIONS (= tokenIndex 224))) (types (ELEMENT_OPTIONS (= tokenIndex 226))) {
+              var arr []interface{}
+              newParam := instructions.NewParamsDeclaration($ID.line, $ID.pos, $ID.text, $types.ty)
+              arr = append($list.lpf, newParam)
+              $lpf = arr
+              }))))))
+2023-09-06 19:49:36:083 left-recursion LogManager.java:25 listStructDec returns [[]interface{} l]
+    :   ( {} VAR<tokenIndex=292> ID<tokenIndex=294> D_PTS<tokenIndex=296> types<tokenIndex=298> {
+                        var arr []interface{}
+                        newParams := environment.NewStructType($ID.text, $types.ty)
+                        arr = append(arr, newParams)
+                        $l = arr
+                    } 
+        | { $l = []interface{}{} } 
+        )
+        (
+          {p.Precpred(p.GetParserRuleContext(), 3)}?<p=3> COMA<tokenIndex=278> VAR<tokenIndex=280> ID<tokenIndex=282> D_PTS<tokenIndex=284> types<tokenIndex=286> {
+                                                          var arr []interface{}
+                                                          newParams := environment.NewStructType($ID.text, $types.ty)
+                                                          arr = append($list.l, newParams)
+                                                          $l = arr
+                                                      }
+        )*
+    ;
+2023-09-06 19:49:36:091 grammar LogManager.java:25 added: (RULE listStructDec (returns []interface{} l) (BLOCK (ALT (BLOCK (ALT {} (VAR (ELEMENT_OPTIONS (= tokenIndex 292))) (ID (ELEMENT_OPTIONS (= tokenIndex 294))) (D_PTS (ELEMENT_OPTIONS (= tokenIndex 296))) (types (ELEMENT_OPTIONS (= tokenIndex 298))) {
+                        var arr []interface{}
+                        newParams := environment.NewStructType($ID.text, $types.ty)
+                        arr = append(arr, newParams)
+                        $l = arr
+                    }) (ALT { $l = []interface{}{} })) (* (BLOCK (ALT ({p.Precpred(p.GetParserRuleContext(), 3)}? (ELEMENT_OPTIONS (= p 3))) (COMA (ELEMENT_OPTIONS (= tokenIndex 278))) (VAR (ELEMENT_OPTIONS (= tokenIndex 280))) (ID (ELEMENT_OPTIONS (= tokenIndex 282))) (D_PTS (ELEMENT_OPTIONS (= tokenIndex 284))) (types (ELEMENT_OPTIONS (= tokenIndex 286))) {
+                                                          var arr []interface{}
+                                                          newParams := environment.NewStructType($ID.text, $types.ty)
+                                                          arr = append($list.l, newParams)
+                                                          $l = arr
+                                                      }))))))
+2023-09-06 19:49:36:093 left-recursion LogManager.java:25 caselist returns [[]interface{} cases]
+    :   ( {} case<tokenIndex=561>                  {
+                            $cases= []interface{}{}
+                            $cases = append($cases, $case.swtch)
+                        } 
+        )
+        (
+          {p.Precpred(p.GetParserRuleContext(), 2)}?<p=2> case<tokenIndex=555> { var arr3 []interface{}
+                                  arr3= append($listcases.cases, $case.swtch)
+                                  $cases= arr3
+                                  }
+        )*
+    ;
+2023-09-06 19:49:36:096 grammar LogManager.java:25 added: (RULE caselist (returns []interface{} cases) (BLOCK (ALT (BLOCK (ALT {} (case (ELEMENT_OPTIONS (= tokenIndex 561))) {
+                            $cases= []interface{}{}
+                            $cases = append($cases, $case.swtch)
+                        })) (* (BLOCK (ALT ({p.Precpred(p.GetParserRuleContext(), 2)}? (ELEMENT_OPTIONS (= p 2))) (case (ELEMENT_OPTIONS (= tokenIndex 555))) { var arr3 []interface{}
+                                  arr3= append($listcases.cases, $case.swtch)
+                                  $cases= arr3
+                                  }))))))
+2023-09-06 19:49:36:097 left-recursion LogManager.java:25 elseiflist returns [[]interface{} else_if_list]
+    :   ( {} elseif<tokenIndex=696>    {
+                $else_if_list = []interface{}{}
+                $else_if_list = append($else_if_list, $elseif.ifinst)
+
+            } 
+        )
+        (
+          {p.Precpred(p.GetParserRuleContext(), 2)}?<p=2> elseif<tokenIndex=690> {   var arr2 []interface{}
+                                  arr2 = append($listif.else_if_list, $elseif.ifinst)
+                                  $else_if_list = arr2
+                              }
+        )*
+    ;
+2023-09-06 19:49:36:100 grammar LogManager.java:25 added: (RULE elseiflist (returns []interface{} else_if_list) (BLOCK (ALT (BLOCK (ALT {} (elseif (ELEMENT_OPTIONS (= tokenIndex 696))) {
+                $else_if_list = []interface{}{}
+                $else_if_list = append($else_if_list, $elseif.ifinst)
+
+            })) (* (BLOCK (ALT ({p.Precpred(p.GetParserRuleContext(), 2)}? (ELEMENT_OPTIONS (= p 2))) (elseif (ELEMENT_OPTIONS (= tokenIndex 690))) {   var arr2 []interface{}
+                                  arr2 = append($listif.else_if_list, $elseif.ifinst)
+                                  $else_if_list = arr2
+                              }))))))
+2023-09-06 19:49:36:114 left-recursion LogManager.java:25 expr returns [interfaces.Expression e]
+    :   ( {} op=NOT<tokenIndex=1021> right=expr<tokenIndex=1025,p=15> { $e = expressions.NewOperation($op.start.GetLine(), $op.start.GetColumn(), nil, $op.text, $right.e) } 
+        | callFunction<tokenIndex=1031> { $e = $callFunction.cf } 
+        | ID<tokenIndex=1037> PARIZQ<tokenIndex=1039> listStructExp<tokenIndex=1041> PARDER<tokenIndex=1043> { $e = expressions.NewStructExp($ID.line, $ID.pos, $ID.text, $listStructExp.l ) } 
+        | PARIZQ<tokenIndex=1049> expr<tokenIndex=1051> PARDER<tokenIndex=1053> { $e = $expr.e } 
+        | list=listArray<tokenIndex=1061> { $e = $list.p} 
+        | CORIZQ<tokenIndex=1067> listParams<tokenIndex=1069> CORDER<tokenIndex=1071> { $e = expressions.NewArray($CORIZQ.line, $CORIZQ.pos, $listParams.l) } 
+        | INT<tokenIndex=1077> PARIZQ<tokenIndex=1079> expr<tokenIndex=1081> PARDER<tokenIndex=1083> { $e = expressions.NewConversion($INT.GetLine(),$INT.GetColumn(),$expr.e, environment.INTEGER) } 
+        | STR<tokenIndex=1089> PARIZQ<tokenIndex=1091> expr<tokenIndex=1093> PARDER<tokenIndex=1095> { $e = expressions.NewConversion($STR.GetLine(),$STR.GetColumn(),$expr.e, environment.STRING) } 
+        | FLOAT<tokenIndex=1101> PARIZQ<tokenIndex=1103> expr<tokenIndex=1105> PARDER<tokenIndex=1107> { $e = expressions.NewConversion($FLOAT.GetLine(),$FLOAT.GetColumn(),$expr.e, environment.FLOAT) } 
+        | ID<tokenIndex=1113> PUNTO<tokenIndex=1115> COUNT<tokenIndex=1117> PARIZQ<tokenIndex=1119>  PARDER<tokenIndex=1121> { $e = expressions.NewCount($ID.line, $ID.pos, $ID.text) } 
+        | ID<tokenIndex=1127> PUNTO<tokenIndex=1129> ISEMPTY<tokenIndex=1131> PARIZQ<tokenIndex=1133>  PARDER<tokenIndex=1135> { $e = expressions.NewIsEmpty($ID.line, $ID.pos, $ID.text) } 
+        | NUMBER<tokenIndex=1141>                             
+    {
+        if (strings.Contains($NUMBER.text,".")){
+            num,err := strconv.ParseFloat($NUMBER.text, 64);
+            if err!= nil{
+                fmt.Println(err)
+            }
+            $e = expressions.NewPrimitive($NUMBER.line,$NUMBER.pos,num,environment.FLOAT)
+        }else{
+            num,err := strconv.Atoi($NUMBER.text)
+            if err!= nil{
+                fmt.Println(err)
+            }
+            $e = expressions.NewPrimitive($NUMBER.line,$NUMBER.pos,num,environment.INTEGER)
+        }
+    } 
+        | STRING<tokenIndex=1147>
+    {
+        str := $STRING.text
+        $e = expressions.NewPrimitive($STRING.line, $STRING.pos, str[1:len(str)-1],environment.STRING)
+    } 
+        | TRU<tokenIndex=1153> { $e = expressions.NewPrimitive($TRU.line, $TRU.pos, true, environment.BOOLEAN) } 
+        | FAL<tokenIndex=1159> { $e = expressions.NewPrimitive($FAL.line, $FAL.pos, false, environment.BOOLEAN) } 
+        )
+        (
+          {p.Precpred(p.GetParserRuleContext(), 22)}?<p=22> op=(MUL<tokenIndex=894>|DIV<tokenIndex=896>) right=expr<tokenIndex=901,p=23> { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
+                  | {p.Precpred(p.GetParserRuleContext(), 21)}?<p=21> op=(ADD<tokenIndex=914>|SUB<tokenIndex=916>) right=expr<tokenIndex=921,p=22> { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
+                  | {p.Precpred(p.GetParserRuleContext(), 20)}?<p=20> op=(MAY_IG<tokenIndex=934>|MAYOR<tokenIndex=936>) right=expr<tokenIndex=941,p=21> { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
+                  | {p.Precpred(p.GetParserRuleContext(), 19)}?<p=19> op=(MEN_IG<tokenIndex=954>|MENOR<tokenIndex=956>) right=expr<tokenIndex=961,p=20> { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
+                  | {p.Precpred(p.GetParserRuleContext(), 18)}?<p=18> op=(IG_IG<tokenIndex=974>|DIF<tokenIndex=976>) right=expr<tokenIndex=981,p=19> { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
+                  | {p.Precpred(p.GetParserRuleContext(), 17)}?<p=17> op=AND<tokenIndex=993> right=expr<tokenIndex=997,p=18> { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
+                  | {p.Precpred(p.GetParserRuleContext(), 16)}?<p=16> op=OR<tokenIndex=1009> right=expr<tokenIndex=1013,p=17> { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
+        )*
+    ;
+2023-09-06 19:49:36:147 grammar LogManager.java:25 added: (RULE expr (returns interfaces.Expression e) (BLOCK (ALT (BLOCK (ALT {} (= op (NOT (ELEMENT_OPTIONS (= tokenIndex 1021)))) (= right (expr (ELEMENT_OPTIONS (= tokenIndex 1025) (= p 15)))) { $e = expressions.NewOperation($op.start.GetLine(), $op.start.GetColumn(), nil, $op.text, $right.e) }) (ALT (callFunction (ELEMENT_OPTIONS (= tokenIndex 1031))) { $e = $callFunction.cf }) (ALT (ID (ELEMENT_OPTIONS (= tokenIndex 1037))) (PARIZQ (ELEMENT_OPTIONS (= tokenIndex 1039))) (listStructExp (ELEMENT_OPTIONS (= tokenIndex 1041))) (PARDER (ELEMENT_OPTIONS (= tokenIndex 1043))) { $e = expressions.NewStructExp($ID.line, $ID.pos, $ID.text, $listStructExp.l ) }) (ALT (PARIZQ (ELEMENT_OPTIONS (= tokenIndex 1049))) (expr (ELEMENT_OPTIONS (= tokenIndex 1051))) (PARDER (ELEMENT_OPTIONS (= tokenIndex 1053))) { $e = $expr.e }) (ALT (= list (listArray (ELEMENT_OPTIONS (= tokenIndex 1061)))) { $e = $list.p}) (ALT (CORIZQ (ELEMENT_OPTIONS (= tokenIndex 1067))) (listParams (ELEMENT_OPTIONS (= tokenIndex 1069))) (CORDER (ELEMENT_OPTIONS (= tokenIndex 1071))) { $e = expressions.NewArray($CORIZQ.line, $CORIZQ.pos, $listParams.l) }) (ALT (INT (ELEMENT_OPTIONS (= tokenIndex 1077))) (PARIZQ (ELEMENT_OPTIONS (= tokenIndex 1079))) (expr (ELEMENT_OPTIONS (= tokenIndex 1081))) (PARDER (ELEMENT_OPTIONS (= tokenIndex 1083))) { $e = expressions.NewConversion($INT.GetLine(),$INT.GetColumn(),$expr.e, environment.INTEGER) }) (ALT (STR (ELEMENT_OPTIONS (= tokenIndex 1089))) (PARIZQ (ELEMENT_OPTIONS (= tokenIndex 1091))) (expr (ELEMENT_OPTIONS (= tokenIndex 1093))) (PARDER (ELEMENT_OPTIONS (= tokenIndex 1095))) { $e = expressions.NewConversion($STR.GetLine(),$STR.GetColumn(),$expr.e, environment.STRING) }) (ALT (FLOAT (ELEMENT_OPTIONS (= tokenIndex 1101))) (PARIZQ (ELEMENT_OPTIONS (= tokenIndex 1103))) (expr (ELEMENT_OPTIONS (= tokenIndex 1105))) (PARDER (ELEMENT_OPTIONS (= tokenIndex 1107))) { $e = expressions.NewConversion($FLOAT.GetLine(),$FLOAT.GetColumn(),$expr.e, environment.FLOAT) }) (ALT (ID (ELEMENT_OPTIONS (= tokenIndex 1113))) (PUNTO (ELEMENT_OPTIONS (= tokenIndex 1115))) (COUNT (ELEMENT_OPTIONS (= tokenIndex 1117))) (PARIZQ (ELEMENT_OPTIONS (= tokenIndex 1119))) (PARDER (ELEMENT_OPTIONS (= tokenIndex 1121))) { $e = expressions.NewCount($ID.line, $ID.pos, $ID.text) }) (ALT (ID (ELEMENT_OPTIONS (= tokenIndex 1127))) (PUNTO (ELEMENT_OPTIONS (= tokenIndex 1129))) (ISEMPTY (ELEMENT_OPTIONS (= tokenIndex 1131))) (PARIZQ (ELEMENT_OPTIONS (= tokenIndex 1133))) (PARDER (ELEMENT_OPTIONS (= tokenIndex 1135))) { $e = expressions.NewIsEmpty($ID.line, $ID.pos, $ID.text) }) (ALT (NUMBER (ELEMENT_OPTIONS (= tokenIndex 1141))) {
+        if (strings.Contains($NUMBER.text,".")){
+            num,err := strconv.ParseFloat($NUMBER.text, 64);
+            if err!= nil{
+                fmt.Println(err)
+            }
+            $e = expressions.NewPrimitive($NUMBER.line,$NUMBER.pos,num,environment.FLOAT)
+        }else{
+            num,err := strconv.Atoi($NUMBER.text)
+            if err!= nil{
+                fmt.Println(err)
+            }
+            $e = expressions.NewPrimitive($NUMBER.line,$NUMBER.pos,num,environment.INTEGER)
+        }
+    }) (ALT (STRING (ELEMENT_OPTIONS (= tokenIndex 1147))) {
+        str := $STRING.text
+        $e = expressions.NewPrimitive($STRING.line, $STRING.pos, str[1:len(str)-1],environment.STRING)
+    }) (ALT (TRU (ELEMENT_OPTIONS (= tokenIndex 1153))) { $e = expressions.NewPrimitive($TRU.line, $TRU.pos, true, environment.BOOLEAN) }) (ALT (FAL (ELEMENT_OPTIONS (= tokenIndex 1159))) { $e = expressions.NewPrimitive($FAL.line, $FAL.pos, false, environment.BOOLEAN) })) (* (BLOCK (ALT ({p.Precpred(p.GetParserRuleContext(), 22)}? (ELEMENT_OPTIONS (= p 22))) (= op (SET (MUL (ELEMENT_OPTIONS (= tokenIndex 894))) (DIV (ELEMENT_OPTIONS (= tokenIndex 896))))) (= right (expr (ELEMENT_OPTIONS (= tokenIndex 901) (= p 23)))) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT ({p.Precpred(p.GetParserRuleContext(), 21)}? (ELEMENT_OPTIONS (= p 21))) (= op (SET (ADD (ELEMENT_OPTIONS (= tokenIndex 914))) (SUB (ELEMENT_OPTIONS (= tokenIndex 916))))) (= right (expr (ELEMENT_OPTIONS (= tokenIndex 921) (= p 22)))) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT ({p.Precpred(p.GetParserRuleContext(), 20)}? (ELEMENT_OPTIONS (= p 20))) (= op (SET (MAY_IG (ELEMENT_OPTIONS (= tokenIndex 934))) (MAYOR (ELEMENT_OPTIONS (= tokenIndex 936))))) (= right (expr (ELEMENT_OPTIONS (= tokenIndex 941) (= p 21)))) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT ({p.Precpred(p.GetParserRuleContext(), 19)}? (ELEMENT_OPTIONS (= p 19))) (= op (SET (MEN_IG (ELEMENT_OPTIONS (= tokenIndex 954))) (MENOR (ELEMENT_OPTIONS (= tokenIndex 956))))) (= right (expr (ELEMENT_OPTIONS (= tokenIndex 961) (= p 20)))) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT ({p.Precpred(p.GetParserRuleContext(), 18)}? (ELEMENT_OPTIONS (= p 18))) (= op (SET (IG_IG (ELEMENT_OPTIONS (= tokenIndex 974))) (DIF (ELEMENT_OPTIONS (= tokenIndex 976))))) (= right (expr (ELEMENT_OPTIONS (= tokenIndex 981) (= p 19)))) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT ({p.Precpred(p.GetParserRuleContext(), 17)}? (ELEMENT_OPTIONS (= p 17))) (= op (AND (ELEMENT_OPTIONS (= tokenIndex 993)))) (= right (expr (ELEMENT_OPTIONS (= tokenIndex 997) (= p 18)))) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }) (ALT ({p.Precpred(p.GetParserRuleContext(), 16)}? (ELEMENT_OPTIONS (= p 16))) (= op (OR (ELEMENT_OPTIONS (= tokenIndex 1009)))) (= right (expr (ELEMENT_OPTIONS (= tokenIndex 1013) (= p 17)))) { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }))))))
+2023-09-06 19:49:36:147 left-recursion LogManager.java:25 listParams returns [[]interface{} l]
+    :   ( {} expr<tokenIndex=1184> {
+            $l = []interface{}{}
+            $l = append($l, $expr.e)
+        } 
+        )
+        (
+          {p.Precpred(p.GetParserRuleContext(), 2)}?<p=2> COMA<tokenIndex=1176> expr<tokenIndex=1178> {
+                                          var arr []interface{}
+                                          arr = append($list.l, $expr.e)
+                                          $l = arr
+                                      }
+        )*
+    ;
+2023-09-06 19:49:36:151 grammar LogManager.java:25 added: (RULE listParams (returns []interface{} l) (BLOCK (ALT (BLOCK (ALT {} (expr (ELEMENT_OPTIONS (= tokenIndex 1184))) {
+            $l = []interface{}{}
+            $l = append($l, $expr.e)
+        })) (* (BLOCK (ALT ({p.Precpred(p.GetParserRuleContext(), 2)}? (ELEMENT_OPTIONS (= p 2))) (COMA (ELEMENT_OPTIONS (= tokenIndex 1176))) (expr (ELEMENT_OPTIONS (= tokenIndex 1178))) {
+                                          var arr []interface{}
+                                          arr = append($list.l, $expr.e)
+                                          $l = arr
+                                      }))))))
+2023-09-06 19:49:36:152 left-recursion LogManager.java:25 listArray returns [interfaces.Expression p]
+    :   ( {} ID<tokenIndex=1227> { $p = expressions.NewCallVar($ID.line, $ID.pos, $ID.text)} 
+        )
+        (
+          {p.Precpred(p.GetParserRuleContext(), 3)}?<p=3> CORIZQ<tokenIndex=1203> expr<tokenIndex=1205> CORDER<tokenIndex=1207> { $p = expressions.NewArrayAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $expr.e) }
+                  | {p.Precpred(p.GetParserRuleContext(), 2)}?<p=2> PUNTO<tokenIndex=1219> ID<tokenIndex=1221> { $p = expressions.NewStructAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $ID.text)  }
+        )*
+    ;
+2023-09-06 19:49:36:158 grammar LogManager.java:25 added: (RULE listArray (returns interfaces.Expression p) (BLOCK (ALT (BLOCK (ALT {} (ID (ELEMENT_OPTIONS (= tokenIndex 1227))) { $p = expressions.NewCallVar($ID.line, $ID.pos, $ID.text)})) (* (BLOCK (ALT ({p.Precpred(p.GetParserRuleContext(), 3)}? (ELEMENT_OPTIONS (= p 3))) (CORIZQ (ELEMENT_OPTIONS (= tokenIndex 1203))) (expr (ELEMENT_OPTIONS (= tokenIndex 1205))) (CORDER (ELEMENT_OPTIONS (= tokenIndex 1207))) { $p = expressions.NewArrayAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $expr.e) }) (ALT ({p.Precpred(p.GetParserRuleContext(), 2)}? (ELEMENT_OPTIONS (= p 2))) (PUNTO (ELEMENT_OPTIONS (= tokenIndex 1219))) (ID (ELEMENT_OPTIONS (= tokenIndex 1221))) { $p = expressions.NewStructAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $ID.text)  }))))))
+2023-09-06 19:49:36:159 left-recursion LogManager.java:25 listParamsCall returns [[]interface{} l]
+    :   ( {} expr<tokenIndex=1271>  {
+            $l = []interface{}{}
+            $l = append($l, $expr.e)
+        } 
+        | {
+        $l = []interface{}{}
+    } 
+        )
+        (
+          {p.Precpred(p.GetParserRuleContext(), 3)}?<p=3> COMA<tokenIndex=1263> expr<tokenIndex=1265> {
+                                              var arr []interface{}
+                                              arr = append($list.l, $expr.e)
+                                              $l = arr
+                                          }
+        )*
+    ;
+2023-09-06 19:49:36:161 grammar LogManager.java:25 added: (RULE listParamsCall (returns []interface{} l) (BLOCK (ALT (BLOCK (ALT {} (expr (ELEMENT_OPTIONS (= tokenIndex 1271))) {
+            $l = []interface{}{}
+            $l = append($l, $expr.e)
+        }) (ALT {
+        $l = []interface{}{}
+    })) (* (BLOCK (ALT ({p.Precpred(p.GetParserRuleContext(), 3)}? (ELEMENT_OPTIONS (= p 3))) (COMA (ELEMENT_OPTIONS (= tokenIndex 1263))) (expr (ELEMENT_OPTIONS (= tokenIndex 1265))) {
+                                              var arr []interface{}
+                                              arr = append($list.l, $expr.e)
+                                              $l = arr
+                                          }))))))
+2023-09-06 19:49:36:162 left-recursion LogManager.java:25 listStructExp returns [[]interface{} l]
+    :   ( {} ID<tokenIndex=1304> D_PTS<tokenIndex=1306> expr<tokenIndex=1308>{
+                    var arr []interface{}
+                    StrExp := environment.NewStructContent($ID.text, $expr.e)
+                    arr = append(arr, StrExp)
+                    $l = arr
+                } 
+        | {
+        $l = []interface{}{}
+    } 
+        )
+        (
+          {p.Precpred(p.GetParserRuleContext(), 3)}?<p=3> COMA<tokenIndex=1292> ID<tokenIndex=1294> D_PTS<tokenIndex=1296> expr<tokenIndex=1298> {
+                                                      var arr []interface{}
+                                                      StrExp := environment.NewStructContent($ID.text, $expr.e)
+                                                      arr = append($list.l, StrExp)
+                                                      $l = arr
+                                                  }
+        )*
+    ;
+2023-09-06 19:49:36:167 grammar LogManager.java:25 added: (RULE listStructExp (returns []interface{} l) (BLOCK (ALT (BLOCK (ALT {} (ID (ELEMENT_OPTIONS (= tokenIndex 1304))) (D_PTS (ELEMENT_OPTIONS (= tokenIndex 1306))) (expr (ELEMENT_OPTIONS (= tokenIndex 1308))) {
+                    var arr []interface{}
+                    StrExp := environment.NewStructContent($ID.text, $expr.e)
+                    arr = append(arr, StrExp)
+                    $l = arr
+                }) (ALT {
+        $l = []interface{}{}
+    })) (* (BLOCK (ALT ({p.Precpred(p.GetParserRuleContext(), 3)}? (ELEMENT_OPTIONS (= p 3))) (COMA (ELEMENT_OPTIONS (= tokenIndex 1292))) (ID (ELEMENT_OPTIONS (= tokenIndex 1294))) (D_PTS (ELEMENT_OPTIONS (= tokenIndex 1296))) (expr (ELEMENT_OPTIONS (= tokenIndex 1298))) {
+                                                      var arr []interface{}
+                                                      StrExp := environment.NewStructContent($ID.text, $expr.e)
+                                                      arr = append($list.l, StrExp)
+                                                      $l = arr
+                                                  }))))))
+2023-09-06 19:49:36:190 grammar LogManager.java:25 import INT=1
+2023-09-06 19:49:36:190 grammar LogManager.java:25 import FLOAT=2
+2023-09-06 19:49:36:190 grammar LogManager.java:25 import BOOL=3
+2023-09-06 19:49:36:191 grammar LogManager.java:25 import STR=4
+2023-09-06 19:49:36:191 grammar LogManager.java:25 import TRU=5
+2023-09-06 19:49:36:191 grammar LogManager.java:25 import FAL=6
+2023-09-06 19:49:36:191 grammar LogManager.java:25 import PRINT=7
+2023-09-06 19:49:36:192 grammar LogManager.java:25 import IF=8
+2023-09-06 19:49:36:192 grammar LogManager.java:25 import ELSE=9
+2023-09-06 19:49:36:192 grammar LogManager.java:25 import WHILE=10
+2023-09-06 19:49:36:192 grammar LogManager.java:25 import FOR=11
+2023-09-06 19:49:36:192 grammar LogManager.java:25 import SWITCH=12
+2023-09-06 19:49:36:192 grammar LogManager.java:25 import CASE=13
+2023-09-06 19:49:36:192 grammar LogManager.java:25 import DEFAULT=14
+2023-09-06 19:49:36:192 grammar LogManager.java:25 import IN=15
+2023-09-06 19:49:36:192 grammar LogManager.java:25 import VAR=16
+2023-09-06 19:49:36:192 grammar LogManager.java:25 import LET=17
+2023-09-06 19:49:36:192 grammar LogManager.java:25 import BREAK=18
+2023-09-06 19:49:36:192 grammar LogManager.java:25 import CONTINUE=19
+2023-09-06 19:49:36:192 grammar LogManager.java:25 import RETURN=20
+2023-09-06 19:49:36:192 grammar LogManager.java:25 import GUARD=21
+2023-09-06 19:49:36:193 grammar LogManager.java:25 import APPEND=22
+2023-09-06 19:49:36:193 grammar LogManager.java:25 import REMOVELAST=23
+2023-09-06 19:49:36:193 grammar LogManager.java:25 import REMOVE=24
+2023-09-06 19:49:36:193 grammar LogManager.java:25 import COUNT=25
+2023-09-06 19:49:36:193 grammar LogManager.java:25 import ISEMPTY=26
+2023-09-06 19:49:36:193 grammar LogManager.java:25 import FUNC=27
+2023-09-06 19:49:36:193 grammar LogManager.java:25 import STRUCT=28
+2023-09-06 19:49:36:195 grammar LogManager.java:25 import NUMBER=29
+2023-09-06 19:49:36:195 grammar LogManager.java:25 import STRING=30
+2023-09-06 19:49:36:195 grammar LogManager.java:25 import ID=31
+2023-09-06 19:49:36:195 grammar LogManager.java:25 import DIF=32
+2023-09-06 19:49:36:196 grammar LogManager.java:25 import IG_IG=33
+2023-09-06 19:49:36:196 grammar LogManager.java:25 import NOT=34
+2023-09-06 19:49:36:196 grammar LogManager.java:25 import OR=35
+2023-09-06 19:49:36:196 grammar LogManager.java:25 import AND=36
+2023-09-06 19:49:36:197 grammar LogManager.java:25 import IG=37
+2023-09-06 19:49:36:197 grammar LogManager.java:25 import MAY_IG=38
+2023-09-06 19:49:36:197 grammar LogManager.java:25 import MEN_IG=39
+2023-09-06 19:49:36:197 grammar LogManager.java:25 import MAYOR=40
+2023-09-06 19:49:36:197 grammar LogManager.java:25 import MENOR=41
+2023-09-06 19:49:36:197 grammar LogManager.java:25 import MUL=42
+2023-09-06 19:49:36:198 grammar LogManager.java:25 import DIV=43
+2023-09-06 19:49:36:198 grammar LogManager.java:25 import ADD=44
+2023-09-06 19:49:36:198 grammar LogManager.java:25 import SUB=45
+2023-09-06 19:49:36:198 grammar LogManager.java:25 import PARIZQ=46
+2023-09-06 19:49:36:198 grammar LogManager.java:25 import PARDER=47
+2023-09-06 19:49:36:198 grammar LogManager.java:25 import LLAVEIZQ=48
+2023-09-06 19:49:36:198 grammar LogManager.java:25 import LLAVEDER=49
+2023-09-06 19:49:36:198 grammar LogManager.java:25 import D_PTS=50
+2023-09-06 19:49:36:199 grammar LogManager.java:25 import CORIZQ=51
+2023-09-06 19:49:36:199 grammar LogManager.java:25 import CORDER=52
+2023-09-06 19:49:36:199 grammar LogManager.java:25 import COMA=53
+2023-09-06 19:49:36:199 grammar LogManager.java:25 import ARROW1=54
+2023-09-06 19:49:36:200 grammar LogManager.java:25 import PUNTO=55
+2023-09-06 19:49:36:200 grammar LogManager.java:25 import WHITESPACE=56
+2023-09-06 19:49:36:200 grammar LogManager.java:25 import COMMENT=57
+2023-09-06 19:49:36:200 grammar LogManager.java:25 import LINE_COMMENT=58
+2023-09-06 19:49:36:200 grammar LogManager.java:25 import 'Int'=1
+2023-09-06 19:49:36:201 grammar LogManager.java:25 import 'Float'=2
+2023-09-06 19:49:36:201 grammar LogManager.java:25 import 'Bool'=3
+2023-09-06 19:49:36:201 grammar LogManager.java:25 import 'String'=4
+2023-09-06 19:49:36:201 grammar LogManager.java:25 import 'true'=5
+2023-09-06 19:49:36:201 grammar LogManager.java:25 import 'false'=6
+2023-09-06 19:49:36:201 grammar LogManager.java:25 import 'print'=7
+2023-09-06 19:49:36:201 grammar LogManager.java:25 import 'if'=8
+2023-09-06 19:49:36:201 grammar LogManager.java:25 import 'else'=9
+2023-09-06 19:49:36:201 grammar LogManager.java:25 import 'while'=10
+2023-09-06 19:49:36:202 grammar LogManager.java:25 import 'for'=11
+2023-09-06 19:49:36:202 grammar LogManager.java:25 import 'switch'=12
+2023-09-06 19:49:36:202 grammar LogManager.java:25 import 'case'=13
+2023-09-06 19:49:36:202 grammar LogManager.java:25 import 'default'=14
+2023-09-06 19:49:36:202 grammar LogManager.java:25 import 'in'=15
+2023-09-06 19:49:36:202 grammar LogManager.java:25 import 'var'=16
+2023-09-06 19:49:36:202 grammar LogManager.java:25 import 'let'=17
+2023-09-06 19:49:36:202 grammar LogManager.java:25 import 'break'=18
+2023-09-06 19:49:36:202 grammar LogManager.java:25 import 'continue'=19
+2023-09-06 19:49:36:202 grammar LogManager.java:25 import 'return'=20
+2023-09-06 19:49:36:203 grammar LogManager.java:25 import 'guard'=21
+2023-09-06 19:49:36:203 grammar LogManager.java:25 import 'append'=22
+2023-09-06 19:49:36:203 grammar LogManager.java:25 import 'removeLast'=23
+2023-09-06 19:49:36:203 grammar LogManager.java:25 import 'remove'=24
+2023-09-06 19:49:36:204 grammar LogManager.java:25 import 'count'=25
+2023-09-06 19:49:36:204 grammar LogManager.java:25 import 'IsEmpty'=26
+2023-09-06 19:49:36:204 grammar LogManager.java:25 import 'func'=27
+2023-09-06 19:49:36:204 grammar LogManager.java:25 import 'struct'=28
+2023-09-06 19:49:36:205 grammar LogManager.java:25 import '!='=32
+2023-09-06 19:49:36:205 grammar LogManager.java:25 import '=='=33
+2023-09-06 19:49:36:205 grammar LogManager.java:25 import '!'=34
+2023-09-06 19:49:36:205 grammar LogManager.java:25 import '||'=35
+2023-09-06 19:49:36:205 grammar LogManager.java:25 import '&&'=36
+2023-09-06 19:49:36:205 grammar LogManager.java:25 import '='=37
+2023-09-06 19:49:36:205 grammar LogManager.java:25 import '>='=38
+2023-09-06 19:49:36:205 grammar LogManager.java:25 import '<='=39
+2023-09-06 19:49:36:206 grammar LogManager.java:25 import '>'=40
+2023-09-06 19:49:36:206 grammar LogManager.java:25 import '<'=41
+2023-09-06 19:49:36:206 grammar LogManager.java:25 import '*'=42
+2023-09-06 19:49:36:206 grammar LogManager.java:25 import '/'=43
+2023-09-06 19:49:36:206 grammar LogManager.java:25 import '+'=44
+2023-09-06 19:49:36:206 grammar LogManager.java:25 import '-'=45
+2023-09-06 19:49:36:206 grammar LogManager.java:25 import '('=46
+2023-09-06 19:49:36:206 grammar LogManager.java:25 import ')'=47
+2023-09-06 19:49:36:207 grammar LogManager.java:25 import '{'=48
+2023-09-06 19:49:36:207 grammar LogManager.java:25 import '}'=49
+2023-09-06 19:49:36:207 grammar LogManager.java:25 import ':'=50
+2023-09-06 19:49:36:207 grammar LogManager.java:25 import '['=51
+2023-09-06 19:49:36:207 grammar LogManager.java:25 import ']'=52
+2023-09-06 19:49:36:208 grammar LogManager.java:25 import ','=53
+2023-09-06 19:49:36:208 grammar LogManager.java:25 import '->'=54
+2023-09-06 19:49:36:208 grammar LogManager.java:25 import '.'=55
+2023-09-06 19:49:36:209 grammar LogManager.java:25 tokens={INT=1, FLOAT=2, BOOL=3, STR=4, TRU=5, FAL=6, PRINT=7, IF=8, ELSE=9, WHILE=10, FOR=11, SWITCH=12, CASE=13, DEFAULT=14, IN=15, VAR=16, LET=17, BREAK=18, CONTINUE=19, RETURN=20, GUARD=21, APPEND=22, REMOVELAST=23, REMOVE=24, COUNT=25, ISEMPTY=26, FUNC=27, STRUCT=28, NUMBER=29, STRING=30, ID=31, DIF=32, IG_IG=33, NOT=34, OR=35, AND=36, IG=37, MAY_IG=38, MEN_IG=39, MAYOR=40, MENOR=41, MUL=42, DIV=43, ADD=44, SUB=45, PARIZQ=46, PARDER=47, LLAVEIZQ=48, LLAVEDER=49, D_PTS=50, CORIZQ=51, CORDER=52, COMA=53, ARROW1=54, PUNTO=55, WHITESPACE=56, COMMENT=57, LINE_COMMENT=58, 'Int'=1, 'Float'=2, 'Bool'=3, 'String'=4, 'true'=5, 'false'=6, 'print'=7, 'if'=8, 'else'=9, 'while'=10, 'for'=11, 'switch'=12, 'case'=13, 'default'=14, 'in'=15, 'var'=16, 'let'=17, 'break'=18, 'continue'=19, 'return'=20, 'guard'=21, 'append'=22, 'removeLast'=23, 'remove'=24, 'count'=25, 'IsEmpty'=26, 'func'=27, 'struct'=28, '!='=32, '=='=33, '!'=34, '||'=35, '&&'=36, '='=37, '>='=38, '<='=39, '>'=40, '<'=41, '*'=42, '/'=43, '+'=44, '-'=45, '('=46, ')'=47, '{'=48, '}'=49, ':'=50, '['=51, ']'=52, ','=53, '->'=54, '.'=55}
+2023-09-06 19:49:36:212 semantics LogManager.java:25 tokens={EOF=-1, INT=1, FLOAT=2, BOOL=3, STR=4, TRU=5, FAL=6, PRINT=7, IF=8, ELSE=9, WHILE=10, FOR=11, SWITCH=12, CASE=13, DEFAULT=14, IN=15, VAR=16, LET=17, BREAK=18, CONTINUE=19, RETURN=20, GUARD=21, APPEND=22, REMOVELAST=23, REMOVE=24, COUNT=25, ISEMPTY=26, FUNC=27, STRUCT=28, NUMBER=29, STRING=30, ID=31, DIF=32, IG_IG=33, NOT=34, OR=35, AND=36, IG=37, MAY_IG=38, MEN_IG=39, MAYOR=40, MENOR=41, MUL=42, DIV=43, ADD=44, SUB=45, PARIZQ=46, PARDER=47, LLAVEIZQ=48, LLAVEDER=49, D_PTS=50, CORIZQ=51, CORDER=52, COMA=53, ARROW1=54, PUNTO=55, WHITESPACE=56, COMMENT=57, LINE_COMMENT=58}
+2023-09-06 19:49:36:212 semantics LogManager.java:25 strings={'Int'=1, 'Float'=2, 'Bool'=3, 'String'=4, 'true'=5, 'false'=6, 'print'=7, 'if'=8, 'else'=9, 'while'=10, 'for'=11, 'switch'=12, 'case'=13, 'default'=14, 'in'=15, 'var'=16, 'let'=17, 'break'=18, 'continue'=19, 'return'=20, 'guard'=21, 'append'=22, 'removeLast'=23, 'remove'=24, 'count'=25, 'IsEmpty'=26, 'func'=27, 'struct'=28, '!='=32, '=='=33, '!'=34, '||'=35, '&&'=36, '='=37, '>='=38, '<='=39, '>'=40, '<'=41, '*'=42, '/'=43, '+'=44, '-'=45, '('=46, ')'=47, '{'=48, '}'=49, ':'=50, '['=51, ']'=52, ','=53, '->'=54, '.'=55}

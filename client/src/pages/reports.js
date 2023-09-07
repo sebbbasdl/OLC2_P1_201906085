@@ -10,17 +10,24 @@ const Reports = () => {
   };
 
   const renderImage = () => {
+    const imageSize = {
+      width: '1800px', // Ancho deseado (ajusta este valor)
+      height: '300px', // Alto deseado (ajusta este valor)
+    };
+  
     switch (activeTab) {
       case 'active':
-        return <img src={logo} alt="Imagen de Active" />;
+        return <img src={logo} alt="Imagen de Active" style={imageSize} />;
       case 'link1':
-        return <img src="imagen_link1.jpg" alt="Imagen de Link 1" />;
+        return <img src="imagen_link1.jpg" alt="Imagen de Link 1" style={imageSize} />;
       case 'link2':
-        return <img src="imagen_link2.jpg" alt="Imagen de Link 2" />;
+        return <img src="imagen_link2.jpg" alt="Imagen de Link 2" style={imageSize} />;
       default:
-        return null; // En caso de pestaña deshabilitada o no reconocida
+        return null;
     }
   };
+  
+  
 
   return (
     <div className="text-center"> {/* Para centrar el contenido */}

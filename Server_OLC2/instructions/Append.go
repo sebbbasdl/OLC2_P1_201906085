@@ -63,3 +63,14 @@ func arrayToString(arr []interface{}) string {
 	}
 	return "[" + strings.Join(values, ",") + "]"
 }
+
+func retornaTipo(arr []interface{}) int {
+	var tipo int // Declarar la variable tipo fuera del bloque if
+	for _, v := range arr {
+		if elem, ok := v.(environment.Symbol); ok {
+			tipo = int(elem.Tipo)
+			return tipo
+		}
+	}
+	return tipo // Devolver el valor de tipo fuera del bucle
+}

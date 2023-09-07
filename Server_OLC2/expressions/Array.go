@@ -22,6 +22,7 @@ func (p Array) Ejecutar(ast *environment.AST, env interface{}) environment.Symbo
 	str_flag := false
 	float_flag := false
 	arr_flag := false
+	bool_flag := false
 	var tempExp []interface{}
 	for _, s := range p.ListExp {
 		if s.(interfaces.Expression).Ejecutar(ast, env).Tipo == environment.INTEGER {
@@ -48,13 +49,20 @@ func (p Array) Ejecutar(ast *environment.AST, env interface{}) environment.Symbo
 			//tempExp = append(tempExp, s.(interfaces.Expression).Ejecutar(ast, env))
 		}
 
-		if int_flag == true && str_flag == false && float_flag == false && arr_flag == false {
+		if s.(interfaces.Expression).Ejecutar(ast, env).Tipo == environment.BOOLEAN {
+			bool_flag = true
+			//tempExp = append(tempExp, s.(interfaces.Expression).Ejecutar(ast, env))
+		}
+
+		if int_flag == true && str_flag == false && float_flag == false && arr_flag == false && bool_flag == false {
 			tempExp = append(tempExp, s.(interfaces.Expression).Ejecutar(ast, env))
-		} else if int_flag == false && str_flag == true && float_flag == false && arr_flag == false {
+		} else if int_flag == false && str_flag == true && float_flag == false && arr_flag == false && bool_flag == false {
 			tempExp = append(tempExp, s.(interfaces.Expression).Ejecutar(ast, env))
-		} else if int_flag == false && str_flag == false && float_flag == true && arr_flag == false {
+		} else if int_flag == false && str_flag == false && float_flag == true && arr_flag == false && bool_flag == false {
 			tempExp = append(tempExp, s.(interfaces.Expression).Ejecutar(ast, env))
-		} else if int_flag == false && str_flag == false && float_flag == false && arr_flag == true {
+		} else if int_flag == false && str_flag == false && float_flag == false && arr_flag == true && bool_flag == false {
+			tempExp = append(tempExp, s.(interfaces.Expression).Ejecutar(ast, env))
+		} else if int_flag == false && str_flag == false && float_flag == false && arr_flag == false && bool_flag == true {
 			tempExp = append(tempExp, s.(interfaces.Expression).Ejecutar(ast, env))
 		} else {
 			ast.SetError("Error, los tipos de datos son incorrectos")

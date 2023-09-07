@@ -8,12 +8,14 @@ import (
 )
 
 type Conversion struct {
-	Expr interfaces.Expression
-	Tipo environment.TipoExpresion
+	Line   int
+	Column int
+	Expr   interfaces.Expression
+	Tipo   environment.TipoExpresion
 }
 
-func NewConversion(Expr interfaces.Expression, Tipo environment.TipoExpresion) Conversion {
-	exp := Conversion{Expr: Expr, Tipo: Tipo}
+func NewConversion(line int, column int, Expr interfaces.Expression, Tipo environment.TipoExpresion) Conversion {
+	exp := Conversion{line, column, Expr, Tipo}
 	return exp
 }
 
@@ -27,16 +29,16 @@ func (o Conversion) Ejecutar(ast *environment.AST, env interface{}) environment.
 			if err != nil {
 				// Maneja el error si la conversión falla
 				fmt.Println("Error al convertir a int:", err)
-				return environment.Symbol{Lin: 0, Col: 0, Tipo: environment.NULL, Valor: nil}
+				return environment.Symbol{Lin: o.Line, Col: o.Column, Tipo: environment.NULL, Valor: nil}
 			}
 
-			return environment.Symbol{Lin: 0, Col: 0, Tipo: o.Tipo, Valor: intValue}
+			return environment.Symbol{Lin: o.Line, Col: o.Column, Tipo: o.Tipo, Valor: intValue}
 		} else if o.Expr.Ejecutar(ast, env).Tipo == environment.FLOAT {
 			floatValue := o.Expr.Ejecutar(ast, env).Valor.(float64) // Obtén el valor como float
 
 			intValue := int(floatValue) // Convierte el float a int directamente
 
-			return environment.Symbol{Lin: 0, Col: 0, Tipo: o.Tipo, Valor: intValue}
+			return environment.Symbol{Lin: o.Line, Col: o.Column, Tipo: o.Tipo, Valor: intValue}
 		}
 	} else if o.Tipo == environment.STRING {
 		if o.Expr.Ejecutar(ast, env).Tipo == environment.INTEGER {
@@ -44,39 +46,37 @@ func (o Conversion) Ejecutar(ast *environment.AST, env interface{}) environment.
 
 			stringValue := strconv.Itoa(intValue) // Convierte el int a string
 
-			return environment.Symbol{Lin: 0, Col: 0, Tipo: environment.STRING, Valor: stringValue}
-		}else if o.Expr.Ejecutar(ast, env).Tipo == environment.FLOAT {
+			return environment.Symbol{Lin: o.Line, Col: o.Column, Tipo: environment.STRING, Valor: stringValue}
+		} else if o.Expr.Ejecutar(ast, env).Tipo == environment.FLOAT {
 			floatValue := o.Expr.Ejecutar(ast, env).Valor.(float64) // Obtén el valor como float
-		
+
 			stringValue := strconv.FormatFloat(floatValue, 'f', -1, 64) // Convierte el float a string
-		
-			return environment.Symbol{Lin: 0, Col: 0, Tipo: environment.STRING, Valor: stringValue}
+
+			return environment.Symbol{Lin: o.Line, Col: o.Column, Tipo: environment.STRING, Valor: stringValue}
 		}
-		
 
 	} else if o.Tipo == environment.FLOAT {
 		if o.Expr.Ejecutar(ast, env).Tipo == environment.INTEGER {
 			intValue := o.Expr.Ejecutar(ast, env).Valor.(int) // Obtén el valor como int
-		
+
 			floatValue := float64(intValue) // Convierte el int a float
-		
+
 			return environment.Symbol{Lin: 0, Col: 0, Tipo: environment.FLOAT, Valor: floatValue}
-		}else if o.Expr.Ejecutar(ast, env).Tipo == environment.STRING {
+		} else if o.Expr.Ejecutar(ast, env).Tipo == environment.STRING {
 			stringValue := o.Expr.Ejecutar(ast, env).Valor.(string) // Obtén el valor como string
-		
+
 			floatValue, err := strconv.ParseFloat(stringValue, 64) // Convierte el string a float64
 			if err != nil {
 				// Maneja el error si la conversión falla
 				fmt.Println("Error al convertir a float:", err)
-				return environment.Symbol{Lin: 0, Col: 0, Tipo: environment.NULL, Valor: nil}
+				return environment.Symbol{Lin: o.Line, Col: o.Column, Tipo: environment.NULL, Valor: nil}
 			}
-		
-			return environment.Symbol{Lin: 0, Col: 0, Tipo: environment.FLOAT, Valor: floatValue}
+
+			return environment.Symbol{Lin: o.Line, Col: o.Column, Tipo: environment.FLOAT, Valor: floatValue}
 		}
-		
-		
+
 	}
 
 	var result interface{}
-	return environment.Symbol{Lin: 0, Col: 0, Tipo: environment.NULL, Valor: result}
+	return environment.Symbol{Lin: o.Line, Col: o.Column, Tipo: environment.NULL, Valor: result}
 }
