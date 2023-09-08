@@ -16,6 +16,9 @@ type SwiftGrammarListener interface {
 	// EnterInstruction is called when entering the instruction production.
 	EnterInstruction(c *InstructionContext)
 
+	// EnterReturntmt is called when entering the returntmt production.
+	EnterReturntmt(c *ReturntmtContext)
+
 	// EnterFunction is called when entering the function production.
 	EnterFunction(c *FunctionContext)
 
@@ -91,6 +94,9 @@ type SwiftGrammarListener interface {
 	// EnterListArray is called when entering the listArray production.
 	EnterListArray(c *ListArrayContext)
 
+	// EnterCallFunctionInst is called when entering the callFunctionInst production.
+	EnterCallFunctionInst(c *CallFunctionInstContext)
+
 	// EnterCallFunction is called when entering the callFunction production.
 	EnterCallFunction(c *CallFunctionContext)
 
@@ -108,6 +114,9 @@ type SwiftGrammarListener interface {
 
 	// ExitInstruction is called when exiting the instruction production.
 	ExitInstruction(c *InstructionContext)
+
+	// ExitReturntmt is called when exiting the returntmt production.
+	ExitReturntmt(c *ReturntmtContext)
 
 	// ExitFunction is called when exiting the function production.
 	ExitFunction(c *FunctionContext)
@@ -183,6 +192,9 @@ type SwiftGrammarListener interface {
 
 	// ExitListArray is called when exiting the listArray production.
 	ExitListArray(c *ListArrayContext)
+
+	// ExitCallFunctionInst is called when exiting the callFunctionInst production.
+	ExitCallFunctionInst(c *CallFunctionInstContext)
 
 	// ExitCallFunction is called when exiting the callFunction production.
 	ExitCallFunction(c *CallFunctionContext)

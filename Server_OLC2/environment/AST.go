@@ -8,6 +8,11 @@ type AST struct {
 	SwitchBool   bool
 	Breakbool    bool
 	ContinueBool bool
+	ReturnBool   bool
+	ReturnLine   int
+	ReturnCol    int
+	ReturnTipo   TipoExpresion
+	ReturnVal    int
 	Ant_str      string
 	Tabla        [][]string
 	Constantes   []string

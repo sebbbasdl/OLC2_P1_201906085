@@ -3,7 +3,6 @@ package instructions
 import (
 	"Server2/environment"
 	"Server2/interfaces"
-	"fmt"
 )
 
 type Fors struct {
@@ -28,45 +27,73 @@ func (p Fors) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 		num1 = p.Expresion.Ejecutar(ast, env)
 		var num2 environment.Symbol
 		num2 = p.Expresion2.Ejecutar(ast, env)
-		env.(environment.Environment).SaveVariable(p.Id, num1)
 
 		num1Value, ok1 := num1.Valor.(int)
 		num2Value, ok2 := num2.Valor.(int)
 
 		if !ok1 || !ok2 {
-			fmt.Println("Error al obtener valores numéricos de environment.Symbol")
+			ast.SetError("Error al obtener valores numéricos de environment.Symbol")
 			return nil
 		}
 
 		var forEnv environment.Environment
 		forEnv = environment.NewEnvironment(env.(environment.Environment), "For")
 
-		for i := num1Value; i <= num2Value; i++ {
+		if p.Id == "_" {
+			for i := num1Value; i <= num2Value; i++ {
 
-			iSymbol := environment.Symbol{Valor: i, Tipo: environment.INTEGER} // Crear un nuevo Symbol con el valor 'i'
-			env.(environment.Environment).SetVariable(p.Id, iSymbol)
-			//ejecución
-			for _, inst := range p.Bloque {
+				//ejecución
+				for _, inst := range p.Bloque {
+					if ast.Breakbool == true {
+						break
+					} else if ast.ContinueBool == true {
+						ast.ContinueBool = false
+						//inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+						continue
+					} else {
+						inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+					}
+
+				}
 				if ast.Breakbool == true {
 					break
 				} else if ast.ContinueBool == true {
 					ast.ContinueBool = false
 					//inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
 					continue
-				} else {
-					inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
 				}
 
 			}
-			if ast.Breakbool == true {
-				break
-			} else if ast.ContinueBool == true {
-				ast.ContinueBool = false
-				//inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
-				continue
-			}
+		} else {
+			env.(environment.Environment).SaveVariable(p.Id, num1)
+			for i := num1Value; i <= num2Value; i++ {
 
+				iSymbol := environment.Symbol{Valor: i, Tipo: environment.INTEGER} // Crear un nuevo Symbol con el valor 'i'
+				env.(environment.Environment).SetVariable(p.Id, iSymbol)
+				//ejecución
+				for _, inst := range p.Bloque {
+					if ast.Breakbool == true {
+						break
+					} else if ast.ContinueBool == true {
+						ast.ContinueBool = false
+						//inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+						continue
+					} else {
+						inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+					}
+
+				}
+				if ast.Breakbool == true {
+					break
+				} else if ast.ContinueBool == true {
+					ast.ContinueBool = false
+					//inst.(interfaces.Instruction).Ejecutar(ast, forEnv)
+					continue
+				}
+
+			}
 		}
+
 		ast.Breakbool = false
 		ast.ContinueBool = false
 

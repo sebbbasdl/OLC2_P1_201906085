@@ -154,6 +154,45 @@ func (e *ErrorListener) SyntaxError(recognizer antlr.Recognizer, offendingSymbol
 	e.Errors = append(e.Errors, errorInfo)
 }
 
+func GenerateErrorDOT(errors []ErrorInfo) string {
+	// Inicializar la cadena DOT
+	dotTable := "digraph ErrorTable {\n"
+	dotTable += "  node [shape=none fontname=Helvetica]\n"
+
+	// Encabezado de la tabla
+	dotTable += "  n1 [label = <<table>\n"
+	dotTable += "    <tr><td colspan=\"4\" bgcolor=\"Peru\">Errores</td></tr>\n"
+	dotTable += "    <tr><td bgcolor=\"orange\">Tipo</td><td bgcolor=\"orange\">Línea</td><td bgcolor=\"orange\">Columna</td><td bgcolor=\"orange\">Mensaje</td></tr>"
+
+	// Filas de datos
+	for _, errorInfo := range errors {
+		errorType := ""
+		switch errorInfo.Type {
+		case LexicalError:
+			errorType = "Lexico"
+		case SyntaxTypeError:
+			errorType = "Sintactico"
+		default:
+			errorType = "Desconocido"
+		}
+
+		// Escapar caracteres especiales en el mensaje para .dot
+		message := strings.ReplaceAll(errorInfo.Message, "\"", "\\\"")
+		message = strings.ReplaceAll(message, "<", "&lt;")
+		message = strings.ReplaceAll(message, ">", "&gt;")
+
+		dotTable += fmt.Sprintf("    <tr><td>%s</td><td>%d</td><td>%d</td><td>%s</td></tr>\n", errorType, errorInfo.Line, errorInfo.Column, message)
+	}
+
+	// Cierre de la tabla
+	dotTable += "  </table>> ]\n"
+
+	dotTable += "}\n"
+
+	return dotTable
+}
+
+
 type TreeShapeListener struct {
 	*parser.BaseSwiftGrammarListener
 	Code []interface{}
@@ -175,7 +214,7 @@ func handleInterpreter(c *fiber.Ctx) error {
 	if err := c.BodyParser(&message); err != nil {
 		return err
 	}
-	//message.Content = "var aux = 10if aux > 0 {print(\"PRIMER IF CORRECTO\")if true && (aux == 1) {print(\"SEGUNDO IF INCORRECTO\")} else if aux > 10 {print(\"SEGUNDO IF INCORRECTO\")} else {print(\"SEGUNDO IF CORRECTO\")}} else if aux <= 3 {print(\"PRIMER IF INCORRECTO\")if true && (aux == 1) {print(\"SEGUNDO IF INCORRECTO\")} else if aux > 10 {print(\"SEGUNDO IF INCORRECTO\")		} else {print(\"SEGUNDO IF CORRECTO\")}} else if aux == a {print(\"PRIMER IF INCORRECTO\")if true && (aux == 1) {print(\"SEGUNDO IF INCORRECTO\")} else if aux > 10 {print(\"SEGUNDO IF INCORRECTO\")} else {print(\"SEGUNDO IF CORRECTO\")}}"
+	//message.Content = "let ponderacion = [\"1er parcial\", \"2do parcial\"]  let ponderacion2 = [\"1er parcial\", \"2do parcial\"] ponderacion[0] = ponderacion2[1]"
 
 	//Entrada
 	code := message.Content
@@ -253,13 +292,13 @@ func handleInterpreter(c *fiber.Ctx) error {
 	nombreArchivo := "arbol"
 	if err := generarDot(dotCST, rutaImagen, nombreArchivo); err != nil {
 		fmt.Println("Error al generar el archivo DOT:", err)
-		return nil
+		//return nil
 	}
 
 	// Llama a la función generarImagen para crear la imagen PNG a partir del archivo DOT
 	if err := generarImagen(rutaImagen+"/"+nombreArchivo+".dot", rutaImagen, nombreArchivo); err != nil {
-		fmt.Println("Error al generar la imagen:", err)
-		return nil
+		fmt.Println("Error al generar la imagen CST:", err)
+		//return nil
 	}
 
 	//Para generar Tabla de simbolos
@@ -269,16 +308,30 @@ func handleInterpreter(c *fiber.Ctx) error {
 
 	if err := generarDot(dotTable, rutaImagenTabla, nombreArchivoTabla); err != nil {
 		fmt.Println("Error al generar el archivo DOT:", err)
-		return nil
+		//return nil
 	}
 
 	// Llama a la función generarImagen para crear la imagen PNG a partir del archivo DOT
 	if err := generarImagen(rutaImagenTabla+"/"+nombreArchivoTabla+".dot", rutaImagenTabla, nombreArchivoTabla); err != nil {
-		fmt.Println("Error al generar la imagen:", err)
-		return nil
+		fmt.Println("Error al generar la imagen Tabla:", err)
+		//return nil
 	}
-	
-	
+	errors := errorListener.Errors
+	dotError := GenerateErrorDOT(errors)
+	rutaImagenError := "C:\\Users\\sebas\\go\\bin\\client\\src\\pages\\imagenes"
+	nombreArchivoError := "errores"
+
+	if err := generarDot(dotError, rutaImagenError, nombreArchivoError); err != nil {
+		fmt.Println("Error al generar el archivo DOT:", err)
+		//return nil
+	}
+
+	// Llama a la función generarImagen para crear la imagen PNG a partir del archivo DOT
+	if err := generarImagen(rutaImagenError+"/"+nombreArchivoError+".dot", rutaImagenError, nombreArchivoError); err != nil {
+		fmt.Println("Error al generar la imagen Error:", err)
+		//return nil
+	}
+
 	return c.Status(fiber.StatusOK).JSON(response)
 	//return ConsoleOut
 	return nil

@@ -32,8 +32,8 @@ func (p Function) Ejecutar(ast *environment.AST, env interface{}) interface{} {
 		TipoRetorno: p.Tipo,
 	}
 	//guardando simbolo funcion
-	
+
 	env.(environment.Environment).SaveFunction(p.Id, function)
-	
+
 	return result
 }

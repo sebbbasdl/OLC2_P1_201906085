@@ -53,6 +53,12 @@ func (o Conversion) Ejecutar(ast *environment.AST, env interface{}) environment.
 			stringValue := strconv.FormatFloat(floatValue, 'f', -1, 64) // Convierte el float a string
 
 			return environment.Symbol{Lin: o.Line, Col: o.Column, Tipo: environment.STRING, Valor: stringValue}
+		} else if o.Expr.Ejecutar(ast, env).Tipo == environment.BOOLEAN {
+			boolValue := o.Expr.Ejecutar(ast, env).Valor.(bool) // Obtén el valor como bool
+
+			stringValue := strconv.FormatBool(boolValue) // Convierte el bool a string
+
+			return environment.Symbol{Lin: o.Line, Col: o.Column, Tipo: environment.STRING, Valor: stringValue}
 		}
 
 	} else if o.Tipo == environment.FLOAT {

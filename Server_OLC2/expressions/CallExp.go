@@ -4,6 +4,7 @@ import (
 	"Server2/environment"
 	"Server2/instructions"
 	"Server2/interfaces"
+	"fmt"
 )
 
 type CallExp struct {
@@ -43,10 +44,23 @@ func (p CallExp) Ejecutar(ast *environment.AST, env interface{}) environment.Sym
 		ast.SetError("Faltan parámetros en la función")
 		return result
 	}
+	var aux environment.Symbol
 	//ejecutar bloque con entorno funcEnv
 	for _, inst := range funcSym.Block {
+
 		inst.(interfaces.Instruction).Ejecutar(ast, funcEnv)
+		if ast.ReturnBool == true {
+			aux = environment.Symbol{Lin: ast.ReturnLine, Col: ast.ReturnCol, Tipo: ast.ReturnTipo, Valor: ast.ReturnVal}
+			result = aux
+			print("--------->")
+			fmt.Println(result)
+
+			//result = ast.ReturnSym
+
+		}
 	}
+	//ast.ReturnBool = false
+
 	return result
 }
 

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from './imagenes/arbol.svg';
+import cst from './imagenes/arbol.svg';
+import errores from './imagenes/errores.svg'
+import tabla from './imagenes/tabla.svg'
 
 const Reports = () => {
   const [activeTab, setActiveTab] = useState('active'); // Inicialmente, la pestaña "Active" está activa
@@ -17,11 +19,11 @@ const Reports = () => {
   
     switch (activeTab) {
       case 'active':
-        return <img src={logo} alt="Imagen de Active" style={imageSize} />;
+        return <img src={cst} alt="Imagen de Active" style={imageSize} />;
       case 'link1':
-        return <img src="imagen_link1.jpg" alt="Imagen de Link 1" style={imageSize} />;
+        return <img src={tabla} alt="Imagen de Link 1" style={imageSize} />;
       case 'link2':
-        return <img src="imagen_link2.jpg" alt="Imagen de Link 2" style={imageSize} />;
+        return <img src={errores} alt="Imagen de Link 2" style={imageSize} />;
       default:
         return null;
     }

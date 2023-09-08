@@ -61,26 +61,16 @@ func (o Operation) Ejecutar(ast *environment.AST, env interface{}) environment.S
 		}
 	case ",":
 		{
-			//validar tipo dominante
-			dominante = tabla_dominante[op1.Tipo][op2.Tipo]
-			//valida el tipo
-			if dominante == environment.INTEGER {
-				return environment.Symbol{Lin: o.Lin, Col: o.Col, Tipo: dominante, Valor: op1.Valor.(int) + op2.Valor.(int)}
-			} else if dominante == environment.FLOAT {
-				val1, _ := strconv.ParseFloat(fmt.Sprintf("%v", op1.Valor), 64)
-				val2, _ := strconv.ParseFloat(fmt.Sprintf("%v", op2.Valor), 64)
-				return environment.Symbol{Lin: o.Lin, Col: o.Col, Tipo: dominante, Valor: val1 + val2}
-			} else if dominante == environment.STRING {
-				r1 := fmt.Sprintf("%v", op1.Valor)
-				r2 := fmt.Sprintf("%v", op2.Valor)
-				return environment.Symbol{Lin: o.Lin, Col: o.Col, Tipo: dominante, Valor: r1 + r2}
-			} else {
+
+			r1 := fmt.Sprintf("%v", op1.Valor)
+			r2 := fmt.Sprintf("%v", op2.Valor)
+			return environment.Symbol{Lin: o.Lin, Col: o.Col, Tipo: dominante, Valor: r1 + r2}
+			/*} else {
 				ast.SetError("ERROR: No es posible concatenar")
-			}
+			}*/
 		}
 	case "neg":
 		{
-			print("hola")
 			dominante = tabla_dominante[op1.Tipo][op2.Tipo]
 
 			if dominante == environment.INTEGER {

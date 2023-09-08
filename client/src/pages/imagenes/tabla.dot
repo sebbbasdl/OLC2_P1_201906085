@@ -2,6 +2,5 @@ digraph Table {
   node [shape=none fontname=Helvetica]
   n1 [label = <<table>
     <tr><td colspan="9" bgcolor="Peru">Tabla</td></tr>
-    <tr><td bgcolor="orange">ID</td><td bgcolor="orange">Tipo Símbolo</td><td bgcolor="orange">Tipo Dato</td><td bgcolor="orange">Ámbito</td><td bgcolor="orange">Línea</td><td bgcolor="orange">Columna</td><td bgcolor="orange">Valor</td><td bgcolor="orange">Id</td></tr>    <tr><td bgcolor="#00bfff">1</td><td>Variable</td><td>Int</td><td>GLOBAL</td><td>12</td><td>24</td><td>12</td><td>index</td></tr>
-  </table>> ]
+    <tr><td bgcolor="orange">ID</td><td bgcolor="orange">Tipo Símbolo</td><td bgcolor="orange">Tipo Dato</td><td bgcolor="orange">Ámbito</td><td bgcolor="orange">Línea</td><td bgcolor="orange">Columna</td><td bgcolor="orange">Valor</td><td bgcolor="orange">Id</td></tr>  </table>> ]
 }

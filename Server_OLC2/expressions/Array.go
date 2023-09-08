@@ -3,6 +3,7 @@ package expressions
 import (
 	"Server2/environment"
 	"Server2/interfaces"
+	"fmt"
 )
 
 type Array struct {
@@ -25,6 +26,7 @@ func (p Array) Ejecutar(ast *environment.AST, env interface{}) environment.Symbo
 	bool_flag := false
 	var tempExp []interface{}
 	for _, s := range p.ListExp {
+		fmt.Println(p.ListExp[0])
 		if s.(interfaces.Expression).Ejecutar(ast, env).Tipo == environment.INTEGER {
 			int_flag = true
 

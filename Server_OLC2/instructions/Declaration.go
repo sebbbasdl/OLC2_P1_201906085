@@ -39,18 +39,30 @@ func (p Declaration) Ejecutar(ast *environment.AST, env interface{}) interface{}
 
 			//Integer
 			if retornaTipo(result.Valor.([]interface{})) == 0 {
+				if p.Global == true {
+					ast.Constantes = append(ast.Constantes, p.Id)
+				}
 				valorString = arrayToString(result.Valor.([]interface{}))
 				datos := []string{"1", "Variable", "Int", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), valorString, p.Id}
 				ast.Tabla = append(ast.Tabla, datos)
 			} else if retornaTipo(result.Valor.([]interface{})) == 1 {
+				if p.Global == true {
+					ast.Constantes = append(ast.Constantes, p.Id)
+				}
 				valorString = arrayToString(result.Valor.([]interface{}))
 				datos := []string{"1", "Variable", "Float", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), valorString, p.Id}
 				ast.Tabla = append(ast.Tabla, datos)
 			} else if retornaTipo(result.Valor.([]interface{})) == 2 {
+				if p.Global == true {
+					ast.Constantes = append(ast.Constantes, p.Id)
+				}
 				valorString = arrayToString(result.Valor.([]interface{}))
 				datos := []string{"1", "Variable", "String", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), valorString, p.Id}
 				ast.Tabla = append(ast.Tabla, datos)
 			} else if retornaTipo(result.Valor.([]interface{})) == 3 {
+				if p.Global == true {
+					ast.Constantes = append(ast.Constantes, p.Id)
+				}
 				valorString = arrayToString(result.Valor.([]interface{}))
 				datos := []string{"1", "Variable", "Bool", env.(environment.Environment).Id, strconv.Itoa(result.Col), strconv.Itoa(result.Lin), valorString, p.Id}
 				ast.Tabla = append(ast.Tabla, datos)

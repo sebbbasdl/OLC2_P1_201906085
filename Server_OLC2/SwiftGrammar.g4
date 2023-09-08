@@ -37,7 +37,7 @@ block returns [[]interface{} blk]
 ;
 
 instruction returns [interfaces.Instruction inst]
-: printstmt { $inst = $printstmt.prnt}
+: printstmt  { $inst = $printstmt.prnt}
 | ifstmt { $inst = $ifstmt.ifinst }
 | declarationstmt { $inst = $declarationstmt.dec }
 | asignacion { $inst = $asignacion.asign}
@@ -51,8 +51,15 @@ instruction returns [interfaces.Instruction inst]
 | removelastmt { $inst = $removelastmt.removelast }
 | removetmt { $inst = $removetmt.remove }
 | function { $inst = $function.fun }
+| callFunctionInst { $inst = $callFunctionInst.cfi }
 | structCreation { $inst = $structCreation.dec }
+| returntmt { $inst = $returntmt.ret }
 ;
+
+returntmt returns [ interfaces.Instruction ret]
+: RETURN expr {  $ret = instructions.NewReturn($RETURN.line, $RETURN.pos, $expr.e)  }
+;
+
 
 
 function returns [ interfaces.Instruction fun ]
@@ -102,7 +109,7 @@ listStructDec returns[[]interface{} l]
 ;
 
 removetmt returns [interfaces.Instruction remove]
-: ID PUNTO REMOVE PARIZQ expr  PARDER { $remove = instructions.NewRemove($ID.line, $ID.pos, $ID.text, $expr.e) }
+: ID PUNTO REMOVE PARIZQ AT D_PTS expr  PARDER { $remove = instructions.NewRemove($ID.line, $ID.pos, $ID.text, $expr.e) }
 ;
 
 removelastmt returns [interfaces.Instruction removelast]
@@ -126,13 +133,15 @@ continuetmt returns [interfaces.Instruction continue]
 ;
 
 printstmt returns [interfaces.Instruction prnt]
-: PRINT PARIZQ expr PARDER { $prnt = instructions.NewPrint($PRINT.line,$PRINT.pos,$expr.e)}
+: PRINT PARIZQ expr PARDER { $prnt = instructions.NewPrint($PRINT.line,$PRINT.pos,$expr.e, nil)}
+| PRINT PARIZQ expr1=expr COMA expr2=expr PARDER { $prnt = instructions.NewPrint($PRINT.line,$PRINT.pos,$expr1.e, $expr2.e)}
 ;
 
 
 
 forstmt returns [interfaces.Instruction fors]
 : FOR ID IN e1 = expr PUNTO PUNTO PUNTO e2=expr LLAVEIZQ block LLAVEDER { $fors = instructions.NewFor($FOR.line, $FOR.pos, $ID.text, $e1.e,$e2.e,"nil", $block.blk) }
+| FOR GUIONB IN e1 = expr PUNTO PUNTO PUNTO e2=expr LLAVEIZQ block LLAVEDER { $fors = instructions.NewFor($FOR.line, $FOR.pos, $GUIONB.text, $e1.e,$e2.e,"nil", $block.blk) }
 | FOR ID IN ope = (STRING|ID) LLAVEIZQ block LLAVEDER { $fors = instructions.NewFor($FOR.line, $FOR.pos, $ID.text, nil,nil, $ope.text ,$block.blk ) }
 ;
 
@@ -187,14 +196,17 @@ whilestmt returns [interfaces.Instruction whiles]
 declarationstmt returns [interfaces.Instruction dec]
 : VAR ID D_PTS types IG expr {$dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, $types.ty, $expr.e, false);}
 | VAR ID  IG expr {$dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, environment.NULL, $expr.e, false);}
+| LET ID  IG expr {$dec = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, environment.NULL, $expr.e, true);}
 | LET ID D_PTS types IG expr {$dec = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, $types.ty, $expr.e, true);}
-| VAR ID IG expr  { $dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, environment.STRUCT , $expr.e, false) }
+| VAR ID IG expr  { $dec = instructions.NewDeclaration($VAR.line, $VAR.pos, $ID.text, environment.STRUCT , $expr.e, false) ;}
+| LET ID IG expr  { $dec = instructions.NewDeclaration($LET.line, $LET.pos, $ID.text, environment.STRUCT , $expr.e, true) ;}
 ;
 
 
 
 asignacion returns [interfaces.Instruction asign]
-: ID IG expr { $asign = instructions.NewAsignacion($ID.line ,$ID.pos ,$ID.text, $expr.e) }
+: ID IG expr { $asign = instructions.NewAsignacion($ID.line ,$ID.pos ,$ID.text, $expr.e, $IG.text) }
+| ID ADD IG expr { $asign = instructions.NewAsignacion($ID.line ,$ID.pos ,$ID.text, $expr.e, $ADD.text+$IG.text ) }
 ;
 
 
@@ -211,7 +223,7 @@ types returns[environment.TipoExpresion ty]
 expr returns [interfaces.Expression e]
 : op=SUB right=expr { $e = expressions.NewOperation($op.GetLine(), $op.GetColumn(), $right.e, "neg", $right.e) }
 | left=expr op=(MUL|DIV|MODULO) right=expr { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
-| left=expr op=(ADD|SUB|COMA) right=expr { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
+| left=expr op=(ADD|SUB) right=expr { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
 | left=expr op=(MAY_IG|MAYOR) right=expr { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
 | left=expr op=(MEN_IG|MENOR) right=expr { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
 | left=expr op=(IG_IG|DIF) right=expr { $e = expressions.NewOperation($left.start.GetLine(), $left.start.GetColumn(), $left.e, $op.text, $right.e) }
@@ -226,8 +238,8 @@ expr returns [interfaces.Expression e]
 | INT PARIZQ expr PARDER { $e = expressions.NewConversion($INT.GetLine(),$INT.GetColumn(),$expr.e, environment.INTEGER) }
 | STR PARIZQ expr PARDER { $e = expressions.NewConversion($STR.GetLine(),$STR.GetColumn(),$expr.e, environment.STRING) }
 | FLOAT PARIZQ expr PARDER { $e = expressions.NewConversion($FLOAT.GetLine(),$FLOAT.GetColumn(),$expr.e, environment.FLOAT) }
-| ID PUNTO COUNT PARIZQ  PARDER { $e = expressions.NewCount($ID.line, $ID.pos, $ID.text) }
-| ID PUNTO ISEMPTY PARIZQ  PARDER { $e = expressions.NewIsEmpty($ID.line, $ID.pos, $ID.text) }
+| ID PUNTO COUNT  { $e = expressions.NewCount($ID.line, $ID.pos, $ID.text) }
+| ID PUNTO ISEMPTY { $e = expressions.NewIsEmpty($ID.line, $ID.pos, $ID.text) }
 | NUMBER                             
     {
         if (strings.Contains($NUMBER.text,".")){
@@ -269,6 +281,10 @@ listArray returns[interfaces.Expression p]
 : list = listArray CORIZQ expr CORDER { $p = expressions.NewArrayAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $expr.e) }
 | list = listArray PUNTO ID { $p = expressions.NewStructAccess($list.start.GetLine(), $list.start.GetColumn(), $list.p, $ID.text)  }
 | ID { $p = expressions.NewCallVar($ID.line, $ID.pos, $ID.text)}
+;
+
+callFunctionInst returns[interfaces.Instruction cfi]
+: ID PARIZQ listParams PARDER { $cfi = instructions.NewCall_Function($ID.line, $ID.pos, $ID.text, $listParams.l) }
 ;
 
 callFunction returns[interfaces.Expression cf]

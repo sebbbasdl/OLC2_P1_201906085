@@ -31,7 +31,8 @@ APPEND: 'append';
 REMOVELAST: 'removeLast';
 REMOVE: 'remove';
 COUNT: 'count';
-ISEMPTY: 'IsEmpty';
+ISEMPTY: 'isEmpty';
+AT: 'at';
 FUNC: 'func';
 STRUCT: 'struct';
 
@@ -69,6 +70,7 @@ COMA:           ',';
 ARROW1:         '->';
 PUNTO:          '.';
 MODULO:         '%';
+GUIONB:         '_';
 
 
 // skip

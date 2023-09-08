@@ -25,8 +25,7 @@ func NewEnvironment(ant interface{}, id string) Environment {
 }
 
 func (env Environment) SaveVariable(id string, value Symbol) {
-	
-	if variable, ok := env.Tabla[id]; ok {
+	if variable, ok := env.Tabla[id]; ok && env.Id != "For" {
 		fmt.Println("La variable "+id+" ya existe", variable)
 		return
 	}

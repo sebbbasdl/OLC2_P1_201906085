@@ -1,0 +1,10 @@
+digraph ErrorTable {
+  node [shape=none fontname=Helvetica]
+  n1 [label = <<table>
+    <tr><td colspan="4" bgcolor="Peru">Errores</td></tr>
+    <tr><td bgcolor="orange">Tipo</td><td bgcolor="orange">Línea</td><td bgcolor="orange">Columna</td><td bgcolor="orange">Mensaje</td></tr>    <tr><td>Lexico</td><td>1</td><td>0</td><td>token recognition error at: '@'</td></tr>
+    <tr><td>Lexico</td><td>1</td><td>1</td><td>token recognition error at: '@'</td></tr>
+    <tr><td>Lexico</td><td>1</td><td>2</td><td>token recognition error at: '@'</td></tr>
+    <tr><td>Sintactico</td><td>1</td><td>3</td><td>mismatched input '&lt;EOF&gt;' expecting {'print', 'if', 'while', 'for', 'switch', 'var', 'let', 'break', 'continue', 'return', 'guard', 'func', 'struct', ID}</td></tr>
+  </table>> ]
+}

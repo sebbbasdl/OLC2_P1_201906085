@@ -38,6 +38,12 @@ func (s *BaseSwiftGrammarListener) EnterInstruction(ctx *InstructionContext) {}
 // ExitInstruction is called when production instruction is exited.
 func (s *BaseSwiftGrammarListener) ExitInstruction(ctx *InstructionContext) {}
 
+// EnterReturntmt is called when production returntmt is entered.
+func (s *BaseSwiftGrammarListener) EnterReturntmt(ctx *ReturntmtContext) {}
+
+// ExitReturntmt is called when production returntmt is exited.
+func (s *BaseSwiftGrammarListener) ExitReturntmt(ctx *ReturntmtContext) {}
+
 // EnterFunction is called when production function is entered.
 func (s *BaseSwiftGrammarListener) EnterFunction(ctx *FunctionContext) {}
 
@@ -187,6 +193,12 @@ func (s *BaseSwiftGrammarListener) EnterListArray(ctx *ListArrayContext) {}
 
 // ExitListArray is called when production listArray is exited.
 func (s *BaseSwiftGrammarListener) ExitListArray(ctx *ListArrayContext) {}
+
+// EnterCallFunctionInst is called when production callFunctionInst is entered.
+func (s *BaseSwiftGrammarListener) EnterCallFunctionInst(ctx *CallFunctionInstContext) {}
+
+// ExitCallFunctionInst is called when production callFunctionInst is exited.
+func (s *BaseSwiftGrammarListener) ExitCallFunctionInst(ctx *CallFunctionInstContext) {}
 
 // EnterCallFunction is called when production callFunction is entered.
 func (s *BaseSwiftGrammarListener) EnterCallFunction(ctx *CallFunctionContext) {}
