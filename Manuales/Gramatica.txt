@@ -1,0 +1,216 @@
+
+s 
+: block EOF
+;
+
+
+init
+
+: ins+=instruction+
+    
+;
+
+instruction 
+: printstmt  
+| ifstmt 
+| declarationstmt 
+| asignacion 
+| whilestmt 
+| forstmt 
+| switchtmt 
+| breaktmt 
+| continuetmt
+| guardtmt 
+| appendtmt 
+| removelastmt
+| removetmt 
+| function 
+| callFunctionInst 
+| structCreation 
+| returntmt 
+;
+
+returntmt returns 
+: RETURN expr 
+;
+
+
+
+function 
+: FUNC ID PARIZQ listParamsFunc PARDER LLAVEIZQ block LLAVEDER
+
+| FUNC ID PARIZQ listParamsFunc PARDER ARROW1 types LLAVEIZQ block LLAVEDER
+
+;
+
+listParamsFunc 
+: list=listParamsFunc COMA ID D_PTS types 
+| ID D_PTS types 
+    
+|  
+;
+
+structCreation 
+: STRUCT ID LLAVEIZQ listStructDec LLAVEDER 
+;
+
+listStructDec 
+: list=listStructDec COMA VAR ID D_PTS types 
+| VAR ID D_PTS types 
+|  
+;
+
+removetmt 
+: ID PUNTO REMOVE PARIZQ AT D_PTS expr  PARDER 
+;
+
+removelastmt 
+: ID PUNTO REMOVELAST PARIZQ  PARDER 
+;
+
+appendtmt 
+:ID PUNTO APPEND PARIZQ expr PARDER
+;
+
+guardtmt 
+: GUARD expr ELSE LLAVEIZQ block LLAVEDER 
+
+;
+breaktmt 
+: BREAK 
+;
+
+continuetmt 
+: CONTINUE 
+;
+
+printstmt 
+: PRINT PARIZQ expr PARDER 
+| PRINT PARIZQ expr1=expr COMA expr2=expr PARDER 
+;
+
+
+
+forstmt 
+: FOR ID IN expr PUNTO PUNTO PUNTO expr LLAVEIZQ block LLAVEDER 
+| FOR GUIONB IN expr PUNTO PUNTO PUNTO expr LLAVEIZQ block LLAVEDER 
+| FOR ID IN  (STRING|ID) LLAVEIZQ block LLAVEDER 
+;
+
+switchtmt 
+: SWITCH expr LLAVEIZQ  caselist  DEFAULT D_PTS block LLAVEDER
+;
+
+caselist 
+: listcases= caselist case 
+| case                  
+;
+
+case returns 
+: CASE expr D_PTS block 
+;
+
+ifstmt 
+: IF expr LLAVEIZQ block LLAVEDER 
+| IF expr LLAVEIZQ b1=block LLAVEDER ELSE LLAVEIZQ b2=block LLAVEDER
+| IF expr LLAVEIZQ block LLAVEDER elseiflist 
+| IF expr LLAVEIZQ b1=block LLAVEDER elseiflist ELSE LLAVEIZQ b2=block LLAVEDER 
+;
+
+elseiflist
+: listif=elseiflist elseif 
+| elseif    
+;
+
+
+elseif 
+: ELSE IF expr LLAVEIZQ block LLAVEDER 
+;
+
+
+whilestmt 
+: WHILE expr LLAVEIZQ block LLAVEDER 
+;
+
+declarationstmt 
+: VAR ID D_PTS types IG expr 
+| VAR ID  IG expr 
+| LET ID  IG expr 
+| LET ID D_PTS types IG expr 
+| VAR ID IG expr  
+| LET ID IG expr  
+;
+
+
+
+asignacion  
+: ID IG expr 
+| ID ADD IG expr 
+;
+
+
+
+types 
+: INT 
+| FLOAT 
+| STR 
+| BOOL 
+| CORIZQ types CORDER 
+| CORIZQ  CORDER 
+;
+
+expr  
+: SUB expr 
+| expr (MUL|DIV|MODULO) expr 
+| expr (ADD|SUB) expr 
+| expr (MAY_IG|MAYOR) expr 
+| expr (MEN_IG|MENOR) expr 
+| expr (IG_IG|DIF) expr 
+| expr AND expr 
+| expr OR expr 
+| NOT expr 
+| callFunction 
+| ID PARIZQ listStructExp PARDER
+| PARIZQ expr PARDER 
+| list=listArray 
+| CORIZQ listParams CORDER 
+| INT PARIZQ expr PARDER 
+| STR PARIZQ expr PARDER 
+| FLOAT PARIZQ expr PARDER 
+| ID PUNTO COUNT  
+| ID PUNTO ISEMPTY 
+| NUMBER                             
+| STRING                          
+| TRU 
+| FAL 
+;
+
+listParams 
+: list=listParams COMA expr 
+;
+
+listArray returns
+: list = listArray CORIZQ expr CORDER 
+| list = listArray PUNTO ID 
+| ID 
+;
+
+callFunctionInst 
+: ID PARIZQ listParams PARDER 
+;
+
+callFunction 
+: ID PARIZQ listParamsCall PARDER 
+;
+
+listParamsCall 
+: list=listParamsCall COMA expr 
+| expr  
+|   
+;
+
+listStructExp 
+: list=listStructExp COMA ID D_PTS expr 
+| ID D_PTS expr
+|   
+;
