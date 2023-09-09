@@ -1,6 +1,10 @@
 ﻿#
 Universidad de San Carlos de Guatemala 
-Facultad de Ingeniería Escuela de Ingeniería en Ciencias y Sistemas Organización de Lenguajes y Compiladores 2 Segundo semestre 2023
+
+Facultad de Ingeniería Escuela de Ingeniería en Ciencias y Sistemas 
+
+Organización de Lenguajes y Compiladores 2 Segundo semestre 2023
+
 Sebastian Alejandro de Leon Tenaz	
 201906085
 
