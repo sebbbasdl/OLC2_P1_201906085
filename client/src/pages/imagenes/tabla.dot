@@ -2,5 +2,7 @@ digraph Table {
   node [shape=none fontname=Helvetica]
   n1 [label = <<table>
     <tr><td colspan="9" bgcolor="Peru">Tabla</td></tr>
-    <tr><td bgcolor="orange">ID</td><td bgcolor="orange">Tipo Símbolo</td><td bgcolor="orange">Tipo Dato</td><td bgcolor="orange">Ámbito</td><td bgcolor="orange">Línea</td><td bgcolor="orange">Columna</td><td bgcolor="orange">Valor</td><td bgcolor="orange">Id</td></tr>  </table>> ]
+    <tr><td bgcolor="orange">ID</td><td bgcolor="orange">Tipo Símbolo</td><td bgcolor="orange">Tipo Dato</td><td bgcolor="orange">Ámbito</td><td bgcolor="orange">Línea</td><td bgcolor="orange">Columna</td><td bgcolor="orange">Valor</td><td bgcolor="orange">Id</td></tr>    <tr><td bgcolor="#00bfff">1</td><td>Funcion</td><td> </td><td>GLOBAL</td><td>0</td><td>0</td><td> </td><td>factorial</td></tr>
+    <tr><td bgcolor="#00bfff">2</td><td>Funcion</td><td> </td><td>GLOBAL</td><td>0</td><td>0</td><td> </td><td>ackermann</td></tr>
+  </table>> ]
 }

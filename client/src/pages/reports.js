@@ -45,7 +45,7 @@ const Reports = () => {
               padding: '10px 20px', // Añadir espaciado
             }}
           >
-            Tabla de Simbolos
+            CST
           </a>
         </li>
         <li className="nav-item">
@@ -59,7 +59,7 @@ const Reports = () => {
               padding: '10px 20px', // Añadir espaciado
             }}
           >
-            CST
+            Tabla de Simbolos
           </a>
         </li>
         <li className="nav-item">
